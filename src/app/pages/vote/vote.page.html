@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/settings">
+        <ion-icon name="cog">Settings</ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>DPoS Voting</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeApp()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content text-center>
+  
+  <ion-grid>
+    <ion-segment (ionChange)="toggleComponent($event)">
+      <ion-segment-button value="home" (click)="showHome()">
+        <ion-label>Preamble</ion-label>
+        <ion-icon name="information-circle-outline"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="voting" (click)="showVote()">
+        <ion-label>Vote</ion-label>
+        <ion-icon name="paper"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="stats" (click)="showStats()">
+        <ion-label>Stats</ion-label>
+        <ion-icon name="stats"></ion-icon>
+      </ion-segment-button>
+    </ion-segment>
+
+    <app-home *ngIf="homeActive"></app-home>
+    <app-voting *ngIf="votingActive"></app-voting>
+    <app-stats *ngIf="statsActive"></app-stats>  
+
+  </ion-grid>
+</ion-content>
+  
+  

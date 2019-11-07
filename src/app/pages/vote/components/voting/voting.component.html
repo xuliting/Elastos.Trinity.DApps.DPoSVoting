@@ -1,0 +1,52 @@
+<ion-list>
+  <ion-list-header>
+    <h4>Nodes</h4>
+  </ion-list-header>
+  <ion-item 
+    *ngFor="let node of nodes" 
+    detail
+    [routerLink]="[
+    ]"
+  >
+    <ion-avatar> 
+      <ion-img [src]="node.imageUrl"></ion-img>
+    </ion-avatar>
+    <ion-label>
+      <h4>{{ node.name }}</h4>
+      <p>Location: {{ node.location }}<p>
+      <p>Votes: {{ node.votes }}</p>
+    </ion-label>
+  </ion-item>
+  
+  <ion-item 
+    *ngFor="let node of nodes" 
+    detail
+    [routerLink]="[
+    ]"
+  >
+    <ion-avatar> 
+      <ion-img [src]="node.imageUrl"></ion-img>
+    </ion-avatar>
+    <ion-label>
+      <h4>{{ node.name }}</h4>
+      <p>Location: {{ node.location }}<p>
+      <p>Votes: {{ node.votes }}</p>
+    </ion-label>
+  </ion-item>
+
+  <ion-item 
+    *ngFor="let node of nodes" 
+    detail
+    [routerLink]="[
+    ]"
+  >
+    <ion-avatar> 
+      <ion-img [src]="node.imageUrl"></ion-img>
+    </ion-avatar>
+    <ion-label>
+      <h4>{{ node.name }}</h4>
+      <p>Location: {{ node.location }}<p>
+      <p>Votes: {{ node.votes }}</p>
+    </ion-label>
+  </ion-item>
+</ion-list>
