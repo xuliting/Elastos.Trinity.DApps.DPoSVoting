@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NodesService } from 'src/app/nodes.service';
 
 @Component({
   selector: 'app-voting',
@@ -7,32 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VotingComponent implements OnInit {
 
-  nodes = [
-    {
-      id: 1,
-      name: 'Node One',
-      location: 'Cairo',
-      votes: '500',
-      imageUrl: 'https://cdn.pixabay.com/photo/2017/08/24/05/21/pyramid-2675466_1280.jpg'
-    },
-    {
-      id: 2,
-      name: 'Node Two',
-      location: 'Istanbul',
-      votes: '1000',
-      imageUrl: 'https://cdn.pixabay.com/photo/2017/05/30/15/02/orient-2357224_1280.jpg'
-    },
-    {
-      id: 3,
-      name: 'Node Three',
-      location: 'Jerusalem',
-      votes: '1500',
-      imageUrl: 'https://cdn.pixabay.com/photo/2017/08/08/11/51/jerusalem-church-2611203_1280.jpg'
-    }
-  ];
+  nodes = [];
+  selectedNodes = 0;
 
-  constructor() { }
+  constructor(private nodesService: NodesService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.nodes = this.nodesService.nodes;
+    console.log(this.nodes);
+  }
+
+  addNode() {
+    console.log('node added');
+  }
 
 }
