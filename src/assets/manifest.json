@@ -6,8 +6,8 @@
   "short_name": "Elastos.Trinity.DApps.DPoSVoting",
   "short_description": "dpos voting",
   "description": "dpos voting dapp",
-  "start_url": "index.html",
-  "type": "file",
+  "start_url": "http://192.168.1.133:8100",
+  "type": "url",
   "category": "finance",
   "icons": [
     {
@@ -22,7 +22,7 @@
     }
   ],
   "author": {
-    "name": "Chad Racelis",
+    "name": "chad racelis",
     "email": "chadracelis@yahoo.com",
     "website": "https://github.com/chadracelis"
   },

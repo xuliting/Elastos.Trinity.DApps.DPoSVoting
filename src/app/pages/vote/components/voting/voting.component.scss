@@ -4,19 +4,35 @@ ion-list {
   opacity: 0.85;
   border-radius: 3px;
 
-  ion-label {
-    margin-left: 10px;
-  }
-
   h1 {
     font-weight: bold;
     margin-top: 0;
     margin-bottom: 0;
   }
 
-  h4 {
-    font-size: 16px;
-    font-weight: bold;
+  ion-label {
+    margin-left: 10px;
+    color: #21313d;
+
+    h4 {
+      font-size: 16px;
+      font-weight: bold;
+  
+      span {
+        font-size: 14px;
+        font-weight: bold;
+        color: #21313d;
+      }
+    }
+
+    p {
+      color: #21313d !important;
+      font-size: 12px !important;
+    }
+
+    ion-icon {
+      color: rgb(231, 81, 81);
+    }
   }
 }
 
@@ -34,4 +50,9 @@ ion-footer {
   ion-button {
     width: 100%;
   }
+}
+
+ion-spinner {
+  margin-left: 150px;
+  margin-bottom: 20px;
 }

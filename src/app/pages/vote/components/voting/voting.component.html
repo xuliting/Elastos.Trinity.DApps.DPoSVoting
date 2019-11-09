@@ -2,80 +2,32 @@
   <ion-list-header>
     <h1>Nodes</h1>
   </ion-list-header>
-  <ion-item-sliding *ngFor="let node of nodes" >
-    <ion-item>
-      <ion-avatar> 
-        <ion-img [src]="node.imageUrl"></ion-img>
-      </ion-avatar>
-      <ion-label>
-        <h4>{{ node.name }}</h4>
-        <p> 
-          <ion-icon name="pin"></ion-icon> 
-          {{ node.location }} <br> 
-          Votes {{ node.totalVotes }} ({{ node.votePercentage }}%)
-        <p>
-      </ion-label>
-      <ion-checkbox (click)="addNode()"></ion-checkbox>
-    </ion-item>
-    <ion-item-options side="start">
-      <ion-item-option 
-        [routerLink]="[
-          '/',
-          node.id
-        ]"
-      >
-        Node Details
-      </ion-item-option>
-    </ion-item-options>
-  </ion-item-sliding>
-
-  <ion-item-sliding *ngFor="let node of nodes" >
-    <ion-item>
-      <ion-avatar> 
-        <ion-img [src]="node.imageUrl"></ion-img>
-      </ion-avatar>
-      <ion-label>
-        <h4>{{ node.name }}</h4>
-        <p> 
-          <ion-icon name="pin"></ion-icon> 
-          {{ node.location }} <br> 
-          Votes {{ node.totalVotes }} ({{ node.votePercentage }}%)
-        <p>
-      </ion-label>
-      <ion-checkbox ></ion-checkbox>
-    </ion-item>
-    <ion-item-options side="start">
-      <ion-item-option 
-        [routerLink]="[
-          '/',
-          node.id
-        ]"
-      >
-        Node Details
-      </ion-item-option>
-    </ion-item-options>
-  </ion-item-sliding>
   
-  <ion-item-sliding *ngFor="let node of nodes" >
-    <ion-item>
+  <ion-item *ngIf="!nodesLoaded">
+    <ion-spinner name="bubbles"></ion-spinner>
+  </ion-item>
+
+  <ion-item-sliding *ngFor="let node of _nodes" >
+    <ion-item *ngIf="nodesLoaded">
       <ion-avatar> 
-        <ion-img [src]="node.imageUrl"></ion-img>
+        <!-- <ion-img [src]="node.imageUrl"></ion-img> -->
+        <ion-img src="../assets/icon/favicon.png"></ion-img>
       </ion-avatar>
       <ion-label>
-        <h4>{{ node.name }}</h4>
+        <h4>{{ node.Nickname }}</h4>
         <p> 
           <ion-icon name="pin"></ion-icon> 
-          {{ node.location }} <br> 
-          Votes {{ node.totalVotes }} ({{ node.votePercentage }}%)
+          {{ node.Location }}, Rank #{{ node.Rank }} <br> 
+          Votes {{ getVotes(node.Votes) }} ({{ node.votePercentage }}%)
         <p>
       </ion-label>
-      <ion-checkbox></ion-checkbox>
+      <ion-checkbox value="node" [(ngModel)]="node.isChecked"></ion-checkbox>
     </ion-item>
     <ion-item-options side="start">
       <ion-item-option 
         [routerLink]="[
           '/',
-          node.id
+          node.Producer_public_key
         ]"
       >
         Node Details
@@ -89,7 +41,7 @@
 
 <ion-footer>
   <h5 class="footer1">
-    Selected Nodes: <strong>{{ selectedNodes }}</strong> 
+    Selected Nodes: <strong>{{ getSelectedNodes() }}</strong> 
   </h5>
   <ion-button class="footer2">Cast Vote</ion-button>
 </ion-footer>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { NodesService } from 'src/app/nodes.service';
+import { Node } from 'src/app/nodes.model';
 
 declare let appService: any;
 
@@ -12,7 +13,7 @@ declare let appService: any;
 })
 export class NodeDetailsPage implements OnInit {
 
-  node = null;
+  node: Node;
 
   constructor(
     private nodesService: NodesService,
@@ -27,7 +28,7 @@ export class NodeDetailsPage implements OnInit {
         return;
       }
       this.node = this.nodesService.getNode(paramMap.get('nodeId'));
-      console.log(this.node);
+      console.log('Node = ' + this.node.Nickname);
     });
   }
 
@@ -35,4 +36,16 @@ export class NodeDetailsPage implements OnInit {
     appService.close();
   }
 
+  // helpers
+  getVotes(votes) {
+    return parseInt(votes);
+  }
+
+  getState(state) {
+    if (state === 'Active') {
+      return 'Active';
+    } else {
+      return 'Inactive';
+    }
+  }
 }

@@ -37,6 +37,32 @@ ion-card {
         margin: 0;
         font-weight: bold;
       }
+
+      .location {
+        ion-icon {
+          color: rgb(231, 81, 81);
+        }
+
+        font-size: 15px;
+      }
+
+      .active {
+        ion-icon {
+          margin-top: 2px;
+        }
+
+        font-size: 15px;
+        color: green;
+      }
+
+      .inactive {
+        ion-icon {
+          margin-top: 2px;
+        }
+
+        font-size: 15px;
+        color: red;
+      }
     }
   
     p {
@@ -58,7 +84,7 @@ ion-card {
     }
 
     h3 {
-      font-size: 20px;
+      font-size: 15px;
       font-weight: bold;
     }
   }
