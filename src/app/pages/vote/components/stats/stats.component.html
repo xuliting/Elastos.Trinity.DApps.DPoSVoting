@@ -1,16 +1,24 @@
-<ion-card>
+<ion-card *ngIf="nodesLoaded">
+  <br><br>
   <ion-card-content>
     <p>
-      Total number of votes: <br> 
+      Total Number of Votes: <br> 
       <strong>{{ totalVotes }}</strong>
     </p>
     <p>
       ELA voted vs Circulation: <br> 
-      <strong>{{ voteRatio }}%</strong>
+      <strong>{{ votePercent.toFixed(2) }}%</strong>
     </p>
     <p>
-      Registered supernodes: <br> 
-      <strong>{{ registeredNodes }}</strong>
+      Active vs Registered Supernodes: <br> 
+      <strong>{{ getActiveNodes() }} / {{ _nodes.length }}</strong>
     </p>
   </ion-card-content>
+  <br><br>
+</ion-card>
+
+<ion-card *ngIf="!nodesLoaded" padding>
+  <br><br><br><br><br><br>
+  <ion-spinner name="bubbles"></ion-spinner>
+  <br><br><br><br><br><br>
 </ion-card>

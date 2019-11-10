@@ -32,7 +32,7 @@
       </ion-segment-button>
     </ion-segment>
 
-    <app-home *ngIf="homeActive"></app-home>
+    <app-home *ngIf="homeActive" (votingActive)="_showVote($event)"></app-home>
     <app-voting *ngIf="votingActive"></app-voting>
     <app-stats *ngIf="statsActive"></app-stats>  
 

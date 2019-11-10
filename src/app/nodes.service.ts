@@ -23,7 +23,6 @@ export class NodesService {
       Location:  24,
       Active: true,
       Votes: '500',
-      votePercentage: '2.5',
       Netaddress: '',
       State: '',
       Registerheight: 0,
@@ -48,7 +47,6 @@ export class NodesService {
       Location:  26,
       Active: true,
       Votes: '1000',
-      votePercentage: '3.8',
       Netaddress: '',
       State: '',
       Registerheight: 0,
@@ -72,7 +70,6 @@ export class NodesService {
       Location:  33,
       Active: true,
       Votes: '1500',
-      votePercentage: '1.8',
       Netaddress: '',
       State: '',
       Registerheight: 0,
@@ -88,25 +85,21 @@ export class NodesService {
 
   currentHeight: any;
 
-  constructor(private http: HttpClient) {
-    this.fetchCurrentHeight();
-  }
+  constructor(private http: HttpClient) {}
 
   fetchCurrentHeight() {
     this.http.get<any>('https://node1.elaphant.app/api/1/currHeight').subscribe(responce => {
-      this.currentHeight = responce;
-      console.log('Current height = ' + responce.result);
+      this.currentHeight = responce.result;
+      console.log('Current height -> ' + this.currentHeight);
     });
   }
 
-  fetchNodes(): Observable<Node[]> {
+  fetchNodes(): Observable<any> {
     console.log('Fetching Nodes..');
-    this._nodes = [];
-    return this.http.get<Node[]>('https://node1.elaphant.app/api/v1/dpos/rank/height/' + this.currentHeight.result).pipe(
+    return this.http.get<any>('https://node1.elaphant.app/api/v1/dpos/rank/height/' + this.currentHeight).pipe(
       tap(response => {
         this._nodes = this._nodes.concat(response.result);
-        // this._nodes = response.result;
-        console.log("Nodes from service ->", this._nodes);
+        console.log('Nodes from service ->', this._nodes);
         return this._nodes;
       })
     );

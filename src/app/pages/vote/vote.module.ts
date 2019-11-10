@@ -24,6 +24,6 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   declarations: [VotePage, HomeComponent, VotingComponent, StatsComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA] // Needed to find ion-back-button, etc
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class VotePageModule {}

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { NodesService } from 'src/app/nodes.service';
 
 @Component({
   selector: 'app-home',
@@ -7,11 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  @Output() votingActive = new EventEmitter<boolean>();
+
   elaCount = 500;
   nodeCount = 36;
 
-  constructor() { }
+  constructor(private nodesService: NodesService) {
+    this.nodesService.fetchCurrentHeight();
+  }
 
   ngOnInit() {}
+
+  showVote() {
+    this.votingActive.emit(true);
+  }
 
 }

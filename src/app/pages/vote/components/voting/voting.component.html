@@ -1,13 +1,30 @@
 <ion-list>
-  <ion-list-header>
+
+  <ion-list-header *ngIf="!searchOn">
     <h1>Nodes</h1>
+    <span (click)="toggleSearch()">
+      <ion-icon name="search"></ion-icon>
+    </span>
+  </ion-list-header>
+
+  <ion-list-header class="searchContainer" *ngIf="searchOn">
+    <ion-searchbar 
+      color="secondary" 
+      placeholder="Search Node.."
+      [(ngModel)]="node"
+      (ngModelChange)="filterNodes($event)"
+    >
+    </ion-searchbar>
+    <span (click)="toggleSearch()">
+      <ion-icon name="eye-off"></ion-icon>
+    </span>
   </ion-list-header>
   
   <ion-item *ngIf="!nodesLoaded">
     <ion-spinner name="bubbles"></ion-spinner>
   </ion-item>
 
-  <ion-item-sliding *ngFor="let node of _nodes" >
+  <ion-item-sliding *ngFor="let node of filteredNodes" >
     <ion-item *ngIf="nodesLoaded">
       <ion-avatar> 
         <!-- <ion-img [src]="node.imageUrl"></ion-img> -->
@@ -18,7 +35,7 @@
         <p> 
           <ion-icon name="pin"></ion-icon> 
           {{ node.Location }}, Rank #{{ node.Rank }} <br> 
-          Votes {{ getVotes(node.Votes) }} ({{ node.votePercentage }}%)
+          Votes {{ getVotes(node.Votes) }} ({{ getVotePercentage(node.Votes) }}%)
         <p>
       </ion-label>
       <ion-checkbox value="node" [(ngModel)]="node.isChecked"></ion-checkbox>
@@ -43,5 +60,5 @@
   <h5 class="footer1">
     Selected Nodes: <strong>{{ getSelectedNodes() }}</strong> 
   </h5>
-  <ion-button class="footer2">Cast Vote</ion-button>
+  <ion-button class="footer2" (click)="castVote()">Cast Vote</ion-button>
 </ion-footer>

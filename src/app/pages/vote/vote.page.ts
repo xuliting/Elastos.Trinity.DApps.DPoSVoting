@@ -37,6 +37,12 @@ export class VotePage implements OnInit {
     this.statsActive = true;
   }
 
+  _showVote(bool: boolean) {
+    this.homeActive = false;
+    this.votingActive = bool;
+    this.statsActive = false;
+  }
+
   toggleComponent(event: CustomEvent<SegmentChangeEventDetail>) {
     console.log(event.detail);
   }

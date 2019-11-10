@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NodesService } from 'src/app/nodes.service';
+import { Node } from 'src/app/nodes.model';
 
 @Component({
   selector: 'app-stats',
@@ -7,12 +9,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StatsComponent implements OnInit {
 
-  totalVotes = 123456789;
-  voteRatio = 25.34;
-  registeredNodes = 96;
+  totalVotes = 0;
+  votePercent = 0;
+  _nodes: Node[];
+  nodesLoaded = true;
 
-  constructor() { }
+  constructor(private nodesService: NodesService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this._nodes = this.nodesService.nodes;
+    this.getTotalVotes();
+    if (this._nodes.length === 0) {
+      this.nodesLoaded = false;
+      this.nodesService.fetchNodes().subscribe(nodes => {
+        this.nodesLoaded = true;
+        this._nodes = nodes.result;
+        console.log('Nodes from Stats ->', this._nodes);
+        this.getTotalVotes();
+      });
+    }
+  }
 
+  getTotalVotes() {
+    this._nodes.map(node => {
+      this.totalVotes += parseInt(node.Votes);
+    });
+    console.log('Total Votes -> ' + this.totalVotes);
+    this.votePercent = this.totalVotes / (16063887 * 36) * 100;
+  }
+
+  // helpers
+  getActiveNodes() {
+    let activeNodes = 0;
+    this._nodes.map(node => {
+      if (node.State === 'Active') {
+        activeNodes++;
+      }
+    });
+    return activeNodes;
+  }
 }

@@ -11,7 +11,6 @@ export class Node {
     public Location: number,
     public Active: boolean,
     public Votes: string,
-    public votePercentage: string,
     public Netaddress: string,
     public State: string,
     public Registerheight: number,

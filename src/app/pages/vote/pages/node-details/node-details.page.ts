@@ -14,6 +14,8 @@ declare let appService: any;
 export class NodeDetailsPage implements OnInit {
 
   node: Node;
+  _nodes: Node[];
+  totalVotes = 0;
 
   constructor(
     private nodesService: NodesService,
@@ -29,7 +31,17 @@ export class NodeDetailsPage implements OnInit {
       }
       this.node = this.nodesService.getNode(paramMap.get('nodeId'));
       console.log('Node = ' + this.node.Nickname);
+      this._nodes = this.nodesService.nodes;
+      console.log('Nodes from Details ->', this._nodes);
+      this.getTotalVotes();
     });
+  }
+
+  getTotalVotes() {
+    this._nodes.map(node => {
+      this.totalVotes += parseFloat(node.Votes);
+    });
+    console.log('Total Votes -> ' + this.totalVotes);
   }
 
   closeApp() {
@@ -47,5 +59,10 @@ export class NodeDetailsPage implements OnInit {
     } else {
       return 'Inactive';
     }
+  }
+
+  getVotePercentage(votes) {
+    const votePercentage = parseFloat(votes) / this.totalVotes;
+    return votePercentage.toFixed(4);
   }
 }
