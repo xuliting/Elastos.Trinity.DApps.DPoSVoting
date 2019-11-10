@@ -35,7 +35,7 @@
         <p> 
           <ion-icon name="pin"></ion-icon> 
           {{ node.Location }}, Rank #{{ node.Rank }} <br> 
-          Votes {{ getVotes(node.Votes) }} ({{ getVotePercentage(node.Votes) }}%)
+          Votes {{ getVotes(node.Votes) }} ({{ getVotePercent(node.Votes) }}%)
         <p>
       </ion-label>
       <ion-checkbox value="node" [(ngModel)]="node.isChecked"></ion-checkbox>

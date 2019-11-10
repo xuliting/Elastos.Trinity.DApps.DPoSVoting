@@ -78,9 +78,9 @@ export class VotingComponent implements OnInit {
     return addedNodes;
   }
 
-  getVotePercentage(votes) {
-    const votePercentage = parseFloat(votes) / this.totalVotes;
-    return votePercentage.toFixed(4);
+  getVotePercent(votes) {
+    const votePercent = parseFloat(votes) / this.totalVotes * 100;
+    return votePercent.toFixed(2);
   }
 }
 
