@@ -50,7 +50,8 @@ export class NodeDetailsPage implements OnInit {
 
   // helpers
   getVotes(votes) {
-    return parseInt(votes);
+    const fixedVotes = parseInt(votes);
+    return fixedVotes.toLocaleString().split(/\s/).join(',');
   }
 
   getState(state) {

@@ -48,4 +48,8 @@ export class StatsComponent implements OnInit {
     });
     return activeNodes;
   }
+
+  fixTotalVotes() {
+    return this.totalVotes.toLocaleString().split(/\s/).join(',');
+  }
 }
