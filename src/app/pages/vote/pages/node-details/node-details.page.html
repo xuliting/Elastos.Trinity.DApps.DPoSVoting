@@ -23,15 +23,15 @@
         <ion-grid>
           <ion-card-subtitle text-left>
             <ion-row>
-              <ion-col size="3" size-lg="0.75">
+              <ion-col size="3" size-md="1.5" size-lg="1">
                 <ion-avatar>
                   <!-- <ion-img [src]="node.imageUrl"></ion-img> -->
                   <ion-img src="../assets/icon/favicon.png"></ion-img>
                 </ion-avatar>
               </ion-col>
-              <ion-col size="9" size-lg="11.25">
+              <ion-col size="9" size-md="10.5" size-lg="11">
                 <h4>{{ node.Nickname }}</h4>
-                <p class="location"><ion-icon name="pin"></ion-icon>  {{ node.Location }} </p>
+                <span class="location"><ion-icon name="pin"></ion-icon>  {{ node.Location }} </span>
                 <ng-template [ngIf]="node.State === 'Active'" [ngIfElse]="inactive">
                   <p class="active"> <ion-icon name="happy"></ion-icon> {{ getState(node.State) }}</p>
                 </ng-template>

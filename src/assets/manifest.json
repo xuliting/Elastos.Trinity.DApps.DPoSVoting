@@ -6,8 +6,8 @@
   "short_name": "Elastos.Trinity.DApps.DPoSVoting",
   "short_description": "dpos voting",
   "description": "dpos voting dapp",
-  "start_url": "http://192.168.1.133:8100",
-  "type": "url",
+  "start_url": "index.html",
+  "type": "file",
   "category": "finance",
   "icons": [
     {
