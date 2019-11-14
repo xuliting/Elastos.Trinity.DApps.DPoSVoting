@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NodesService } from 'src/app/nodes.service';
 import { Node } from 'src/app/nodes.model';
+import { HttpClient } from '@angular/common/http';
 
 declare let appService: any;
 
@@ -18,7 +19,7 @@ export class VotingComponent implements OnInit {
   totalVotes = 0;
   searchOn = false;
 
-  constructor(private nodesService: NodesService) {}
+  constructor(private http: HttpClient, private nodesService: NodesService) {}
 
   ngOnInit() {
     this._nodes = this.nodesService.nodes;
@@ -32,6 +33,7 @@ export class VotingComponent implements OnInit {
         this.filteredNodes = this._nodes;
         console.log('Nodes from Voting ->', this._nodes);
         this.getTotalVotes();
+        this.nodesService.getNodeIcon();
       });
     }
   }
@@ -58,7 +60,15 @@ export class VotingComponent implements OnInit {
     console.log('Casting votes..');
     this._nodes.map(node => {
       if (node.isChecked === true) {
-        appService.sendIntent('DPoS vote transaction..', { publickeys: [node.Nodepublickey] });
+        appService.sendIntent(
+          'dposvotetransaction',
+          { publickeys: JSON.stringify([node.Ownerpublickey]) },
+          () => {
+            console.log('Insent sent sucessfully');
+          }, (err) => {
+            console.log('Intent sendoing failed', err);
+          }
+        );
       }
     });
   }

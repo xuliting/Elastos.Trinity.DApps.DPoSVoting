@@ -1,8 +1,12 @@
 ion-list {
+  padding-top: 0;
+  padding-bottom: 0;
   margin: 2.5px;
   margin-top: 15px;
-  opacity: 0.85;
-  border-radius: 3px;
+  // opacity: 0.85;
+  border-radius: 5px;
+  background: linear-gradient(to bottom, #323232 0%, #3F3F3F 40%, #1C1C1C 150%), linear-gradient(to top, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.25) 200%);
+  background-blend-mode: multiply;
 
   h1 {
     font-weight: bold;
@@ -12,7 +16,7 @@ ion-list {
 
   ion-label {
     margin-left: 10px;
-    color: #21313d;
+    // color: #21313d;
 
     h4 {
       font-size: 16px;
@@ -21,12 +25,12 @@ ion-list {
       span {
         font-size: 14px;
         font-weight: bold;
-        color: #21313d;
+        // color: #21313d;
       }
     }
 
     p {
-      color: #21313d !important;
+      // color: #21313d !important;
       font-size: 12px !important;
     }
 
@@ -41,7 +45,8 @@ ion-footer {
   bottom: 0;
   left: 0;
   padding: 5px;
-  background-color: white;
+  color: white;
+  background-image: linear-gradient(120deg,rgb(0, 0, 0) 0%,  #292929 100%);
 
   h5 {
     margin-top: 10px;
@@ -58,10 +63,15 @@ ion-spinner {
 
 .searchContainer {
   padding: 0;
+  color: white;
 }
 
 span {
   font-size: 25px;
   padding-right: 15px;
   padding-top: 5px;
+}
+
+ion-item {
+  background-blend-mode: multiply !important;
 }

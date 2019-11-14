@@ -1,6 +1,6 @@
-<ion-list>
+<ion-list color="dark">
 
-  <ion-list-header *ngIf="!searchOn">
+  <ion-list-header *ngIf="!searchOn" color="dark">
     <h1>Nodes</h1>
     <span (click)="toggleSearch()">
       <ion-icon name="search"></ion-icon>
@@ -20,18 +20,18 @@
     </span>
   </ion-list-header>
   
-  <ion-item *ngIf="!nodesLoaded" text-center>
+  <ion-item *ngIf="!nodesLoaded" text-center color="dark">
     <ion-label>
       <ion-spinner name="bubbles"></ion-spinner>
     </ion-label>
   </ion-item>
 
   <ion-virtual-scroll [items]="filteredNodes"  approxItemHeight="120px">
-    <ion-item-sliding *virtualItem="let node">
-      <ion-item *ngIf="nodesLoaded">
+    <ion-item-sliding *virtualItem="let node" color="dark">
+      <ion-item *ngIf="nodesLoaded" color="dark">
         <ion-avatar> 
-          <!-- <ion-img [src]="node.imageUrl"></ion-img> -->
-          <ion-img src="../assets/icon/favicon.png"></ion-img>
+          <ion-img *ngIf="node.imageUrl" [src]="node.imageUrl"></ion-img>
+          <ion-img *ngIf="!node.imageUrl" src="../assets/icon/ela-logo.jpg"></ion-img>
         </ion-avatar>
         <ion-label>
           <h4>{{ node.Nickname }}</h4>
@@ -64,5 +64,5 @@
   <h5 class="footer1">
     Selected Nodes: <strong>{{ getSelectedNodes() }}</strong> 
   </h5>
-  <ion-button class="footer2" (click)="castVote()">Cast Vote</ion-button>
+  <ion-button class="footer2" (click)="castVote()" color="dark">Cast Vote</ion-button>
 </ion-footer>

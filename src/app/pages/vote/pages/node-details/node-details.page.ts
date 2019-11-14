@@ -56,7 +56,7 @@ export class NodeDetailsPage implements OnInit {
 
   getState(state) {
     if (state === 'Active') {
-      return 'Active';
+      return state;
     } else {
       return 'Inactive';
     }

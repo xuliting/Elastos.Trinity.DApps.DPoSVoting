@@ -26,6 +26,7 @@ export class StatsComponent implements OnInit {
         this._nodes = nodes.result;
         console.log('Nodes from Stats ->', this._nodes);
         this.getTotalVotes();
+        this.nodesService.getNodeIcon();
       });
     }
   }

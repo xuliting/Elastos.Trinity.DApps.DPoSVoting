@@ -1,9 +1,10 @@
 ion-card {
   margin: 10px 2.5px 15px 2.5px;
   padding-bottom: 15px;
-  background-color: white;
-  opacity: 0.85;
-  border-radius: 3px;
+  // background-color: white;
+  // opacity: 0.85;
+  border-radius: 5px;
+  background-blend-mode: multiply !important;
 
   ion-card-title {
     font-weight: bold;
@@ -28,7 +29,7 @@ ion-card {
   ion-card-content {
     font-size: 16px;
     font-weight: bold;
-    color: #21313d;
+    // color: #21313d;
   }
 }
 
@@ -37,7 +38,9 @@ ion-footer {
   bottom: 0;
   left: 0;
   padding: 5px;
-  background-color: white;
+  // background-color: white;
+  color: white;
+  background-image: linear-gradient(120deg,rgb(0, 0, 0) 0%,  #292929 100%);
 
   h5 {
     margin-top: 10px;

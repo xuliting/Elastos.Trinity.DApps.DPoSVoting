@@ -84,6 +84,7 @@ export class NodesService {
   ];
 
   currentHeight: any;
+  errorMessage: any;
 
   constructor(private http: HttpClient) {}
 
@@ -103,6 +104,19 @@ export class NodesService {
         return this._nodes;
       })
     );
+  }
+
+  getNodeIcon() {
+    this._nodes.map(node => {
+      if (node.Url && node.State === 'Active') {
+        this.http.get<any>(node.Url + '/bpinfo.json').subscribe(responce => {
+          node.imageUrl = responce.org.branding.logo_256;
+        },
+        error => {
+          console.log('Node does not have logo', error);
+        });
+      }
+    });
   }
 
   get nodes() {
