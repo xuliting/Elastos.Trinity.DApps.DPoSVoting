@@ -2,12 +2,12 @@
   "id": "elastos.trinity.dposvoting",
   "version": "0.0.1",
   "version_code": 1,
-  "name": "Elastos.Trinity.DApps.DPoSVoting",
-  "short_name": "Elastos.Trinity.DApps.DPoSVoting",
-  "short_description": "dpos voting",
-  "description": "dpos voting dapp",
-  "start_url": "index.html",
-  "type": "file",
+  "name": "DPoS Voting DApp",
+  "short_name": "DPoS Voting DApp",
+  "short_description": "DPoS Voting DApp",
+  "description": "Elastos Trinity DPoS Voting DApp",
+  "start_url": "http://192.168.1.133:8100",
+  "type": "url",
   "category": "finance",
   "icons": [
     {
@@ -22,7 +22,7 @@
     }
   ],
   "author": {
-    "name": "chad racelis",
+    "name": "Chad Racelis",
     "email": "chadracelis@yahoo.com",
     "website": "https://github.com/chadracelis"
   },
@@ -33,6 +33,8 @@
     "NetworkStatus"
   ],
   "urls": [
+    "http://*",
+    "https://*",
     "http://www.baidu.com/*",
     "https://www.google.com",
     "http://192.168.31.103:21636/*",

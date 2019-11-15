@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NodesService } from 'src/app/nodes.service';
 import { Node } from 'src/app/nodes.model';
-import { HttpClient } from '@angular/common/http';
 
 declare let appService: any;
 
@@ -19,7 +18,7 @@ export class VotingComponent implements OnInit {
   totalVotes = 0;
   searchOn = false;
 
-  constructor(private http: HttpClient, private nodesService: NodesService) {}
+  constructor(private nodesService: NodesService) {}
 
   ngOnInit() {
     this._nodes = this.nodesService.nodes;
