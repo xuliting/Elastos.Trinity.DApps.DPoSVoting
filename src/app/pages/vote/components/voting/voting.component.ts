@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NodesService } from 'src/app/nodes.service';
 import { Node } from 'src/app/nodes.model';
 
@@ -18,7 +19,10 @@ export class VotingComponent implements OnInit {
   totalVotes = 0;
   searchOn = false;
 
-  constructor(private nodesService: NodesService) {}
+  constructor(
+    private nodesService: NodesService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this._nodes = this.nodesService.nodes;
@@ -53,6 +57,10 @@ export class VotingComponent implements OnInit {
 
   toggleSearch() {
     this.searchOn = !this.searchOn;
+  }
+
+  navToNode(id) {
+    this.router.navigateByUrl('/' + id);
   }
 
   castVote() {

@@ -39,6 +39,7 @@ export class NodesService {
       if (node.Url && node.State === 'Active') {
         this.http.get<any>(node.Url + '/bpinfo.json').subscribe(responce => {
           node.imageUrl = responce.org.branding.logo_256;
+          node.Location = responce.org.location.country;
         },
         error => {
           console.log('Node does not have logo', error);

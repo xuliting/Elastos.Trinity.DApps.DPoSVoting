@@ -1,41 +1,99 @@
-ion-list {
-  padding-top: 0;
-  padding-bottom: 0;
-  margin: 2.5px;
-  margin-top: 15px;
-  // opacity: 0.85;
-  border-radius: 5px;
-  background-image: linear-gradient(to bottom, #323232 0%, #3F3F3F 40%, #1C1C1C 150%), linear-gradient(to top, rgba(128, 128, 128, 0.4) 0%, rgba(0,0,0,0.25) 200%);
-  background-blend-mode: multiply;
+.container {
+  min-height: 100%;
+  background-image: linear-gradient(to right, rgb(20, 20, 20) 0%, #1d1d1d 100%);
 
-  h1 {
-    font-weight: bold;
-    margin-top: 0;
-    margin-bottom: 0;
-  }
+  ion-list {
+    min-height: 100%;
+    background-image: linear-gradient(to right, rgb(20, 20, 20) 0%, #1d1d1d 100%);
 
-  ion-label {
-    margin-left: 10px;
-    // color: #21313d;
+    ion-list-header {
+      margin-bottom: 4px;
+      border-top-right-radius: 50px;
+      border-bottom-right-radius: 50px;
 
-    h4 {
-      font-size: 16px;
-      font-weight: bold;
-  
-      span {
-        font-size: 14px;
+      h1 {
         font-weight: bold;
-        // color: #21313d;
+        margin-top: 0;
+        margin-bottom: 0;
       }
     }
 
-    p {
-      // color: #21313d !important;
-      font-size: 12px !important;
+    ion-item {
+      --inner-padding-end: 0px;
+      --padding-start: 0px;
+      margin: 4px;
+      margin-left: 0;
+      margin-right: 8px;
+      padding: 0px;
+      border-top-right-radius: 50px;
+      border-bottom-right-radius: 50px;
+
+      .rank-container {
+        font-size: 12px !important;
+        font-weight: bold;
+        padding-left: 7px;
+        padding-top: 31px;
+      }
+
+      .img-container {
+        padding-top: 6px;
+      }
+
+      .checkbox-container {
+        padding-top: 11px;
+        text-align: center;
+      }
+
+      .button-container {
+        padding-top: 14.25px;
+        padding-left: 15px;
+        font-weight: bold;
+        font-size: 26px;
+
+        p {
+          margin: 0;
+        }
+      }
+
+      ion-label {
+        margin-left: 14px;
+
+        h4 {
+          font-size: 16px;
+          font-weight: bold;
+
+          span {
+            font-size: 14px;
+            font-weight: bold;
+          }
+        }
+
+        p {
+          font-size: 12px !important;
+
+          span {
+            color: rgb(231, 81, 81);
+            font-size: 12px !important;
+            padding: 0;
+
+            ion-icon {
+              color: rgb(231, 81, 81);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .spinner-container {
+    h2 {
+      font-weight: bold;
+      font-size: 20px;
+      color: white;
     }
 
-    ion-icon {
-      color: rgb(231, 81, 81);
+    ion-spinner {
+      color: white;
     }
   }
 }
@@ -67,3 +125,7 @@ span {
   padding-right: 15px;
   padding-top: 5px;
 }
+
+
+
+

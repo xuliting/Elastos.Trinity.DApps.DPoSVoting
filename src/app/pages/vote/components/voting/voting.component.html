@@ -1,68 +1,76 @@
-<ion-list color="dark">
+<ion-grid class="container" no-padding>
+  <ion-list *ngIf="nodesLoaded">
 
-  <ion-list-header *ngIf="!searchOn" color="dark">
-    <h1>Nodes</h1>
-    <span (click)="toggleSearch()">
-      <ion-icon name="search"></ion-icon>
-    </span>
-  </ion-list-header>
+    <ion-list-header *ngIf="!searchOn" color="dark">
+      <h1>Nodes</h1>
+      <span (click)="toggleSearch()">
+        <ion-icon name="search"></ion-icon>
+      </span>
+    </ion-list-header>
 
-  <ion-list-header class="searchContainer" *ngIf="searchOn">
-    <ion-searchbar 
-      color="secondary" 
-      placeholder="Search Node.."
-      [(ngModel)]="node"
-      (ngModelChange)="filterNodes($event)"
-    >
-    </ion-searchbar>
-    <span (click)="toggleSearch()">
-      <ion-icon name="eye-off"></ion-icon>
-    </span>
-  </ion-list-header>
-  
-  <ion-item *ngIf="!nodesLoaded" text-center color="dark">
+    <ion-list-header class="searchContainer" *ngIf="searchOn" color="dark">
+      <ion-searchbar
+        color="secondary"
+        placeholder="Search Node.."
+        [(ngModel)]="node"
+        (ngModelChange)="filterNodes($event)"
+      >
+      </ion-searchbar>
+      <span (click)="toggleSearch()">
+        <ion-icon name="eye-off"></ion-icon>
+      </span>
+    </ion-list-header>
+
+    <ion-virtual-scroll [items]="filteredNodes"  approxItemHeight="120px">
+      <div *virtualItem="let node" color="dark">
+        <ion-item color="dark">
+          <ion-grid no-padding>
+            <ion-row no-padding>
+              <ion-col size="0.75" class="rank-container" no-padding>
+                {{ node.Rank }}
+              </ion-col>
+              <ion-col size="2" class="img-container">
+                <ion-avatar>
+                  <ion-img *ngIf="node.imageUrl" [src]="node.imageUrl"></ion-img>
+                  <ion-img *ngIf="!node.imageUrl" src="../assets/icon/ela-logo.jpg"></ion-img>
+                </ion-avatar>
+              </ion-col>
+              <ion-col size="6.25">
+                <ion-label>
+                  <h4>{{ node.Nickname }}</h4>
+                  <p>
+                    <span><ion-icon name="pin"></ion-icon> {{ node.Location }}</span> <br>
+                    Votes {{ getVotes(node.Votes) }} ({{ getVotePercent(node.Votes) }}%)
+                  <p>
+                </ion-label>
+              </ion-col>
+              <ion-col size="1.5" class="button-container" (click)="navToNode(node.Producer_public_key)">
+                <p>...</p>
+              </ion-col>
+              <ion-col size="1.5" class="checkbox-container">
+                <ion-checkbox value="node" [(ngModel)]="node.isChecked"></ion-checkbox>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+      </div>
+    </ion-virtual-scroll>
+
+  </ion-list>
+
+  <div *ngIf="!nodesLoaded" text-center padding class="spinner-container">
     <ion-label>
       <ion-spinner name="bubbles"></ion-spinner>
+      <h2>Loading Nodes</h2>
     </ion-label>
-  </ion-item>
-
-  <ion-virtual-scroll [items]="filteredNodes"  approxItemHeight="120px">
-    <ion-item-sliding *virtualItem="let node" color="dark">
-      <ion-item *ngIf="nodesLoaded" color="dark">
-        <ion-avatar> 
-          <ion-img *ngIf="node.imageUrl" [src]="node.imageUrl"></ion-img>
-          <ion-img *ngIf="!node.imageUrl" src="../assets/icon/ela-logo.jpg"></ion-img>
-        </ion-avatar>
-        <ion-label>
-          <h4>{{ node.Nickname }}</h4>
-          <p> 
-            <ion-icon name="pin"></ion-icon> 
-            {{ node.Location }}, Rank #{{ node.Rank }} <br> 
-            Votes {{ getVotes(node.Votes) }} ({{ getVotePercent(node.Votes) }}%)
-          <p>
-        </ion-label>
-        <ion-checkbox value="node" [(ngModel)]="node.isChecked"></ion-checkbox>
-      </ion-item>
-      <ion-item-options side="start">
-        <ion-item-option 
-          [routerLink]="[
-            '/',
-            node.Producer_public_key
-          ]"
-        >
-          Node Details
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-  </ion-virtual-scroll>
-
-</ion-list>
+  </div>
+</ion-grid>
 
 <br><br><br><br><br>
 
 <ion-footer>
   <h5 class="footer1">
-    Selected Nodes: <strong>{{ getSelectedNodes() }}</strong> 
+    Selected Nodes: <strong>{{ getSelectedNodes() }}</strong>
   </h5>
   <ion-button class="footer2" (click)="castVote()" color="dark">Cast Vote</ion-button>
 </ion-footer>

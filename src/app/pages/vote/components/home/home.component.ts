@@ -13,6 +13,11 @@ export class HomeComponent implements OnInit {
   elaCount = 500;
   nodeCount = 36;
 
+  slideOpts = {
+    initialSlide: 0,
+    speed: 300
+  };
+
   constructor(private nodesService: NodesService) {
     this.nodesService.fetchCurrentHeight();
   }
