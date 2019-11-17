@@ -10,8 +10,10 @@ export class HomeComponent implements OnInit {
 
   @Output() votingActive = new EventEmitter<boolean>();
 
-  elaCount = 500;
-  nodeCount = 36;
+  _nodes = [];
+  totalVotes = 0;
+  activeNodes = 0;
+  nodesLoaded = false;
 
   slideOpts = {
     initialSlide: 0,
@@ -19,13 +21,32 @@ export class HomeComponent implements OnInit {
   };
 
   constructor(private nodesService: NodesService) {
-    this.nodesService.fetchCurrentHeight();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this._nodes = this.nodesService.nodes;
+    this.getTotalVotes();
+    if (this._nodes.length !== 0) {
+      this.nodesLoaded = true;
+    }
+  }
+
+  getTotalVotes() {
+    this._nodes.map(node => {
+      this.totalVotes += parseInt(node.Votes);
+      if(node.State === 'Active') {
+        this.activeNodes++;
+      }
+    });
+  }
 
   showVote() {
     this.votingActive.emit(true);
   }
 
+  // helpers
+  getTotalEla() {
+    let ElaVotes = Math.ceil(this.totalVotes / 36);
+    return ElaVotes.toLocaleString().split(/\s/).join(',');
+  }
 }

@@ -1,12 +1,12 @@
 .container {
   min-height: 100%;
   /* background-image: linear-gradient(to right, rgb(20, 20, 20) 0%, #1d1d1d 100%); */
-  background-image: linear-gradient(to right, #f5f7fa 0%, #c3cfe2 100%);
+  background-image: linear-gradient(to right, #d8c3e2 0%, #c3cfe2 100%);
 
   ion-list {
     min-height: 100%;
     /* background-image: linear-gradient(to right, rgb(20, 20, 20) 0%, #1d1d1d 100%); */
-    background-image: linear-gradient(to right, #f5f7fa 0%, #c3cfe2 100%);
+    background-image: linear-gradient(to right, #d8c3e2 0%, #c3cfe2 100%);
 
     ion-list-header {
       margin-bottom: 4px;
@@ -116,7 +116,7 @@ ion-footer {
   padding: 5px;
   color: white;
   /* background-image: linear-gradient(120deg,rgb(0, 0, 0) 0%,  #292929 100%); */
-  background-image: linear-gradient(-225deg, rgb(202, 0, 98) 0%, #8D0B93 33%, #0091d4 100%);
+  background-image: linear-gradient(-225deg, rgb(202, 0, 202) 0%, #8D0B93 33%, #4b00a0 100%);
 
   h5 {
     margin-top: 10px;
@@ -125,6 +125,11 @@ ion-footer {
   ion-button {
     width: 100%;
     color: #2d0346;
+    --border-radius: 25px;
+
+    ion-spinner {
+      color: #2d0346;
+    }
   }
 }
 

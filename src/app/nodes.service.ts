@@ -11,7 +11,6 @@ import { Node } from './nodes.model';
 export class NodesService {
 
   private _nodes: Node[] = [];
-
   currentHeight: any;
 
   constructor(private http: HttpClient) {}
@@ -42,7 +41,7 @@ export class NodesService {
           node.Location = responce.org.location.country;
         },
         error => {
-          console.log('Node does not have logo', error);
+          console.log('Node does not have extra data', error);
         });
       }
     });

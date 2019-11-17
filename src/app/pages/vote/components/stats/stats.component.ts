@@ -53,4 +53,9 @@ export class StatsComponent implements OnInit {
   fixTotalVotes() {
     return this.totalVotes.toLocaleString().split(/\s/).join(',');
   }
+
+  getTotalEla() {
+    let ElaVotes = Math.ceil(this.totalVotes / 36);
+    return ElaVotes.toLocaleString().split(/\s/).join(',');
+  }
 }

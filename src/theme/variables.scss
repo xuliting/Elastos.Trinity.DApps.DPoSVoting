@@ -4,7 +4,7 @@
 /** Ionic CSS Variables **/
 :root {
   /* --ion-color-primary: linear-gradient(120deg,rgb(0, 0, 0) 0%,  #181818 100%); */
-  --ion-color-primary: linear-gradient(-225deg, rgb(202, 0, 98) 0%, #8D0B93 33%, #0091d4 100%);
+  --ion-color-primary: linear-gradient(-225deg, rgb(202, 0, 98) 0%, #8D0B93 33%, #4b00a0 100%);
   --ion-color-primary-rgb: 33,49,61;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255,255,255;
@@ -18,7 +18,7 @@
   --ion-color-secondary-shade: #c1c1c1;
   --ion-color-secondary-tint: #dfdfdf;
 
-  --ion-color-tertiary: linear-gradient(to right, #ec77ab 0%, #7873f5 100%);
+  --ion-color-tertiary: linear-gradient(to right, #d45d93 0%, #9257d6 100%);
   --ion-color-tertiary-rgb: 112,68,255;
   --ion-color-tertiary-contrast: #ffffff;
   --ion-color-tertiary-contrast-rgb: 255,255,255;
@@ -32,12 +32,12 @@
   --ion-color-success-shade: #0ec254;
   --ion-color-success-tint: #28e070;
 
-  --ion-color-warning: #ffce00;
-  --ion-color-warning-rgb: 255,206,0;
-  --ion-color-warning-contrast: #ffffff;
-  --ion-color-warning-contrast-rgb: 255,255,255;
-  --ion-color-warning-shade: #e0b500;
-  --ion-color-warning-tint: #ffd31a;
+  --ion-color-warning: linear-gradient(to right, #d8c3e2 0%, #c3cfe2 100%);
+  --ion-color-warning-rgb: 255,255,255;
+  --ion-color-warning-contrast: #1a0029;
+  --ion-color-warning-contrast-rgb: 0,0,0;
+  --ion-color-warning-shade: #e0e0e0;
+  --ion-color-warning-tint: #ffffff;
 
   --ion-color-danger: #ffffff;
   --ion-color-danger-rgb: 255,255,255;
@@ -73,14 +73,15 @@
 
 .ios { // ios
   /* --ion-color-primary: linear-gradient(120deg,rgb(0, 0, 0) 0%,  #252525 100%); */
-  --ion-color-primary: linear-gradient(-225deg, rgb(202, 0, 98) 0%, #8D0B93 33%, #0091d4 100%);
+  --ion-color-primary: linear-gradient(-225deg, rgb(202, 0, 202) 0%, #8D0B93 33%, #4b00a0 100%);
 }
 
 .plt-android { // android
   /* --ion-color-primary: linear-gradient(120deg,rgb(0, 0, 0) 0%,  #252525 100%); */
-  --ion-color-primary: linear-gradient(-225deg, rgb(202, 0, 98) 0%, #8D0B93 33%, #0091d4 100%);
+  --ion-color-primary: linear-gradient(-225deg, rgb(202, 0, 202) 0%, #8D0B93 33%, #4b00a0 100%);
+  /* --ion-color-primary: linear-gradient(-225deg, rgb(202, 0, 98) 0%, #8D0B93 33%, #0091d4 100%); */
+ /*  --ion-color-primary: linear-gradient(-225deg, rgb(202, 0, 98) 0%, #8D0B93 33%, #4b00a0 100%); */
 }
-
 
 /*
 

@@ -14,10 +14,10 @@ export class VotingComponent implements OnInit {
 
   _nodes: Node[];
   filteredNodes: Node[];
-  selectedNodes: Node[];
   nodesLoaded = true;
   totalVotes = 0;
   searchOn = false;
+  castingVote = false;
 
   constructor(
     private nodesService: NodesService,
@@ -64,16 +64,21 @@ export class VotingComponent implements OnInit {
   }
 
   castVote() {
-    console.log('Casting votes..');
     this._nodes.map(node => {
       if (node.isChecked === true) {
+        console.log('Casting votes to ' + node);
+        this.castingVote = true;
         appService.sendIntent(
           'dposvotetransaction',
           { publickeys: JSON.stringify([node.Ownerpublickey]) },
           () => {
             console.log('Insent sent sucessfully');
+            this.castingVote = false;
+            this._nodes.map(node => {
+              node.isChecked = false;
+            })
           }, (err) => {
-            console.log('Intent sendoing failed', err);
+            console.log('Intent sending failed', err);
           }
         );
       }

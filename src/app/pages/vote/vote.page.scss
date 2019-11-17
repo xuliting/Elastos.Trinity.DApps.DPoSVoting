@@ -20,7 +20,8 @@ ion-buttons {
 }
 
 ion-card {
-  border-radius: 50px;
+  display: flex;
+  border-radius: 25px;
   padding: 0px;
 }
 
@@ -33,6 +34,7 @@ ion-card {
     h1 {
       font-size: 30px;
       font-weight: bold;
+      margin-bottom: 0;
     }
   }
 }

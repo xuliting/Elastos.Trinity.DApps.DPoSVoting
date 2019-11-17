@@ -38,9 +38,12 @@
   </ion-card>
 
   <ion-footer>
-    <h5 class="footer1">
-      Active Votes: <strong>{{ elaCount }} ELA</strong>
-      on <strong>{{ nodeCount }} Nodes </strong>
+    <h5 class="footer1" *ngIf="nodesLoaded">
+      Active <strong>{{ getTotalEla() }}</strong> ELA
+      Voted on <strong>{{ activeNodes }}</strong> Nodes
+    </h5>
+    <h5 class="footer1" *ngIf="!nodesLoaded">
+      <ion-spinner name="bubbles"></ion-spinner>
     </h5>
     <ion-button class="footer2" (click)="showVote()" color="danger">
       <strong>Start Voting</strong>
