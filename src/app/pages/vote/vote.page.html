@@ -27,19 +27,19 @@
       </ion-row>
     </ion-grid>
 
-    <ion-card color="dark">
-      <ion-segment (ionChange)="toggleComponent($event)">
-        <ion-segment-button value="home" (click)="showHome()">
+    <ion-card color="danger">
+      <ion-segment (ionChange)="toggleComponent($event)" mode="ios" color="tertiary">
+        <ion-segment-button mode="ios" value="home" (click)="showHome()">
           <ion-label>Home</ion-label>
-          <ion-icon name="information-circle-outline"></ion-icon>
+          <!-- <ion-icon name="home"></ion-icon> -->
         </ion-segment-button>
-        <ion-segment-button value="voting" (click)="showVote()">
+        <ion-segment-button mode="ios" value="voting" (click)="showVote()">
           <ion-label>Vote</ion-label>
-          <ion-icon name="paper"></ion-icon>
+          <!-- <ion-icon name="paper"></ion-icon> -->
         </ion-segment-button>
-        <ion-segment-button value="stats" (click)="showStats()">
+        <ion-segment-button mode="ios" value="stats" (click)="showStats()">
           <ion-label>Stats</ion-label>
-          <ion-icon name="stats"></ion-icon>
+          <!-- <ion-icon name="stats"></ion-icon> -->
         </ion-segment-button>
       </ion-segment>
     </ion-card>

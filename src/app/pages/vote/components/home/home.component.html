@@ -1,6 +1,6 @@
 <ion-grid class="container">
-  <ion-card color="dark">
-    <br><br><br><br><br>
+  <ion-card color="danger">
+    <br><br><br>
     <ion-slides
       pager="true"
       [options]="slideOpts"
@@ -34,7 +34,7 @@
         </div>
       </ion-slide>
     </ion-slides>
-  <br><br><br><br><br>
+    <br><br><br>
   </ion-card>
 
   <ion-footer>
@@ -42,6 +42,8 @@
       Active Votes: <strong>{{ elaCount }} ELA</strong>
       on <strong>{{ nodeCount }} Nodes </strong>
     </h5>
-    <ion-button class="footer2" (click)="showVote()" color="dark">Start Voting</ion-button>
+    <ion-button class="footer2" (click)="showVote()" color="danger">
+      <strong>Start Voting</strong>
+    </ion-button>
   </ion-footer>
 </ion-grid>

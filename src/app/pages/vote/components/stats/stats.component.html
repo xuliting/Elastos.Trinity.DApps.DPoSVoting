@@ -1,5 +1,5 @@
 <ion-grid class="container">
-  <ion-card *ngIf="nodesLoaded" color="dark">
+  <ion-card *ngIf="nodesLoaded" color="danger">
     <br><br>
     <ion-card-content>
       <p>
@@ -18,12 +18,12 @@
     <br><br>
   </ion-card>
 
-  <ion-card *ngIf="!nodesLoaded" text-center padding color="dark">
+  <ion-card *ngIf="!nodesLoaded" text-center padding color="danger">
     <br><br><br><br><br>
     <div class="spinner-container">
       <ion-label>
         <ion-spinner name="bubbles"></ion-spinner>
-        <h2>Loading Nodes</h2>
+        <h2>Loading Stats</h2>
       </ion-label>
     </div>
     <br><br><br><br><br>

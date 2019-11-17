@@ -21,8 +21,7 @@ ion-buttons {
 
 ion-card {
   border-radius: 50px;
-  padding: 10px;
-  margin-top: 0;
+  padding: 0px;
 }
 
 .title-container {
@@ -45,8 +44,16 @@ ion-card {
 
 ion-segment-button {
   border-radius: 50px;
-}
+  //margin: 5px;
+  padding: 5px;
+  --indicator-color: transparent !important;
+  --indicator-color-checked: transparent !important;
+  --border-color: transparent !important;
 
-ion-segment-button:focus {
-  border: 5px solid !important;
+  ion-label {
+    font-weight: bold;
+    font-size: 20px;
+    margin: 5px;
+    color: #1a0029 !important;
+  }
 }
