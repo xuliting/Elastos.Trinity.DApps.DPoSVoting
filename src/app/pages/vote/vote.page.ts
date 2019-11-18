@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SegmentChangeEventDetail } from '@ionic/core';
 
+import { NodesService } from 'src/app/nodes.service';
+
 declare let appService: any;
 
 @Component({
@@ -14,9 +16,10 @@ export class VotePage implements OnInit {
   votingActive = false;
   statsActive = false;
 
-  constructor() { }
+  constructor(private nodesService: NodesService) {}
 
   ngOnInit() {
+    this.nodesService.fetchCurrentHeight();
   }
 
   showHome() {

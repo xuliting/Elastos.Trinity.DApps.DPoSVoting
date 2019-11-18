@@ -19,6 +19,7 @@ export class NodesService {
     this.http.get<any>('https://node1.elaphant.app/api/1/currHeight').subscribe(responce => {
       this.currentHeight = responce.result;
       console.log('Current height -> ' + this.currentHeight);
+      this.fetchNodes();
     });
   }
 

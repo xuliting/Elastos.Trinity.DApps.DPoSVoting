@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NodesService } from 'src/app/nodes.service';
+import { Node } from 'src/app/nodes.model';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,7 @@ export class HomeComponent implements OnInit {
 
   @Output() votingActive = new EventEmitter<boolean>();
 
-  _nodes = [];
+  _nodes: Node[];
   totalVotes = 0;
   activeNodes = 0;
   nodesLoaded = false;
