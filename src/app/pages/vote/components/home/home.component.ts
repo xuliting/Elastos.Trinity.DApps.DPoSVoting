@@ -25,10 +25,22 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.nodesLoaded = true;
     this._nodes = this.nodesService.nodes;
     this.getTotalVotes();
-    if (this._nodes.length !== 0) {
-      this.nodesLoaded = true;
+    if (this._nodes.length === 0) {
+      this.nodesLoaded = false;
+      this.nodesService.fetchCurrentHeight()
+        .then(() => {
+          this.nodesService.fetchNodes().subscribe(nodes => {
+            this.nodesLoaded = true;
+            this._nodes = nodes.result;
+            console.log('Nodes from Home ->', this._nodes);
+            this.getTotalVotes();
+            this.nodesService.getNodeIcon();
+          });
+        })
+        .catch(err => console.log('Cannot retrieve data', err));
     }
   }
 

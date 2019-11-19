@@ -15,12 +15,14 @@ export class NodesService {
 
   constructor(private http: HttpClient) {}
 
-  fetchCurrentHeight() {
-    this.http.get<any>('https://node1.elaphant.app/api/1/currHeight').subscribe(responce => {
-      this.currentHeight = responce.result;
-      console.log('Current height -> ' + this.currentHeight);
-      this.fetchNodes();
-    });
+  fetchCurrentHeight(): Promise<any> {
+    return this.http.get<any>('https://node1.elaphant.app/api/1/currHeight')
+      .toPromise()
+      .then(responce => {
+        this.currentHeight = responce.result;
+        console.log('Current height -> ' + this.currentHeight);
+      })
+      .catch(err => console.log(err));
   }
 
   fetchNodes(): Observable<any> {
@@ -28,7 +30,6 @@ export class NodesService {
     return this.http.get<any>('https://node1.elaphant.app/api/v1/dpos/rank/height/' + this.currentHeight).pipe(
       tap(response => {
         this._nodes = this._nodes.concat(response.result);
-        console.log('Nodes from service ->', this._nodes);
         return this._nodes;
       })
     );

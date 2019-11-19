@@ -78,13 +78,11 @@
 <br><br><br><br><br>
 
 <ion-footer>
-  <h5 class="footer1">
-    Selected Nodes: <strong>{{ getSelectedNodes() }}</strong>
-  </h5>
-  <ion-button class="footer2" (click)="castVote()" color="danger">
+  <h5> Selected Nodes: <strong>{{ getSelectedNodes() }}</strong> </h5>
+  <ion-button (click)="castVote()" color="danger">
     <strong *ngIf="!castingVote">Cast Vote</strong>
     <strong *ngIf="castingVote">
-      <ion-spinner name="bubbles"></ion-spinner>
+      <ion-spinner name="dots"></ion-spinner>
     </strong>
   </ion-button>
 </ion-footer>
