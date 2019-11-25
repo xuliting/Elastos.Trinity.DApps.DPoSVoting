@@ -1,35 +1,37 @@
-import { NgModule, ErrorHandler, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { RouteReuseStrategy } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { IonicModule, IonicRouteStrategy, Platform } from '@ionic/angular';
 
-import { IonicRouteStrategy } from '@ionic/angular';
-import { IonicModule } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 
-import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { MyApp } from './app.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    MyApp
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     HttpClientModule,
+    AppRoutingModule,
     IonicModule.forRoot(),
-    AppRoutingModule
- ],
-  bootstrap: [AppComponent],
+  ],
+  bootstrap: [MyApp],
   entryComponents: [
-    AppComponent
+    MyApp
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
-  ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    Platform,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    {provide: ErrorHandler, useClass: ErrorHandler}
+  ]
 })
 export class AppModule {}

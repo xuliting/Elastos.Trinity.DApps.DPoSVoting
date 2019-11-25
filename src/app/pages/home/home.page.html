@@ -1,0 +1,64 @@
+<section>
+  <span class="closeBtn" (click)="closeApp()"><ion-icon name="close"></ion-icon></span>
+  <div class="content">
+    <ion-title>Home</ion-title>
+    <h4 *ngIf="nodesLoaded" >
+      <span class="36">36</span>
+      /36 <br> Active Votes
+    </h4>
+    <h4>
+      <span *ngIf="!nodesLoaded">
+        <ion-spinner name="bubbles"></ion-spinner>
+      </span>
+    </h4>
+  </div>
+</section>
+
+<ion-content>
+  <ion-grid class="container">
+    <ion-card color="danger">
+      <ion-slides
+        pager="true"
+        [options]="slideOpts"
+      >
+        <ion-slide>
+          <ion-card-title>
+            <h4 class="title">Welcome</h4>
+            <p class="subtitle">DPoS supernodes are part of the Elastos ecosystem security. They participate in validating ELA Transactions</p>
+          </ion-card-title>
+        </ion-slide>
+        <ion-slide>
+          <ion-card-title>
+            <h4 class="title">Your Vote Matters</h4>
+            <p class="subtitle">As a token holder, you can delegate your ELA to the supernodes securing the network, and earn the rewards generated</p>
+          </ion-card-title>
+        </ion-slide>
+        <ion-slide>
+          <ion-card-title>
+            <h4 class="title">1 ELA is 1 Vote for 36 Nodes</h4>
+            <p class="subtitle">When you vote, each ELA gives you 1 voting power. You don't spend your ELA. You can get your ELA back any time</p>
+          </ion-card-title>
+        </ion-slide>
+        <ion-slide>
+          <ion-card-title>
+            <h4 class="title">ELA Transactions</h4>
+            <p class="subtitle">If you make payment transactions using your ELA, your votes are cancelled and you need to vote again</p>
+          </ion-card-title>
+        </ion-slide>
+        <ion-slide>
+          <ion-card-title [routerLink]="['/', 'vote']">
+            <h4 class="title">Ready To Vote?</h4>
+            <h4 class="continue-button">continue</h4>
+          </ion-card-title>
+        </ion-slide>
+      </ion-slides>
+    </ion-card>
+
+    <ion-button class="footer2" color="primary" [routerLink]="['/', 'vote']">
+      <strong>Start Voting</strong>
+    </ion-button>
+
+  </ion-grid>
+
+  <br><br>
+</ion-content>

@@ -3,50 +3,49 @@
 
 /** Ionic CSS Variables **/
 :root {
-  /* --ion-color-primary: linear-gradient(120deg,rgb(0, 0, 0) 0%,  #181818 100%); */
-  --ion-color-primary: linear-gradient(-225deg, rgb(202, 0, 98) 0%, #8D0B93 33%, #4b00a0 100%);
+  --ion-color-primary: linear-gradient(0deg, #36F2E9 0%, #838FFC 50%, #9D64FB 100%), linear-gradient(-60deg, #36F2E9 0%, #838FFC 50%, #9D64FB 100%);
   --ion-color-primary-rgb: 33,49,61;
   --ion-color-primary-contrast: #ffffff;
-  --ion-color-primary-contrast-rgb: 255,255,255;
-  --ion-color-primary-shade: #1d2b36;
-  --ion-color-primary-tint: #374650;
+  --ion-color-primary-contrast-rgb: 0,0,0;
+  --ion-color-primary-shade: #737ede;
+  --ion-color-primary-tint: #8f9afc;
 
-  --ion-color-secondary: #e7e7e7;
-  --ion-color-secondary-rgb: 219,219,219;
+  --ion-color-secondary: #ffffff;
+  --ion-color-secondary-rgb: 255,255,255;
   --ion-color-secondary-contrast: #000000;
   --ion-color-secondary-contrast-rgb: 0,0,0;
-  --ion-color-secondary-shade: #c1c1c1;
-  --ion-color-secondary-tint: #dfdfdf;
+  --ion-color-secondary-shade: #e0e0e0;
+  --ion-color-secondary-tint: #ffffff;
 
-  --ion-color-tertiary: linear-gradient(to right, #d45d93 0%, #9257d6 100%);
+  --ion-color-tertiary: #7044ff;
   --ion-color-tertiary-rgb: 112,68,255;
   --ion-color-tertiary-contrast: #ffffff;
   --ion-color-tertiary-contrast-rgb: 255,255,255;
   --ion-color-tertiary-shade: #633ce0;
   --ion-color-tertiary-tint: #7e57ff;
 
-  --ion-color-success: #10dc60;
+  --ion-color-success: linear-gradient(0deg, #9D64FB 0%, #838FFC 50%, #8ABFFE 100%);
   --ion-color-success-rgb: 16,220,96;
   --ion-color-success-contrast: #ffffff;
   --ion-color-success-contrast-rgb: 255,255,255;
   --ion-color-success-shade: #0ec254;
   --ion-color-success-tint: #28e070;
 
-  --ion-color-warning: linear-gradient(to right, #d8c3e2 0%, #c3cfe2 100%);
+  --ion-color-warning: linear-gradient(30deg,rgb(239, 246, 253) 50%, rgb(241, 241, 241) 100%);
   --ion-color-warning-rgb: 255,255,255;
-  --ion-color-warning-contrast: #1a0029;
+  --ion-color-warning-contrast: #5f5f5f;
   --ion-color-warning-contrast-rgb: 0,0,0;
-  --ion-color-warning-shade: #e0e0e0;
-  --ion-color-warning-tint: #ffffff;
+  --ion-color-warning-shade: #cfd8e0;
+  --ion-color-warning-tint: #edf6ff;
 
-  --ion-color-danger: #ffffff;
-  --ion-color-danger-rgb: 255,255,255;
-  --ion-color-danger-contrast: #1a0029;
+  --ion-color-danger: linear-gradient(30deg,#8ABFFE 50%, #36F2E9 100%);
+  --ion-color-danger-rgb: 245,61,61;
+  --ion-color-danger-contrast: #ffffff;
   --ion-color-danger-contrast-rgb: 0,0,0;
-  --ion-color-danger-shade: #e0e0e0;
-  --ion-color-danger-tint: #ffffff;
+  --ion-color-danger-shade: #79a8e0;
+  --ion-color-danger-tint: #96c5fe;
 
-  --ion-color-dark: linear-gradient(to bottom, #323232 0%, #3F3F3F 40%, #1C1C1C 150%), linear-gradient(to top, rgba(128, 128, 128, 0.4) 0%, rgba(0,0,0,0.25) 200%);
+  --ion-color-dark: #222428;
   --ion-color-dark-rgb: 34,34,34;
   --ion-color-dark-contrast: #ffffff;
   --ion-color-dark-contrast-rgb: 255,255,255;
@@ -60,52 +59,21 @@
   --ion-color-medium-shade: #86888f;
   --ion-color-medium-tint: #a2a4ab;
 
-  --ion-color-light: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+  --ion-color-light: hsl(225, 22%, 96%);
   --ion-color-light-rgb: 244,244,244;
-  --ion-color-light-contrast: #2d0346;
+  --ion-color-light-contrast: #000000;
   --ion-color-light-contrast-rgb: 0,0,0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
 
-  --ion-toolbar-background: var(--ion-color-primary, black);
+  --ion-toolbar-background: var(--ion-color-primary,  #21313d);
   --ion-toolbar-color: var(--ion-color-primary-contrast);
 }
 
 .ios { // ios
-  /* --ion-color-primary: linear-gradient(120deg,rgb(0, 0, 0) 0%,  #252525 100%); */
-  --ion-color-primary: linear-gradient(-225deg, rgb(202, 0, 202) 0%, #8D0B93 33%, #4b00a0 100%);
+  --ion-color-primary: linear-gradient(0deg, #36F2E9 0%, #838FFC 50%, #9D64FB 100%), linear-gradient(-60deg, #36F2E9 0%, #838FFC 50%, #9D64FB 100%);;
 }
 
 .plt-android { // android
-  /* --ion-color-primary: linear-gradient(120deg,rgb(0, 0, 0) 0%,  #252525 100%); */
-  --ion-color-primary: linear-gradient(-225deg, rgb(202, 0, 202) 0%, #8D0B93 33%, #4b00a0 100%);
-  /* --ion-color-primary: linear-gradient(-225deg, rgb(202, 0, 98) 0%, #8D0B93 33%, #0091d4 100%); */
- /*  --ion-color-primary: linear-gradient(-225deg, rgb(202, 0, 98) 0%, #8D0B93 33%, #4b00a0 100%); */
+  --ion-color-primary: linear-gradient(0deg, #36F2E9 0%, #838FFC 50%, #9D64FB 100%), linear-gradient(-60deg, #36F2E9 0%, #838FFC 50%, #9D64FB 100%);;
 }
-
-/*
-
-Vibrant color options
-
-Norse Beauty
-linear-gradient(to right, #ec77ab 0%, #7873f5 100%);
-
-Many Colors
-linear-gradient(-225deg, #7742B2 0%, #F180FF 52%, #FD8BD9 100%);
-
-Teen Party
-linear-gradient(-225deg, #FF057C 0%, #8D0B93 50%, #321575 100%);
-
-Plum Bath
-linear-gradient(-225deg, #FF057C 0%, #8D0B93 50%, #321575 100%);
-
-Mixed Hopes
-linear-gradient(to top, #c471f5 0%, #fa71cd 100%);
-
-Ripe Malinka
-linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
-
-Night Fade
-linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
-
-*/

@@ -1,0 +1,41 @@
+* {
+  font-family: 'Raleway', sans-serif;
+}
+
+ion-card {
+  margin: 0;
+
+  .button-container {
+    padding-top: 16px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .header-container {
+    padding: 0;
+    padding-bottom: 16px;
+
+    .name-container {
+      display: flex;
+      align-items: center;
+      margin-left: 10px;
+
+      ion-card-title {
+        font-weight: bold;
+      }
+    }
+  }
+
+  ion-card-content {
+    padding: 0;
+
+    .detail-container {
+      justify-content: space-between;
+      border-bottom: solid 0.5px lightgrey;
+
+      h3 {
+        color: rgb(100, 100, 100);
+      }
+    }
+  }
+}

@@ -1,0 +1,95 @@
+* {
+  font-family: 'Raleway', sans-serif;
+}
+
+section {
+  position: relative;
+  width: 100%;
+  height: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  .content {
+    position: relative;
+    z-index: 1;
+    margin: 0 auto;
+    max-width: 800px;
+    text-align: center;
+
+    h4 {
+      color: white;
+      font-weight: normal;
+      font-size: 25px;
+      span {
+        font-size: 22px;
+      }
+    }
+
+    ion-title {
+      margin: 0 0 25px 0;
+      padding: 0;
+      color: #fff;
+      font-size: 1.5em;
+    }
+  }
+}
+
+section:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, #36F2E9 0%, #838FFC 50%, #9D64FB 100%), linear-gradient(-60deg, #36F2E9 0%, #838FFC 50%, #9D64FB 100%);
+  border-radius: 0 0 50% 50%/ 0 0 100% 100%;
+  transform: scaleX(1.5);
+}
+
+.container {
+  min-height: 100%;
+
+  ion-card {
+    padding: 10px;
+    background-blend-mode: multiply !important;
+    margin: 30px 20px;
+    border-radius: 20px;
+    box-shadow: 0px 3px 9px 0px rgb(199, 199, 199);
+
+    ion-card-content {
+      padding: 0;
+      margin: 0;
+    }
+
+    strong {
+      font-weight: normal;
+      font-size: 24px;
+    }
+
+    p {
+      font-size: 18px;
+    }
+
+    .spinner-container {
+      h2 {
+        font-weight: bold;
+        font-size: 20px;
+        color: #ffffff;
+      }
+
+      ion-spinner {
+        color: #ffffff;
+      }
+    }
+  }
+}
+
+.closeBtn {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  color: #fff;
+}

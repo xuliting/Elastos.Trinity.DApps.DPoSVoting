@@ -2,12 +2,12 @@
   "id": "elastos.trinity.dposvoting",
   "version": "0.0.1",
   "version_code": 1,
-  "name": "DPoS Voting DApp",
-  "short_name": "DPoS Voting DApp",
-  "short_description": "DPoS Voting DApp",
-  "description": "Elastos Trinity DPoS Voting DApp",
-  "start_url": "http://192.168.1.133:8100",
-  "type": "url",
+  "name": "DPoS Vote DApp",
+  "short_name": "DPoS Vote DApp",
+  "short_description": "Vote DApp",
+  "description": "DPos Vote DApp",
+  "start_url": "index.html",
+  "type": "file",
   "category": "finance",
   "icons": [
     {

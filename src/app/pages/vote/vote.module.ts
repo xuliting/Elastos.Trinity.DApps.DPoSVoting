@@ -1,18 +1,18 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
 import { Routes, RouterModule } from '@angular/router';
 
+import { IonicModule } from '@ionic/angular';
+
+import { NgCircleProgressModule } from 'ng-circle-progress';
+
 import { VotePage } from './vote.page';
-import { HomeComponent } from './components/home/home.component';
-import { VotingComponent } from './components/voting/voting.component';
-import { StatsComponent } from './components/stats/stats.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: VotePage,
+    component: VotePage
   }
 ];
 
@@ -21,9 +21,16 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    NgCircleProgressModule.forRoot({
+      radius: 100,
+      outerStrokeWidth: 16,
+      innerStrokeWidth: 8,
+      outerStrokeColor: "#78C000",
+      innerStrokeColor: "#C7E596",
+      animationDuration: 300,
+    })
   ],
-  declarations: [VotePage, HomeComponent, VotingComponent, StatsComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  declarations: [VotePage]
 })
 export class VotePageModule {}

@@ -1,55 +1,96 @@
-<ion-header>
-  <ion-toolbar color=primary>
-    <ion-grid no-padding>
-      <ion-row>
-        <ion-col size="10" *ngIf="homeActive" class="title-container">
-          <ion-title>
-            <h1>Welcome</h1>
-          </ion-title>
-        </ion-col>
-        <ion-col size="10" *ngIf="votingActive" class="title-container">
-          <ion-title>
-            <h1>Supernode Voting</h1>
-          </ion-title>
-        </ion-col>
-        <ion-col size="10" *ngIf="statsActive" class="title-container">
-          <ion-title>
-            <h1>General Statistics</h1>
-          </ion-title>
-        </ion-col>
-        <ion-col size="2" class="button-container">
-          <ion-buttons>
-            <ion-button (click)="closeApp()">
-              <h1><ion-icon name="close"></ion-icon></h1>
-            </ion-button>
-          </ion-buttons>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+<section>
+  <span class="closeBtn" (click)="closeApp()"><ion-icon name="close"></ion-icon></span>
+  <div class="content">
+    <ion-title>Supernode Voting</ion-title>
+    <h4 *ngIf="nodesLoaded" >
+      <span class="36">{{ getSelectedNodes() }}</span>
+      /36 <br> Selected Nodes
+    </h4>
+    <h4>
+      <span *ngIf="!nodesLoaded">
+        <ion-spinner name="bubbles"></ion-spinner>
+      </span>
+    </h4>
+  </div>
+</section>
 
-    <ion-card color="danger">
-      <ion-segment (ionChange)="toggleComponent($event)" mode="ios" color="tertiary">
-        <ion-segment-button mode="ios" value="home" (click)="showHome()">
-          <ion-label>Home</ion-label>
-          <!-- <ion-icon name="home"></ion-icon> -->
-        </ion-segment-button>
-        <ion-segment-button mode="ios" value="voting" (click)="showVote()">
-          <ion-label>Vote</ion-label>
-          <!-- <ion-icon name="paper"></ion-icon> -->
-        </ion-segment-button>
-        <ion-segment-button mode="ios" value="stats" (click)="showStats()">
-          <ion-label>Stats</ion-label>
-          <!-- <ion-icon name="stats"></ion-icon> -->
-        </ion-segment-button>
-      </ion-segment>
-    </ion-card>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+  <ion-grid class="container" no-padding>
 
-<ion-content text-center>
-  <app-home *ngIf="homeActive" (votingActive)="_showVote($event)"></app-home>
-  <app-voting *ngIf="votingActive"></app-voting>
-  <app-stats *ngIf="statsActive"></app-stats>
+    <div class="search-container">
+      <ion-searchbar
+        color="light"
+        placeholder="Search Node.."
+        [(ngModel)]="node"
+        (ngModelChange)="filterNodes($event)"
+        mode="ios"
+      >
+      </ion-searchbar>
+    </div>
+
+    <ion-list *ngIf="nodesLoaded">
+      <ion-virtual-scroll [items]="filteredNodes"  approxItemHeight="120px">
+        <ion-item-sliding *virtualItem="let node" color="light">
+          <div color="light">
+            <ion-item color="light">
+              <ion-grid no-padding>
+                <ion-row no-padding>
+                  <ion-col
+                    size="0.75"
+                    class="rank-container"
+                    no-padding
+                    (click)="presentPopover(node.Producer_public_key)"
+                  >
+                    {{ node.Rank }}
+                  </ion-col>
+                  <ion-col
+                    size="2.5"
+                    class="img-container"
+                    (click)="presentPopover(node.Producer_public_key)"
+                  >
+                    <ion-avatar>
+                      <ion-img *ngIf="node.imageUrl" [src]="node.imageUrl"></ion-img>
+                      <ion-img *ngIf="!node.imageUrl" src="../assets/icon/ela-logo.jpg"></ion-img>
+                    </ion-avatar>
+                  </ion-col>
+                  <ion-col
+                    size="7.25"
+                    (click)="presentPopover(node.Producer_public_key)"
+                  >
+                    <ion-label>
+                      <h4>{{ node.Nickname }}</h4>
+                      <p>
+                        <span><ion-icon name="pin"></ion-icon>{{ node.Location }} </span>
+                        {{ getVotePercent(node.Votes) }}% of Votes
+                      <p>
+                    </ion-label>
+                  </ion-col>
+                  <ion-col size="1.5" class="checkbox-container">
+                    <ion-checkbox value="node" [(ngModel)]="node.isChecked" mode="ios"></ion-checkbox>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-item>
+          </div>
+          <ion-item-options side="start">
+            <ion-item-option (click)="goToNode(node.Producer_public_key)">
+              <strong>Details</strong>
+              <ion-icon name="arrow-dropright"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-virtual-scroll>
+    </ion-list>
+
+    <ion-button (click)="castVote()" color="primary">
+      <strong *ngIf="!castingVote">Cast Vote</strong>
+      <strong *ngIf="castingVote">
+        <ion-spinner name="dots"></ion-spinner>
+      </strong>
+    </ion-button>
+  </ion-grid>
 </ion-content>
+
+
 
 

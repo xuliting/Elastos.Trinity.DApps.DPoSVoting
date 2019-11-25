@@ -11,7 +11,7 @@ import { Node } from './nodes.model';
 export class NodesService {
 
   private _nodes: Node[] = [];
-  currentHeight: any;
+  currentHeight: number;
 
   constructor(private http: HttpClient) {}
 
@@ -49,11 +49,11 @@ export class NodesService {
     });
   }
 
-  get nodes() {
+  get nodes(): Node[] {
     return [...this._nodes];
   }
 
-  getNode(id: string) {
+  getNode(id: string): any {
     return {...this._nodes.find(node => node.Producer_public_key === id)};
   }
 }
