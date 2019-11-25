@@ -62,7 +62,7 @@ export class NodeDetailsPage implements OnInit {
   }
 
   getVotePercent(votes: string): string {
-    const votePercent = parseFloat(votes) / this.totalVotes * 100;
+    const votePercent: number = parseFloat(votes) / this.totalVotes * 100;
     return votePercent.toFixed(2);
   }
 
