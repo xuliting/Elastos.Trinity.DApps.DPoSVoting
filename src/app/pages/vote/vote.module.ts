@@ -5,8 +5,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { NgCircleProgressModule } from 'ng-circle-progress';
-
 import { VotePage } from './vote.page';
 
 const routes: Routes = [
@@ -22,14 +20,6 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    NgCircleProgressModule.forRoot({
-      radius: 100,
-      outerStrokeWidth: 16,
-      innerStrokeWidth: 8,
-      outerStrokeColor: "#78C000",
-      innerStrokeColor: "#C7E596",
-      animationDuration: 300,
-    })
   ],
   declarations: [VotePage]
 })
