@@ -74,25 +74,24 @@ export class VotePage implements OnInit {
 
   // appManager
   castVote() {
+    let castedNodeKeys = [];
     this._nodes.map(node => {
-      if (node.isChecked === true) {
-        console.log('Casting votes to ' + node);
+      if(node.isChecked === true) {
+        castedNodeKeys = castedNodeKeys.concat(node.Ownerpublickey);
         this.castingVote = true;
-        appManager.sendIntent(
-          'dposvotetransaction',
-          { publickeys: JSON.stringify([node.Ownerpublickey]) },
-          () => {
-            console.log('Insent sent sucessfully');
-            this.castingVote = false;
-            this._nodes.map(node => {
-              node.isChecked = false;
-            })
-          }, (err) => {
-            console.log('Intent sending failed', err);
-          }
-        );
       }
     });
+    console.log(castedNodeKeys);
+    appManager.sendIntent(
+      'dposvotetransaction',
+      { publickeys: JSON.stringify(castedNodeKeys) },
+      () => {
+        console.log('Insent sent sucessfully');
+        this.castingVote = false;
+      }, (err) => {
+        console.log('Intent sending failed', err);
+      }
+    );
   }
 
   closeApp() {

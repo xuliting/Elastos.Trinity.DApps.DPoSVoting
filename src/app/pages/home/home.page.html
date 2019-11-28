@@ -6,11 +6,18 @@
       <span class="36">36</span>
       /36 <br> Active Votes
     </h4>
-    <h4>
-      <span *ngIf="!nodesLoaded">
-        <ion-spinner name="bubbles"></ion-spinner>
-      </span>
+    <h4 *ngIf="!nodesLoaded">
+      <ion-spinner name="bubbles"></ion-spinner>
     </h4>
+    <div class="btn-container">
+      <div>
+        <div>
+          <ion-button [routerLink]="['/', 'vote']" color="success">
+            <strong>Start Voting</strong>
+          </ion-button>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -54,9 +61,9 @@
       </ion-slides>
     </ion-card>
 
-    <ion-button class="footer2" color="primary" [routerLink]="['/', 'vote']">
+<!--     <ion-button class="bottom-btn" color="primary" [routerLink]="['/', 'vote']">
       <strong>Start Voting</strong>
-    </ion-button>
+    </ion-button> -->
 
   </ion-grid>
 
