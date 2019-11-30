@@ -14,6 +14,8 @@ export class HomePage implements OnInit {
   _nodes: Node[] = [];
   totalVotes: number = 0;
   activeNodes: number = 0;
+  activeVotes: number = 0;
+  elaAmount: number = 5000;
   nodesLoaded: boolean = false;
 
   slideOpts = {

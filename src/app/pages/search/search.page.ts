@@ -2,16 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { NodesService } from 'src/app/nodes.service';
 import { NavController, PopoverController } from '@ionic/angular';
 import { Node } from 'src/app/nodes.model';
-import { PopoverPage } from './popover/popover.page';
+import { PopoverPage } from '../vote/popover/popover.page';
 
 declare let appManager: any;
 
 @Component({
-  selector: 'app-vote',
-  templateUrl: './vote.page.html',
-  styleUrls: ['./vote.page.scss'],
+  selector: 'app-search',
+  templateUrl: './search.page.html',
+  styleUrls: ['./search.page.scss'],
 })
-export class VotePage implements OnInit {
+export class SearchPage implements OnInit {
 
   _nodes: Node[] = [];
   filteredNodes: Node[] = [];
@@ -120,4 +120,5 @@ export class VotePage implements OnInit {
     const votePercent: number = parseFloat(votes) / this.totalVotes * 100;
     return votePercent.toFixed(2);
   }
+
 }

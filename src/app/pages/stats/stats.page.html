@@ -1,12 +1,104 @@
 <section>
-  <span class="closeBtn" (click)="closeApp()"><ion-icon name="close"></ion-icon></span>
+  <span class="closeBtn" (click)="closeApp()">
+    <ion-icon name="menu"></ion-icon>
+  </span>
   <div class="content">
     <ion-title>Statistics</ion-title>
-    <h4>Network Overview</h4>
+    <h4 *ngIf="nodesLoaded">Network Overview</h4>
+    <strong *ngIf="!nodesLoaded">
+      <ion-spinner name="bubbles"></ion-spinner>
+    </strong>
   </div>
 </section>
 
 <ion-content>
+  <ion-grid class="container" no-padding>
+    <ion-list *ngIf="nodesLoaded">
+      <ion-item color="light" class="first">
+        <ion-grid no-padding>
+          <ion-row no-padding>
+            <ion-col size="2.5" class="img-container">
+              <ion-thumbnail>
+                <ion-img src="../assets/icon/pad.png"></ion-img>
+              </ion-thumbnail>
+            </ion-col>
+            <ion-col size="6.5" class="stat-container">
+              <ion-label>
+                <h4>Total Number of Votes</h4>
+              </ion-label>
+            </ion-col>
+            <ion-col size="3" class="number-container">
+              <h4>{{ fixTotalVotes() }}</h4>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+
+      <ion-item color="light">
+        <ion-grid no-padding>
+          <ion-row no-padding>
+            <ion-col size="2.5" class="img-container">
+              <ion-thumbnail>
+                <ion-img src="../assets/icon/pad.png"></ion-img>
+              </ion-thumbnail>
+            </ion-col>
+            <ion-col size="6.5" class="stat-container">
+              <ion-label>
+                <h4>Total ELA Staking</h4>
+              </ion-label>
+            </ion-col>
+            <ion-col size="3" class="number-container">
+              <h4>{{ getTotalEla() }}</h4>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+
+      <ion-item color="light">
+        <ion-grid no-padding>
+          <ion-row no-padding>
+            <ion-col size="2.5" class="img-container">
+              <ion-thumbnail>
+                <ion-img src="../assets/icon/pad.png"></ion-img>
+              </ion-thumbnail>
+            </ion-col>
+            <ion-col size="6.5" class="stat-container">
+              <ion-label>
+                <h4>ELA Voted vs Circulation</h4>
+              </ion-label>
+            </ion-col>
+            <ion-col size="3" class="number-container">
+              <h4>{{ votePercent.toFixed(2) }}%</h4>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+
+      <ion-item color="light">
+        <ion-grid no-padding>
+          <ion-row no-padding>
+            <ion-col size="2.5" class="img-container">
+              <ion-thumbnail>
+                <ion-img src="../assets/icon/pad.png"></ion-img>
+              </ion-thumbnail>
+            </ion-col>
+            <ion-col size="6.5" class="stat-container">
+              <ion-label>
+                <h4>Active vs Registered Supernodes</h4>
+              </ion-label>
+            </ion-col>
+            <ion-col size="3" class="number-container">
+              <h4>{{ getActiveNodes() }} / {{ _nodes.length }}</h4>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+
+    </ion-list>
+  </ion-grid>
+</ion-content>
+
+<!-- <ion-content>
   <ion-grid class="container">
     <ion-card *ngIf="nodesLoaded" color="danger" text-center padding>
       <br><br>
@@ -42,4 +134,4 @@
       <br><br><br><br><br>
     </ion-card>
   </ion-grid>
-</ion-content>
+</ion-content> -->

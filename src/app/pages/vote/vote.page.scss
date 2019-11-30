@@ -1,89 +1,44 @@
-/* * {
-  font-family: 'Raleway', sans-serif;
-}
-
-section {
-  position: relative;
-  width: 100%;
-  height: 33%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  // margin-bottom: 40px;
-
-  .content {
-    position: relative;
-    z-index: 1;
-    margin: 0 auto;
-    max-width: 800px;
-    text-align: center;
-
-    h4 {
-      color: white;
-      font-weight: normal;
-      font-size: 24px;
-      margin: 10px 0;
-    }
-
-    ion-title {
-      margin: 0 0 12px;
-      padding: 0;
-      color: #fff;
-      font-size: 20px;
-    }
-  }
-}
-
-section:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(360deg, #C6A3FE 0%, #9D64FB 100%);
-  border-radius: 0 0 50% 50%/ 0 0 100% 100%;
-  transform: scaleX(1.5);
-} */
-
 * {
   font-family: 'Raleway', sans-serif;
 }
 
 section {
-  position: relative;
+  position: fixed;
   width: 100%;
-  height: 33%;
+  height: 28%;
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  overflow: hidden;
+  z-index: 2;
 
   .content {
     position: relative;
     top: 50px;
-    z-index: 1;
+    z-index: 2;
     margin: 0 auto;
     text-align: center;
 
     h4 {
       color: white;
       font-weight: normal;
-      font-size: 20px;
+      font-size: 22px;
       margin: 0;
+
+       span {
+         font-size: 18px;
+       }
     }
 
     ion-title {
       margin: 12px;
       padding: 0;
       color: #fff;
-      font-size: 16px;
+      font-size: 18px;
     }
 
     .btn-container {
-      width: 180px;
-      height: 180px;
+      width: 170px;
+      height: 170px;
       background: hsl(225, 22%, 96%);
       border-radius: 100%;
       display: flex;
@@ -91,33 +46,44 @@ section {
       justify-content: center;
       position: relative;
       top: 10px;
-      z-index: 2;
+      z-index: -1;
 
       div {
-        width: 150px;
-        height: 150px;
+        width: 140px;
+        height: 140px;
         background: linear-gradient(360deg, #B069DD 0%, #9D64FB 100%);
         border-radius: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
-        z-index: 3;
+        z-index: 2;
 
         div {
-          width: 140px;
-          height: 140px;
+          width: 130px;
+          height: 130px;
           background: hsl(225, 22%, 96%);
           border-radius: 100%;
           display: flex;
           align-items: center;
           justify-content: center;
-          z-index: 4;
+          z-index: 2;
 
           ion-button {
             --border-radius: 100%;
-            width: 130px;
-            height: 130px;
-            z-index: 5;
+            width: 120px;
+            height: 120px;
+            z-index: 2;
+
+            .elaAmount {
+              font-size: 40px;
+              font-weight: bold;
+            }
+
+            h5 {
+              font-size: 20px;
+              font-weight: bold;
+              margin: 0 0 0 20px;
+            }
           }
         }
       }
@@ -135,13 +101,15 @@ section:before {
   background: linear-gradient(360deg, #C6A3FE 0%, #9D64FB 100%);
   border-radius: 0 0 50% 50%/ 0 0 100% 100%;
   transform: scaleX(1.4);
+  z-index: 2;
 }
 
 .container {
+  margin-top: 60%;
   min-height: 100%;
   background: hsl(225, 22%, 96%);
 
-  .search-container {
+/*   .search-container {
     position: sticky;
     top: 0px;
     z-index: 1;
@@ -155,7 +123,7 @@ section:before {
       padding: 4px;
       margin: 4px 20px;
     }
-  }
+  } */
 
   ion-list {
     padding: 0;
@@ -219,37 +187,17 @@ section:before {
       }
     }
   }
-
-  .spinner-container {
-    h2 {
-      font-weight: bold;
-      font-size: 20px;
-      color: #000000;
-    }
-
-    ion-spinner {
-      color: #000000;
-    }
-  }
 }
 
 ion-item-option {
   margin: 4px 0;
 }
 
-.bottom-btn {
-  position: fixed;
-  bottom: 1px;
-  height: 8%;
-  margin: 0;
-  width: 100%;
-  // --border-radius: 20px;
-}
-
 .closeBtn {
   position: fixed;
   top: 10px;
-  right: 10px;
+  right: 15px;
   font-size: 24px;
-  color: #fff;
+  color: rgb(255, 255, 255);
+  z-index: 10;
 }

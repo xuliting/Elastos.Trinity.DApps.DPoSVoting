@@ -1,0 +1,25 @@
+<section>
+  <span class="closeBtn" (click)="closeApp()">
+    <ion-icon name="menu"></ion-icon>
+  </span>
+  <div class="content">
+    <ion-title>Search</ion-title>
+    <div class="search-container">
+      <ion-searchbar
+        color="secondary"
+        placeholder="Search for supernode.."
+        [(ngModel)]="node"
+        (ngModelChange)="filterNodes($event)"
+        mode="ios"
+      >
+      </ion-searchbar>
+    </div>
+    <strong *ngIf="!nodesLoaded">
+      <ion-spinner name="bubbles"></ion-spinner>
+    </strong>
+  </div>
+</section>
+
+<ion-content>
+
+</ion-content>

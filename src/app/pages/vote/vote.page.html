@@ -1,19 +1,23 @@
 <section>
-  <span class="closeBtn" (click)="closeApp()"><ion-icon name="close"></ion-icon></span>
+  <span class="closeBtn" (click)="closeApp()">
+    <ion-icon name="menu"></ion-icon>
+  </span>
   <div class="content">
-    <ion-title>Voting</ion-title>
-    <h4 *ngIf="nodesLoaded" >
-      <span class="36">{{ getSelectedNodes() }}</span>
-      /36 <br> Selected Nodes
-    </h4>
-    <h4 *ngIf="!nodesLoaded">
-      <ion-spinner name="bubbles"></ion-spinner>
+    <h4>
+      <span>{{ activeVotes }}</span>
+      /36 <br> Active Votes
     </h4>
     <div class="btn-container">
       <div>
         <div>
-          <ion-button color="success" (click)="castVote()">
-            <strong *ngIf="!castingVote">Cast Vote</strong>
+          <ion-button (click)="castVote()" color="success">
+            <strong *ngIf="nodesLoaded && !castingVote" class="elaAmount">
+              {{ elaAmount }}
+              <h5>ELA</h5>
+            </strong>
+            <strong *ngIf="!nodesLoaded">
+              <ion-spinner name="bubbles"></ion-spinner>
+            </strong>
             <strong *ngIf="castingVote">
               <ion-spinner name="dots"></ion-spinner>
             </strong>
@@ -27,7 +31,7 @@
 <ion-content>
   <ion-grid class="container" no-padding>
 
-    <div class="search-container">
+    <!-- <div class="search-container">
       <ion-searchbar
         color="secondary"
         placeholder="Search Node.."
@@ -36,10 +40,10 @@
         mode="ios"
       >
       </ion-searchbar>
-    </div>
+    </div> -->
 
     <ion-list *ngIf="nodesLoaded">
-      <ion-virtual-scroll [items]="filteredNodes"  approxItemHeight="120px">
+      <ion-virtual-scroll [items]="filteredNodes"  approxItemHeight="240px">
         <ion-item-sliding *virtualItem="let node">
             <ion-item color="secondary">
               <ion-grid no-padding>
@@ -90,12 +94,6 @@
       </ion-virtual-scroll>
     </ion-list>
 
-   <!--  <ion-button (click)="castVote()" color="primary" class="bottom-btn">
-      <strong *ngIf="!castingVote">Cast Vote</strong>
-      <strong *ngIf="castingVote">
-        <ion-spinner name="dots"></ion-spinner>
-      </strong>
-    </ion-button> -->
   </ion-grid>
 </ion-content>
 
