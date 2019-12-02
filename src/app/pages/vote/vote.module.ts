@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { VotePage } from './vote.page';
+import { NodeSliderComponent } from './node-slider/node-slider.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes),
   ],
-  declarations: [VotePage]
+  declarations: [VotePage, NodeSliderComponent]
 })
 export class VotePageModule {}

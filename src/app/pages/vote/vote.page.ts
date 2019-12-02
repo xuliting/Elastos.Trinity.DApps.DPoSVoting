@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NodesService } from 'src/app/nodes.service';
-import { NavController, PopoverController } from '@ionic/angular';
 import { Node } from 'src/app/nodes.model';
-import { PopoverPage } from './popover/popover.page';
 
 declare let appManager: any;
 
@@ -13,30 +11,34 @@ declare let appManager: any;
 })
 export class VotePage implements OnInit {
 
+  // Initial Values
   _nodes: Node[] = [];
-  filteredNodes: Node[] = [];
   totalVotes: number = 0;
+  nodesLoaded: boolean = true;
+
+  // Intent
   activeVotes: number = 0;
   elaAmount: number = 5000;
-  nodesLoaded: boolean = true;
   castingVote: boolean = false;
+
+  // Node Detail
+  showNode: boolean = false;
+  nodeIndex: number;
+  slideArray: Node[] = [];
+
 
   constructor(
     private nodesService: NodesService,
-    private navCtrl: NavController,
-    private popover: PopoverController
   ) {}
 
   ngOnInit() {
     this._nodes = this.nodesService.nodes;
-    this.filteredNodes = this._nodes;
     this.getTotalVotes();
     if (this._nodes.length === 0) {
       this.nodesLoaded = false;
       this.nodesService.fetchNodes().subscribe(nodes => {
         this.nodesLoaded = true;
         this._nodes = nodes.result;
-        this.filteredNodes = this._nodes;
         console.log('Nodes from Voting ->', this._nodes);
         this.getTotalVotes();
         this.nodesService.getNodeIcon();
@@ -44,34 +46,15 @@ export class VotePage implements OnInit {
     }
   }
 
+  ionViewDidLeave() {
+    this.showNode = false;
+  }
+
   getTotalVotes() {
     this._nodes.map(node => {
       this.totalVotes += parseFloat(node.Votes);
     });
     console.log('Total Votes -> ' + this.totalVotes);
-  }
-
-  filterNodes(search): any {
-    this.filteredNodes = this._nodes.filter((node) => {
-      return node.Nickname.toLowerCase().indexOf(search.toLowerCase()) !== -1;
-    });
-    console.log(this.filteredNodes);
-  }
-
-  // routing
-  goToNode(id) {
-    this.navCtrl.navigateForward(['/', 'vote', id]);
-  }
-
-  async presentPopover(id) {
-    const _popover = await this.popover.create({
-      component: PopoverPage,
-      componentProps: {
-        _nodeId: id
-      },
-      translucent: true
-    });
-    return await _popover.present();
   }
 
   // appManager
@@ -100,7 +83,7 @@ export class VotePage implements OnInit {
     appManager.close();
   }
 
-  // modify data
+  // Modify Values
   getVotes(votes): string {
     const fixedVotes: number = parseInt(votes);
     return fixedVotes.toLocaleString().split(/\s/).join(',');
@@ -108,7 +91,7 @@ export class VotePage implements OnInit {
 
   getSelectedNodes(): number {
     let addedNodes: number = 0;
-    this._nodes.map(node => {
+    this.nodesService.nodes.map(node => {
       if (node.isChecked === true) {
         addedNodes++;
       }
@@ -120,4 +103,20 @@ export class VotePage implements OnInit {
     const votePercent: number = parseFloat(votes) / this.totalVotes * 100;
     return votePercent.toFixed(2);
   }
+
+  // Node Detail
+  _showNode(index: number, node) {
+    if (index >= 5) {
+      this.slideArray = this._nodes.slice(index - 5, index + 5);
+      this.nodeIndex = this.slideArray.indexOf(node);
+    }
+    if (index < 5) {
+      this.slideArray = this._nodes.slice(0, 10);
+      this.nodeIndex = this.slideArray.indexOf(node);
+    }
+    this.showNode = !this.showNode;
+  }
 }
+
+
+

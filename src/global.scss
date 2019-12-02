@@ -36,12 +36,12 @@ ion-content {
 ion-popover{
 
   ion-backdrop{
-    opacity: 0.5 !important;
+    opacity: 0.1 !important;
   }
 
   .popover-wrapper{
     .popover-content{
-      width: 80vw;
+      width: 90vw;
     }
   }
 }
@@ -61,5 +61,13 @@ ion-popover{
       color: var(--ion-color-tertiary) !important;
       --ion-color-base: var(--ion-color-tertiary) !important;
     }
+  }
+}
+
+ion-searchbar{
+  .searchbar-input-container{
+      .searchbar-input{
+          border-radius: 30px !important;
+      }
   }
 }

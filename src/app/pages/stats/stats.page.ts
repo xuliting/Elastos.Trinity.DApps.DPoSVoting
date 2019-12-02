@@ -11,9 +11,9 @@ declare let appManager: any;
 })
 export class StatsPage implements OnInit {
 
+  _nodes: Node[] = [];
   totalVotes: number = 0;
   votePercent: number = 0;
-  _nodes: Node[] = [];
   nodesLoaded: boolean = true;
 
   constructor(private nodesService: NodesService) { }
@@ -46,7 +46,7 @@ export class StatsPage implements OnInit {
     appManager.close();
   }
 
-  // modify data
+  // Modify Values
   getActiveNodes(): number {
     let activeNodes: number = 0;
     this._nodes.map(node => {

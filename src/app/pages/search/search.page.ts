@@ -13,35 +13,37 @@ declare let appManager: any;
 })
 export class SearchPage implements OnInit {
 
+  // Initial Values
   _nodes: Node[] = [];
   filteredNodes: Node[] = [];
   totalVotes: number = 0;
-  activeVotes: number = 0;
-  elaAmount: number = 5000;
+
+  // Node Detail
+  nodeIndex: number;
   nodesLoaded: boolean = true;
-  castingVote: boolean = false;
+  showNode: boolean = false;
 
   constructor(
     private nodesService: NodesService,
-    private navCtrl: NavController,
-    private popover: PopoverController
   ) {}
 
   ngOnInit() {
     this._nodes = this.nodesService.nodes;
-    this.filteredNodes = this._nodes;
     this.getTotalVotes();
     if (this._nodes.length === 0) {
       this.nodesLoaded = false;
       this.nodesService.fetchNodes().subscribe(nodes => {
         this.nodesLoaded = true;
         this._nodes = nodes.result;
-        this.filteredNodes = this._nodes;
         console.log('Nodes from Voting ->', this._nodes);
         this.getTotalVotes();
         this.nodesService.getNodeIcon();
       });
     }
+  }
+
+  ionViewDidLeave() {
+    this.showNode = false;
   }
 
   getTotalVotes() {
@@ -51,69 +53,27 @@ export class SearchPage implements OnInit {
     console.log('Total Votes -> ' + this.totalVotes);
   }
 
+  // Search
   filterNodes(search): any {
     this.filteredNodes = this._nodes.filter((node) => {
-      return node.Nickname.toLowerCase().indexOf(search.toLowerCase()) !== -1;
+      if (!search) {
+        return;
+      } else {
+        return node.Nickname.toLowerCase().indexOf(search.toLowerCase()) !== -1;
+      }
     });
     console.log(this.filteredNodes);
   }
 
-  // routing
-  goToNode(id) {
-    this.navCtrl.navigateForward(['/', 'vote', id]);
-  }
-
-  async presentPopover(id) {
-    const _popover = await this.popover.create({
-      component: PopoverPage,
-      componentProps: {
-        _nodeId: id
-      },
-      translucent: true
-    });
-    return await _popover.present();
-  }
-
   // appManager
-  castVote() {
-    let castedNodeKeys = [];
-    this._nodes.map(node => {
-      if(node.isChecked === true) {
-        castedNodeKeys = castedNodeKeys.concat(node.Ownerpublickey);
-        this.castingVote = true;
-      }
-    });
-    console.log(castedNodeKeys);
-    appManager.sendIntent(
-      'dposvotetransaction',
-      { publickeys: JSON.stringify(castedNodeKeys) },
-      () => {
-        console.log('Insent sent sucessfully');
-        this.castingVote = false;
-      }, (err) => {
-        console.log('Intent sending failed', err);
-      }
-    );
-  }
-
   closeApp() {
     appManager.close();
   }
 
-  // modify data
+  // Modify Values
   getVotes(votes): string {
     const fixedVotes: number = parseInt(votes);
     return fixedVotes.toLocaleString().split(/\s/).join(',');
-  }
-
-  getSelectedNodes(): number {
-    let addedNodes: number = 0;
-    this._nodes.map(node => {
-      if (node.isChecked === true) {
-        addedNodes++;
-      }
-    });
-    return addedNodes;
   }
 
   getVotePercent(votes): string {
@@ -121,4 +81,9 @@ export class SearchPage implements OnInit {
     return votePercent.toFixed(2);
   }
 
+  // Node Detail
+  _showNode(index) {
+    this.showNode = !this.showNode;
+    this.nodeIndex = index;
+  }
 }

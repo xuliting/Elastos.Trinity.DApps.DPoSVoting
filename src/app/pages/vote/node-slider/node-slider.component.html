@@ -1,0 +1,43 @@
+<ion-slides [options]="slideOpts">
+  <ion-slide *ngFor="let node of _nodes">
+    <ion-card text-center color="secondary">
+      <ion-grid>
+        <ion-row class="header-container">
+          <ion-col size="3" class="img-container">
+            <ion-avatar>
+              <ion-img *ngIf="node.imageUrl" [src]="node.imageUrl"></ion-img>
+              <ion-img *ngIf="!node.imageUrl" src="../assets/icon/ela-logo.jpg"></ion-img>
+            </ion-avatar>
+          </ion-col>
+          <ion-col size="9" class="name-container">
+            <ion-card-title>
+              {{ node.Nickname }}
+            </ion-card-title>
+          </ion-col>
+        </ion-row>
+        <ion-card-content>
+          <ion-row class="detail-container">
+            <p>Current Rank</p>
+            <h3>#{{ node.Rank }}</h3>
+          </ion-row>
+          <ion-row class="detail-container">
+            <p>Current Votes</p>
+            <h3>{{ getVotes(node.Votes) }}</h3>
+          </ion-row>
+          <ion-row class="detail-container">
+            <p>ELA Delegated</p>
+            <h3>{{ getEla(node.Votes) }}</h3>
+          </ion-row>
+          <ion-row class="detail-container">
+            <p>Percentage of Casted Votes</p>
+            <h3>{{ getVotePercent(node.Votes) }}%</h3>
+          </ion-row>
+          <ion-row class="website">
+            <p>Website</p>
+            <h3><a href="{{ node.Url }}">{{ node.Url }}</a></h3>
+          </ion-row>
+        </ion-card-content>
+      </ion-grid>
+    </ion-card>
+  </ion-slide>
+</ion-slides>

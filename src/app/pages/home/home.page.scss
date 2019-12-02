@@ -5,7 +5,7 @@
 section {
   position: fixed;
   width: 100%;
-  height: 33%;
+  height: 37%;
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -101,10 +101,11 @@ section:before {
   background: linear-gradient(360deg, #C6A3FE 0%, #9D64FB 100%);
   border-radius: 0 0 50% 50%/ 0 0 100% 100%;
   transform: scaleX(1.4);
+  box-shadow: 0px 0px 2px 1px rgb(199, 199, 199);
 }
 
 .container {
-  margin-top: 75%;
+  margin-top: 76%;
   padding: 0;
   background-color: transparent !important;
   z-index: -1;
@@ -117,6 +118,7 @@ section:before {
     border-radius: 20px;
     background-blend-mode: multiply !important;
     box-shadow: 0px 3px 9px 0px rgb(199, 199, 199);
+    z-index: 0;
 
     ion-card-title {
       padding: 30px 10px;
@@ -150,33 +152,38 @@ section:before {
         display: flex;
         align-items: center;
       }
-
-      .continue-button {
-        color: rgb(116, 199, 255);
-        margin-top: 20px;
-      }
-    }
-
-    ion-card-content {
-      font-size: 20px;
-      font-weight: bold;
     }
   }
-}
-
-.bottom-btn {
-  position: fixed;
-  bottom: 1px;
-  height: 8%;
-  margin: 0;
-  width: 100%;
-  // --border-radius: 20px;
 }
 
 .closeBtn {
   position: fixed;
   top: 10px;
   right: 15px;
+  z-index: 2;
   font-size: 24px;
   color: #fff;
 }
+
+@media screen and (max-width: 370px){
+
+  section {
+    height: 40.25%;
+  }
+
+  .container {
+    margin-top: 85%;
+  }
+}
+
+@media screen and (min-height: 750px){
+
+  section {
+    height: 30.5%;
+  }
+
+  .container {
+    margin-top: 80%;
+  }
+}
+

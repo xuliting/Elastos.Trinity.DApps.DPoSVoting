@@ -11,16 +11,20 @@ declare let appManager: any;
 })
 export class HomePage implements OnInit {
 
+  // Initial Values
   _nodes: Node[] = [];
   totalVotes: number = 0;
+  nodesLoaded: boolean = false;
+
+  // Other Values
   activeNodes: number = 0;
   activeVotes: number = 0;
   elaAmount: number = 5000;
-  nodesLoaded: boolean = false;
+
 
   slideOpts = {
     initialSlide: 0,
-    speed: 300
+    speed: 400
   };
 
   constructor(private nodesService: NodesService) {
@@ -60,7 +64,7 @@ export class HomePage implements OnInit {
     appManager.close();
   }
 
-  // modify data
+  // Modify Values
   getTotalEla(): string {
     let ElaVotes: number = Math.ceil(this.totalVotes / 36);
     return ElaVotes.toLocaleString().split(/\s/).join(',');
