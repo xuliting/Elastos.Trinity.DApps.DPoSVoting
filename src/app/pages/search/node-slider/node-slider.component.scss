@@ -12,7 +12,7 @@ ion-card {
     padding: 0;
 
     .header-container {
-      padding: 14px;
+      padding: 12px;
       margin-left: 9px;
       border-bottom: solid 0.5px rgb(233, 233, 233);
 
@@ -33,7 +33,7 @@ ion-card {
         justify-content: flex-start;
 
         ion-card-title {
-          font-size: 15px;
+          font-size: 14px;
           font-weight: bold;
           overflow: hidden;
         }
@@ -47,12 +47,12 @@ ion-card {
         justify-content: space-between;
         border-bottom: solid 0.5px rgb(233, 233, 233);
         margin-left: 9px;
-        padding: 14px 24px;
+        padding: 12px 24px;
 
         h3 {
           color: #666666;
           margin: 0;
-          font-size: 13px !important;
+          font-size: 12px !important;
           font-weight: bold;
         }
 
@@ -60,7 +60,7 @@ ion-card {
           color: #989aa2 !important;
           margin: 0;
           padding-right: 0;
-          font-size: 13px !important;
+          font-size: 12px !important;
           font-weight: bold;
         }
       }
@@ -70,12 +70,12 @@ ion-card {
         border-bottom: solid 0.5px rgb(233, 233, 233);
         margin-left: 9px;
         margin-bottom: 36px;
-        padding: 14px 24px;
+        padding: 12px 24px;
 
         h3 {
           color: #666666;
           margin: 0;
-          font-size: 13px !important;
+          font-size: 12px !important;
           font-weight: bold;
         }
 
@@ -83,7 +83,7 @@ ion-card {
           color: #989aa2 !important;
           margin: 0;
           padding-right: 10px;
-          font-size: 13px !important;
+          font-size: 12px !important;
           font-weight: bold;
         }
 

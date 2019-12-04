@@ -1,12 +1,18 @@
 <section>
-  <span class="closeBtn" (click)="closeApp()">
-    <ion-icon name="menu"></ion-icon>
-  </span>
   <div class="content">
-    <ion-title>Statistics</ion-title>
+    <ion-row>
+      <ion-col offset="2" size="8">
+        <ion-title>Statistics</ion-title>
+      </ion-col>
+      <ion-col size="2" class="closeBtn">
+        <div (click)="closeApp()">
+          <ion-icon name="menu"></ion-icon>
+        </div>
+      </ion-col>
+    </ion-row>
     <h4 *ngIf="nodesLoaded">Network Overview</h4>
     <strong *ngIf="!nodesLoaded">
-      <ion-spinner name="bubbles"></ion-spinner>
+      <br><br><ion-spinner name="bubbles"></ion-spinner>
     </strong>
   </div>
 </section>

@@ -46,8 +46,12 @@ export class VotePage implements OnInit {
     }
   }
 
-  ionViewDidLeave() {
+  /* ionViewDidLeave() {
     this.showNode = false;
+  } */
+
+  ionViewWillEnter() {
+    this._nodes = this.nodesService.nodes;
   }
 
   getTotalVotes() {

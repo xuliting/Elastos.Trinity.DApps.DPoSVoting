@@ -42,9 +42,9 @@ export class SearchPage implements OnInit {
     }
   }
 
-  ionViewDidLeave() {
+  /* ionViewDidLeave() {
     this.showNode = false;
-  }
+  } */
 
   getTotalVotes() {
     this._nodes.map(node => {

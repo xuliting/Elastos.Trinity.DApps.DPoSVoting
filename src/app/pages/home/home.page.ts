@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { IonSlides } from '@ionic/angular';
+
 import { NodesService } from 'src/app/nodes.service';
 import { Node } from 'src/app/nodes.model';
 
@@ -11,6 +13,8 @@ declare let appManager: any;
 })
 export class HomePage implements OnInit {
 
+  @ViewChild('slider', {static: true})  slides: IonSlides;
+
   // Initial Values
   _nodes: Node[] = [];
   totalVotes: number = 0;
@@ -21,11 +25,19 @@ export class HomePage implements OnInit {
   activeVotes: number = 0;
   elaAmount: number = 5000;
 
-
+  // slider
   slideOpts = {
     initialSlide: 0,
     speed: 400
   };
+
+  next(slide) {
+    slide.slideNext();
+  }
+
+  prev(slide) {
+    slide.slidePrev();
+  }
 
   constructor(private nodesService: NodesService) {
   }

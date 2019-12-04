@@ -1,9 +1,15 @@
 <section>
-  <span class="closeBtn" (click)="closeApp()">
-    <ion-icon name="menu"></ion-icon>
-  </span>
   <div class="content">
-    <ion-title>Search</ion-title>
+    <ion-row>
+      <ion-col offset="2" size="8">
+        <ion-title>Search</ion-title>
+      </ion-col>
+      <ion-col size="2" class="closeBtn">
+        <div (click)="closeApp()">
+          <ion-icon name="menu"></ion-icon>
+        </div>
+      </ion-col>
+    </ion-row>
     <div class="search-container" *ngIf="nodesLoaded">
       <ion-searchbar
         color="medium"
@@ -15,7 +21,7 @@
       </ion-searchbar>
     </div>
     <div *ngIf="!nodesLoaded">
-      <br><ion-spinner name="bubbles"></ion-spinner>
+      <br><br><ion-spinner name="bubbles"></ion-spinner>
     </div>
 
   </div>

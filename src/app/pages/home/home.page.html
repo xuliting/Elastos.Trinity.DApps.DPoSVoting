@@ -1,28 +1,32 @@
 <section>
-  <span class="closeBtn" (click)="closeApp()">
-    <ion-icon name="menu"></ion-icon>
-  </span>
   <div class="content">
-    <ion-title>Home</ion-title>
-    <h4>
-      <span>{{ activeVotes }}</span>
-      /36 <br> Active Votes
-    </h4>
-    <div class="btn-container">
-      <div>
+    <ion-row>
+      <ion-col offset="2" size="8">
+        <ion-title>Home</ion-title>
+      </ion-col>
+      <ion-col size="2" class="closeBtn">
+        <div (click)="closeApp()">
+          <ion-icon name="menu"></ion-icon>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="btn-row">
+      <div class="btn-container">
         <div>
-          <ion-button [routerLink]="['/', 'vote']" color="success">
-            <strong *ngIf="nodesLoaded" class="elaAmount">
-              {{ elaAmount }}
-              <h5>ELA</h5>
-            </strong>
-            <strong *ngIf="!nodesLoaded">
-              <ion-spinner name="bubbles"></ion-spinner>
-            </strong>
-          </ion-button>
+          <div>
+            <ion-button [routerLink]="['/', 'vote']" color="success">
+              <strong *ngIf="nodesLoaded" class="elaAmount">
+                {{ elaAmount }}
+                <h5>ELA</h5>
+              </strong>
+              <strong *ngIf="!nodesLoaded">
+                <ion-spinner name="bubbles"></ion-spinner>
+              </strong>
+            </ion-button>
+          </div>
         </div>
       </div>
-    </div>
+    </ion-row>
   </div>
 </section>
 
@@ -30,12 +34,16 @@
   <ion-grid class="container">
     <ion-card color="danger">
       <ion-slides
+        #slide
         pager="true"
         [options]="slideOpts"
       >
 
         <ion-slide>
           <ion-card-title>
+            <span class="goVote" [routerLink]="['/', 'vote']">
+              <ion-icon name="close-circle-outline" mode="ios"></ion-icon>
+            </span>
             <ion-row class="img-container">
               <ion-avatar>
                 <ion-img src="../assets/icon/ela-logo.jpg"></ion-img>
@@ -45,7 +53,7 @@
               <ion-col offset="1.25" size="9.5">
                 <h4 class="title">Welcome</h4>
               </ion-col>
-              <ion-col size="1.25" class="arrow-container">
+              <ion-col size="1.25" class="arrow-container" (click)="next(slide)">
                 <ion-icon name="arrow-round-forward"></ion-icon>
               </ion-col>
             </ion-row>
@@ -55,19 +63,22 @@
 
         <ion-slide>
           <ion-card-title>
+            <span class="goVote" [routerLink]="['/', 'vote']">
+              <ion-icon name="close-circle-outline" mode="ios"></ion-icon>
+            </span>
             <ion-row class="img-container">
               <ion-avatar>
                 <ion-img src="../assets/icon/ela-logo.jpg"></ion-img>
               </ion-avatar>
             </ion-row>
             <ion-row>
-              <ion-col size="1.25" class="arrow-container">
+              <ion-col size="1.25" class="arrow-container" (click)="prev(slide)">
                 <ion-icon name="arrow-round-back"></ion-icon>
               </ion-col>
               <ion-col>
                 <h4 class="title" size="9.5">Use All 36 Votes</h4>
               </ion-col>
-              <ion-col size="1.25" class="arrow-container">
+              <ion-col size="1.25" class="arrow-container" (click)="next(slide)">
                 <ion-icon name="arrow-round-forward"></ion-icon>
               </ion-col>
             </ion-row>
@@ -77,13 +88,16 @@
 
         <ion-slide>
           <ion-card-title>
+            <span class="goVote" [routerLink]="['/', 'vote']">
+              <ion-icon name="close-circle-outline" mode="ios"></ion-icon>
+            </span>
             <ion-row class="img-container">
               <ion-avatar>
                 <ion-img src="../assets/icon/ela-logo.jpg"></ion-img>
               </ion-avatar>
             </ion-row>
             <ion-row>
-              <ion-col size="1.25" class="arrow-container">
+              <ion-col size="1.25" class="arrow-container" (click)="prev(slide)">
                 <ion-icon name="arrow-round-back"></ion-icon>
               </ion-col>
               <ion-col>

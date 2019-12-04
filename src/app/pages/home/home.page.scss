@@ -5,7 +5,7 @@
 section {
   position: fixed;
   width: 100%;
-  height: 37%;
+  height: 30%;
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -14,20 +14,10 @@ section {
   .content {
     position: relative;
     top: 50px;
+    width: 100%;
     z-index: 1;
     margin: 0 auto;
     text-align: center;
-
-    h4 {
-      color: white;
-      font-weight: normal;
-      font-size: 22px;
-      margin: 0;
-
-      span {
-        font-size: 18px;
-      }
-    }
 
     ion-title {
       margin: 12px;
@@ -36,53 +26,71 @@ section {
       font-size: 20px;
     }
 
-    .btn-container {
-      width: 170px;
-      height: 170px;
-      background: hsl(225, 22%, 96%);
-      border-radius: 100%;
+    .closeBtn {
       display: flex;
       align-items: center;
-      justify-content: center;
-      position: relative;
-      top: 10px;
-      z-index: 2;
+      justify-content: flex-end;
+      font-size: 24px;
+      color: #fff;
 
       div {
-        width: 140px;
-        height: 140px;
-        background: linear-gradient(360deg, #B069DD 0%, #9D64FB 100%);
+        margin: 12px;
+      }
+    }
+
+    .btn-row {
+      display: flex;
+      justify-content: center;
+
+      .btn-container {
+        width: 150px;
+        height: 150px;
+        background: hsl(225, 22%, 96%);
         border-radius: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
-        z-index: 3;
+        position: relative;
+        top: 0px;
+        z-index: 2;
 
         div {
-          width: 130px;
-          height: 130px;
-          background: hsl(225, 22%, 96%);
+          width: 120px;
+          height: 120px;
+          background: linear-gradient(360deg, #B069DD 0%, #9D64FB 100%);
           border-radius: 100%;
           display: flex;
           align-items: center;
           justify-content: center;
-          z-index: 4;
+          z-index: 3;
 
-          ion-button {
-            --border-radius: 100%;
-            width: 120px;
-            height: 120px;
-            z-index: 5;
+          div {
+            width: 110px;
+            height: 110px;
+            background: hsl(225, 22%, 96%);
+            border-radius: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 4;
 
-            .elaAmount {
-              font-size: 40px;
-              font-weight: bold;
-            }
+            ion-button {
+              --border-radius: 100%;
+              width: 100px;
+              height: 100px;
+              z-index: 5;
 
-            h5 {
-              font-size: 20px;
-              font-weight: bold;
-              margin: 0 0 0 20px;
+              .elaAmount {
+                font-size: 34px;
+                font-weight: bold;
+                padding: 2px;
+              }
+
+              h5 {
+                font-size: 18px;
+                font-weight: bold;
+                margin: 0 0 0 20px;
+              }
             }
           }
         }
@@ -105,7 +113,7 @@ section:before {
 }
 
 .container {
-  margin-top: 76%;
+  margin-top: 70%;
   padding: 0;
   background-color: transparent !important;
   z-index: -1;
@@ -113,26 +121,40 @@ section:before {
   ion-card {
     display: flex;
     align-items: flex-end;
-    margin: 30px 20px;
-    padding-bottom: 15px;
+    margin: 20px;
+    padding-bottom: 20px;
     border-radius: 20px;
     background-blend-mode: multiply !important;
     box-shadow: 0px 3px 9px 0px rgb(199, 199, 199);
     z-index: 0;
 
     ion-card-title {
-      padding: 30px 10px;
+      padding: 20px 10px;
+
+      .goVote {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 28px;
+        color: #fff;
+        margin: 15px;
+
+        ion-icon {
+          color: white;
+
+        }
+      }
 
       .subtitle {
-        font-size: 14px;
+        font-size: 12px;
         font-weight: normal;
-        padding: 15px 45px 0px;
+        padding: 10px 60px;
         margin: 0;
       }
 
       .title {
         font-weight: bold;
-        font-size: 22px;
+        font-size: 18px;
         padding: 0;
         margin: 0;
       }
@@ -140,11 +162,11 @@ section:before {
       .img-container {
         display: flex;
         justify-content: center;
-        padding: 15px 0;
+        padding: 10px 0;
 
         ion-avatar {
-          min-width: 150px;
-          min-height: 150px;
+          min-width: 120px;
+          min-height: 120px;
         }
       }
 
@@ -156,34 +178,18 @@ section:before {
   }
 }
 
-.closeBtn {
-  position: fixed;
-  top: 10px;
-  right: 15px;
-  z-index: 2;
-  font-size: 24px;
-  color: #fff;
-}
-
 @media screen and (max-width: 370px){
 
-  section {
-    height: 40.25%;
-  }
-
-  .container {
-    margin-top: 85%;
-  }
 }
 
 @media screen and (min-height: 750px){
 
   section {
-    height: 30.5%;
+    height: 25%;
   }
 
   .container {
-    margin-top: 80%;
+    margin-top: 75%;
   }
 }
 

@@ -1,30 +1,38 @@
 <section>
-  <span class="closeBtn" (click)="closeApp()">
-    <ion-icon name="menu"></ion-icon>
-  </span>
   <div class="content">
-    <h4>
-      <span>{{ getSelectedNodes() }}</span>
-      /36 <br> Selected Nodes
-    </h4>
-    <div class="btn-container">
-      <div>
+    <ion-row>
+      <ion-col offset="2" size="8">
+        <h4>
+          <span>{{ getSelectedNodes() }}</span>
+          /36 <br> Selected Nodes
+        </h4>
+      </ion-col>
+      <ion-col size="2" class="closeBtn">
+        <div (click)="closeApp()">
+          <ion-icon name="menu"></ion-icon>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="btn-row">
+      <div class="btn-container">
         <div>
-          <ion-button (click)="castVote()" color="success">
-            <strong *ngIf="nodesLoaded && !castingVote" class="elaAmount">
-              {{ elaAmount }}
-              <h5>ELA</h5>
-            </strong>
-            <strong *ngIf="!nodesLoaded">
-              <ion-spinner name="bubbles"></ion-spinner>
-            </strong>
-            <strong *ngIf="castingVote">
-              <ion-spinner name="dots"></ion-spinner>
-            </strong>
-          </ion-button>
+          <div>
+            <ion-button (click)="castVote()" color="success">
+              <strong *ngIf="nodesLoaded && !castingVote" class="elaAmount">
+                {{ elaAmount }}
+                <h5>ELA</h5>
+              </strong>
+              <strong *ngIf="!nodesLoaded">
+                <ion-spinner name="bubbles"></ion-spinner>
+              </strong>
+              <strong *ngIf="castingVote">
+                <ion-spinner name="dots"></ion-spinner>
+              </strong>
+            </ion-button>
+          </div>
         </div>
       </div>
-    </div>
+    </ion-row>
   </div>
 </section>
 
