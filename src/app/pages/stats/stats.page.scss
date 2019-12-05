@@ -87,9 +87,15 @@ section:before {
         align-items: center;
         justify-content: center;
 
-        ion-img {
-          max-width: 45px;
-          max-height: 45px;
+        ion-thumbnail {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          ion-img {
+            max-width: 45px;
+            max-height: 45px;
+          }
         }
       }
 
@@ -102,6 +108,7 @@ section:before {
           font-size: 14px;
           font-weight: bold;
           color: #989aa2;
+          overflow: hidden;
           margin: 0;
         }
       }
@@ -128,8 +135,36 @@ section:before {
   }
 }
 
-@media screen and (max-width: 370px){
+@media screen and (max-width: 379px){
+  .container {
+    ion-list {
+      ion-item {
 
+        .img-container {
+          ion-thumbnail {
+            ion-img {
+              max-width: 40px;
+              max-height: 40px;
+            }
+          }
+        }
+
+        .number-container {
+          h4 {
+            font-size: 12px;
+          }
+        }
+
+        .stat-container {
+          ion-label {
+            h4 {
+              font-size: 12px;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 @media screen and (min-height: 750px){

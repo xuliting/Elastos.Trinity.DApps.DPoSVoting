@@ -1,5 +1,5 @@
 {
-  "id": "elastos.trinity.dposvoting",
+  "id": "org.elastos.trinity.dapp.dposvoting",
   "version": "0.0.1",
   "version_code": 1,
   "name": "DPoS Vote DApp",

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NodesService } from 'src/app/nodes.service';
-import { NavController, PopoverController } from '@ionic/angular';
 import { Node } from 'src/app/nodes.model';
-import { PopoverPage } from '../vote/popover/popover.page';
 
 declare let appManager: any;
 

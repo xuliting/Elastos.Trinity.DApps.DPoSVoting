@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NodesService } from 'src/app/nodes.service';
 import { Node } from 'src/app/nodes.model';
+import { StorageService } from 'src/app/storage.service';
 
 declare let appManager: any;
 
@@ -26,14 +27,16 @@ export class VotePage implements OnInit {
   nodeIndex: number;
   slideArray: Node[] = [];
 
-
   constructor(
     private nodesService: NodesService,
-  ) {}
+    private storageService: StorageService,
+  ) {
+  }
 
   ngOnInit() {
     this._nodes = this.nodesService.nodes;
     this.getTotalVotes();
+    this.getStoredNodes();
     if (this._nodes.length === 0) {
       this.nodesLoaded = false;
       this.nodesService.fetchNodes().subscribe(nodes => {
@@ -42,6 +45,7 @@ export class VotePage implements OnInit {
         console.log('Nodes from Voting ->', this._nodes);
         this.getTotalVotes();
         this.nodesService.getNodeIcon();
+        this.getStoredNodes();
       });
     }
   }
@@ -61,6 +65,22 @@ export class VotePage implements OnInit {
     console.log('Total Votes -> ' + this.totalVotes);
   }
 
+  // storage
+  getStoredNodes() {
+    this.storageService.getNodes().then(data => {
+      console.dir(data);
+      if(data.length !== 0) {
+        this._nodes.map(node => {
+          data.map(key => {
+            if (key === node.Ownerpublickey) {
+              node.isChecked === true;
+            }
+          })
+        })
+      } else return
+    });
+  }
+
   // appManager
   castVote() {
     let castedNodeKeys = [];
@@ -76,6 +96,7 @@ export class VotePage implements OnInit {
       { publickeys: JSON.stringify(castedNodeKeys) },
       () => {
         console.log('Insent sent sucessfully');
+        this.storageService.setNodes(castedNodeKeys);
         this.castingVote = false;
       }, (err) => {
         console.log('Intent sending failed', err);

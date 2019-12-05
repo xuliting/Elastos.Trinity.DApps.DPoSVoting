@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonSlides } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
 
 import { NodesService } from 'src/app/nodes.service';
 import { Node } from 'src/app/nodes.model';
@@ -12,8 +11,6 @@ declare let appManager: any;
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-
-  @ViewChild('slider', {static: true})  slides: IonSlides;
 
   // Initial Values
   _nodes: Node[] = [];

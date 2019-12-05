@@ -66,8 +66,9 @@ export class NodeDetailsPage implements OnInit {
     return votePercent.toFixed(2);
   }
 
-  getEla(votes: number): string {
-    let ElaVotes: number = Math.ceil(votes / 36);
+  getEla(votes: string): string {
+    const fixedVotes = parseInt(votes);
+    let ElaVotes: number = Math.ceil(fixedVotes / 36);
     return ElaVotes.toLocaleString().split(/\s/).join(',');
   }
 }
