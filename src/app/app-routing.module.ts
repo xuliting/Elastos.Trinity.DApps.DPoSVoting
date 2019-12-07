@@ -20,6 +20,7 @@ const routes: Routes = [
       // { path: ':nodeId', loadChildren: () => NodeDetailsPageModule },
       // { path: ':_nodeId', loadChildren: () => PopoverPageModule }
   ]},
+  { path: 'side-menu', loadChildren: './pages/side-menu/side-menu.module#SideMenuPageModule' },
 ];
 
 @NgModule({
