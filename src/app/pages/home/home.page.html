@@ -5,16 +5,16 @@
         <ion-title>Home</ion-title>
       </ion-col>
       <ion-col size="2" class="closeBtn">
-        <div (click)="closeApp()">
-          <ion-icon name="menu"></ion-icon>
-        </div>
+        <ion-buttons>
+          <div><ion-menu-button menu="m1"></ion-menu-button></div>
+        </ion-buttons>
       </ion-col>
     </ion-row>
     <ion-row class="btn-row">
       <div class="btn-container">
         <div>
           <div>
-            <ion-button [routerLink]="['/', 'vote']" color="success">
+            <ion-button [routerLink]="['/menu', 'vote']" color="success">
               <strong *ngIf="nodesLoaded" class="elaAmount">
                 {{ elaAmount }}
                 <h5>ELA</h5>
@@ -41,7 +41,7 @@
 
         <ion-slide>
           <ion-card-title>
-            <span class="goVote" [routerLink]="['/', 'vote']">
+            <span class="goVote" [routerLink]="['/menu', 'vote']">
               <ion-icon name="close-circle-outline" mode="ios"></ion-icon>
             </span>
             <ion-row class="img-container">
@@ -63,7 +63,7 @@
 
         <ion-slide>
           <ion-card-title>
-            <span class="goVote" [routerLink]="['/', 'vote']">
+            <span class="goVote" [routerLink]="['/menu', 'vote']">
               <ion-icon name="close-circle-outline" mode="ios"></ion-icon>
             </span>
             <ion-row class="img-container">
@@ -88,7 +88,7 @@
 
         <ion-slide>
           <ion-card-title>
-            <span class="goVote" [routerLink]="['/', 'vote']">
+            <span class="goVote" [routerLink]="['/menu', 'vote']">
               <ion-icon name="close-circle-outline" mode="ios"></ion-icon>
             </span>
             <ion-row class="img-container">
