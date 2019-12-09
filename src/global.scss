@@ -19,24 +19,11 @@
 }
 
 ion-title {
-  font-weight: bold;
+  font-weight: 700;
 }
 
 ion-content {
   --background: transparent;
-}
-
-ion-popover{
-
-  ion-backdrop{
-    opacity: 0.1 !important;
-  }
-
-  .popover-wrapper{
-    .popover-content{
-      width: 90vw;
-    }
-  }
 }
 
 :root {
