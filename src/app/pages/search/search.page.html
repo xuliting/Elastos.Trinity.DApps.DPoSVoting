@@ -1,4 +1,4 @@
-<section>
+<section (click)="return()">
   <div class="content">
     <ion-row>
       <ion-col offset="2" size="8">
@@ -29,20 +29,15 @@
 
 <ion-content>
 
-  <ion-grid class="container" *ngIf="showNode" no-padding>
+  <ion-grid class="container" *ngIf="nodesLoaded" no-padding>
     <app-node-slider
+      *ngIf="showNode"
       [nodeIndex]="nodeIndex"
       [totalVotes]="totalVotes"
       [_nodes]="filteredNodes"
     >
     </app-node-slider>
-    <div class="close-node" (click)="showNode = false" *ngIf="filteredNodes.length !== 0" text-center>
-      <ion-icon name="close-circle-outline"></ion-icon>
-    </div>
-  </ion-grid>
-
-  <ion-grid class="container" *ngIf="nodesLoaded && !showNode" no-padding>
-    <ion-list lines="none">
+    <ion-list lines="none" [class.blur]="showNode">
       <ion-virtual-scroll [items]="filteredNodes"  approxItemHeight="240px">
         <ion-item color="secondary"  *virtualItem="let node">
           <ion-grid no-padding>

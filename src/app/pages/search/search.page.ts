@@ -84,4 +84,8 @@ export class SearchPage implements OnInit {
     this.showNode = !this.showNode;
     this.nodeIndex = index;
   }
+
+  return() {
+    this.showNode = false;
+  }
 }

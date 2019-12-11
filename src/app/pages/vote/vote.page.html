@@ -1,4 +1,4 @@
-<section>
+<section (click)="return()">
   <div class="content">
     <ion-row>
       <ion-col offset="2" size="8">
@@ -38,20 +38,15 @@
 
 <ion-content>
 
-  <ion-grid class="container" *ngIf="showNode" no-padding>
+  <ion-grid class="container" *ngIf="nodesLoaded" no-padding>
     <app-node-slider
+      *ngIf="showNode"
       [nodeIndex]="nodeIndex"
       [totalVotes]="totalVotes"
       [_nodes]="slideArray"
     >
     </app-node-slider>
-    <div class="close-node" (click)="showNode = false" text-center>
-      <ion-icon name="close-circle-outline"></ion-icon>
-    </div>
-  </ion-grid>
-
-  <ion-grid class="container" *ngIf="nodesLoaded && !showNode" no-padding>
-    <ion-list lines="none">
+    <ion-list lines="none" [class.blur]="showNode">
       <ion-virtual-scroll [items]="_nodes"  approxItemHeight="240px">
         <ion-item color="secondary"  *virtualItem="let node">
           <ion-grid no-padding>
@@ -97,91 +92,3 @@
   </ion-grid>
 
 </ion-content>
-
-
-<!-- <section>
-  <span class="closeBtn" (click)="closeApp()">
-    <ion-icon name="menu"></ion-icon>
-  </span>
-  <div class="content">
-    <h4>
-      <span>{{ getSelectedNodes() }}</span>
-      /36 <br> Selected Nodes
-    </h4>
-    <div class="btn-container">
-      <div>
-        <div>
-          <ion-button (click)="castVote()" color="success">
-            <strong *ngIf="nodesLoaded && !castingVote" class="elaAmount">
-              {{ elaAmount }}
-              <h5>ELA</h5>
-            </strong>
-            <strong *ngIf="!nodesLoaded">
-              <ion-spinner name="bubbles"></ion-spinner>
-            </strong>
-            <strong *ngIf="castingVote">
-              <ion-spinner name="dots"></ion-spinner>
-            </strong>
-          </ion-button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<ion-content>
-  <ion-grid class="container" no-padding>
-    <ion-list *ngIf="nodesLoaded">
-      <ion-virtual-scroll [items]="_nodes"  approxItemHeight="240px">
-        <ion-item-sliding *virtualItem="let node">
-            <ion-item color="secondary">
-              <ion-grid no-padding>
-                <ion-row no-padding>
-                  <ion-col
-                    size="1"
-                    class="rank-container"
-                    no-padding
-                    (click)="presentPopover(node.Producer_public_key)"
-                  >
-                    {{ node.Rank }}
-                  </ion-col>
-                  <ion-col
-                    size="2"
-                    class="img-container"
-                    (click)="presentPopover(node.Producer_public_key)"
-                  >
-                    <ion-avatar>
-                      <ion-img *ngIf="node.imageUrl" [src]="node.imageUrl"></ion-img>
-                      <ion-img *ngIf="!node.imageUrl" src="../assets/icon/ela-logo.jpg"></ion-img>
-                    </ion-avatar>
-                  </ion-col>
-                  <ion-col
-                    size="7.5"
-                    (click)="presentPopover(node.Producer_public_key)"
-                  >
-                    <ion-label>
-                      <h4>{{ node.Nickname }}</h4>
-                      <p>
-                        <span><ion-icon name="pin"></ion-icon>{{ node.Location }} </span>
-                        &nbsp; {{ getVotePercent(node.Votes) }}% of Votes
-                      <p>
-                    </ion-label>
-                  </ion-col>
-                  <ion-col size="1.5" class="checkbox-container">
-                    <ion-checkbox value="node" [(ngModel)]="node.isChecked" mode="ios"></ion-checkbox>
-                  </ion-col>
-                </ion-row>
-              </ion-grid>
-            </ion-item>
-          <ion-item-options side="start">
-            <ion-item-option (click)="goToNode(node.Producer_public_key)">
-              <strong>Details</strong>
-              <ion-icon name="arrow-dropright"></ion-icon>
-            </ion-item-option>
-          </ion-item-options>
-        </ion-item-sliding>
-      </ion-virtual-scroll>
-    </ion-list>
-  </ion-grid>
-</ion-content>
- -->

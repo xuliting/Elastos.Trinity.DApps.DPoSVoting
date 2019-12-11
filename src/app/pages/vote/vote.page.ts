@@ -141,7 +141,12 @@ export class VotePage implements OnInit {
     }
     this.showNode = !this.showNode;
   }
+
+  return() {
+    this.showNode = false;
+  }
 }
+
 
 
 
