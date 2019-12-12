@@ -73,9 +73,7 @@ export class VotePage implements OnInit {
       console.log(data);
       this.nodesService.nodes.map(node => {
         if (data.includes(node.Ownerpublickey)) {
-          node.isChecked === true;
-          this.selectedNodes = this.selectedNodes.concat(node);
-          console.log(this.selectedNodes);
+          node.isChecked = true;
         }
       })
     });
@@ -124,17 +122,6 @@ export class VotePage implements OnInit {
     });
     return addedNodes;
   }
-
-
- /*  getSelectedNodes(): number {
-    this.nodesService.nodes.map(node => {
-      if (node.isChecked === true) {
-        this.selectedNodes = this.selectedNodes.concat(node);
-      }
-    });
-    let addedNodes = this.selectedNodes.filter((a, b) => this.selectedNodes.indexOf(a) === b);
-    return addedNodes.length;
-  } */
 
   getVotePercent(votes): string {
     const votePercent: number = parseFloat(votes) / this.totalVotes * 100;
