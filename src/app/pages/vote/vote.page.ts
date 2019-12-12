@@ -22,12 +22,10 @@ export class VotePage implements OnInit {
   elaAmount: number = 5000;
   castingVote: boolean = false;
 
-  selectedNodes: Node[] = [];
-
   // Node Detail
   showNode: boolean = false;
   nodeIndex: number;
-  slideArray: Node[] = [];
+  node: Node;
 
   constructor(
     private nodesService: NodesService,
@@ -128,23 +126,11 @@ export class VotePage implements OnInit {
     return votePercent.toFixed(2);
   }
 
-  // Node Detail - Short Array
-  /* _showNode(index: number, node) {
-    if (index >= 10) {
-      this.slideArray = this._nodes.slice(index - 10, index + 10);
-      this.nodeIndex = this.slideArray.indexOf(node);
-    }
-    if (index < 10) {
-      this.slideArray = this._nodes.slice(0, 20);
-      this.nodeIndex = this.slideArray.indexOf(node);
-    }
-    this.showNode = !this.showNode;
-  } */
-
-  // Node Detail - Long Array
-  _showNode(index) {
+  // Node Detail
+  _showNode(index, node) {
     this.showNode = !this.showNode;
     this.nodeIndex = index;
+    this.node = node;
   }
 
   return() {

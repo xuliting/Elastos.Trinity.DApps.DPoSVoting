@@ -18,12 +18,12 @@ export class SearchPage implements OnInit {
   // Initial Values
   _nodes: Node[] = [];
   filteredNodes: Node[] = [];
-  node: string = '';
+  _node: string = '';
   totalVotes: number = 0;
+  nodesLoaded: boolean = true;
 
   // Node Detail
   nodeIndex: number;
-  nodesLoaded: boolean = true;
   showNode: boolean = false;
 
   constructor(

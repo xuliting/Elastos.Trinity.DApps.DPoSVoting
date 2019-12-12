@@ -78,15 +78,27 @@ section {
               height: 100px;
 
               .elaAmount {
-                font-size: 34px;
+                font-size: 30px;
                 font-weight: 700;
                 padding: 2px;
+
+                h5 {
+                  font-size: 18px;
+                  font-weight: 700;
+                  margin: 0 0 0 20px;
+                }
               }
 
-              h5 {
-                font-size: 18px;
-                font-weight: 700;
-                margin: 0 0 0 20px;
+              .vote-btn {
+                margin: 0;
+                font-size: 28px;
+                font-weight: 800;
+
+                h5 {
+                  font-size: 18px;
+                  font-weight: 800;
+                  margin: 0 0 0 20px;
+                }
               }
             }
           }

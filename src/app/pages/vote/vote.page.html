@@ -20,8 +20,12 @@
         <div>
           <div>
             <ion-button (click)="castVote()" color="success">
-              <strong *ngIf="nodesLoaded && !castingVote" class="elaAmount">
+              <!-- <strong *ngIf="nodesLoaded && !castingVote" class="elaAmount">
                 {{ elaAmount }}
+                <h5>ELA</h5>
+              </strong> -->
+              <strong *ngIf="nodesLoaded && !castingVote" class="vote-btn">
+                Cast
                 <h5>ELA</h5>
               </strong>
               <strong *ngIf="!nodesLoaded">
@@ -44,6 +48,7 @@
     <app-node-slider
       *ngIf="showNode"
       [nodeIndex]="nodeIndex"
+      [node]="node"
       [totalVotes]="totalVotes"
       [_nodes]="_nodes"
     >
