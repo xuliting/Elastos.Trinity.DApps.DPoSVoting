@@ -5,13 +5,16 @@
         <ion-title>Search</ion-title>
       </ion-col>
       <ion-col size="2" class="closeBtn">
-        <ion-buttons>
-          <div><ion-menu-button menu="m1"></ion-menu-button></div>
-        </ion-buttons>
+        <div>
+          <ion-menu-toggle>
+            <ion-icon src="../assets/icon/menu.svg"></ion-icon>
+          </ion-menu-toggle>
+        </div>
       </ion-col>
     </ion-row>
     <div class="search-container" *ngIf="nodesLoaded">
       <ion-searchbar
+        #search
         color="medium"
         placeholder="Search for supernode.."
         [(ngModel)]="node"

@@ -10,12 +10,15 @@ export class StorageService {
   }
 
   public setNodes(value: any) {
-    return this.storage.set("nodes", JSON.stringify(value));
+    return this.storage.set("nodes", JSON.stringify(value)).then((data) => {
+      console.log('Stored nodes', data)
+    });
   }
 
   public getNodes(): Promise<any> {
     return this.storage.get("nodes").then((data) => {
-      console.dir('Keys from Storage Service', data);
+      console.log(data)
+      return JSON.parse(data);
     });
   }
 }

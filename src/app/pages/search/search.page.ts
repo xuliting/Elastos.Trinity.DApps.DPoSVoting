@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { IonInput } from '@ionic/angular';
+
 import { NodesService } from 'src/app/nodes.service';
 import { Node } from 'src/app/nodes.model';
 
@@ -11,9 +13,12 @@ declare let appManager: any;
 })
 export class SearchPage implements OnInit {
 
+  @ViewChild('search', {static: false}) search: IonInput;
+
   // Initial Values
   _nodes: Node[] = [];
   filteredNodes: Node[] = [];
+  node: string = '';
   totalVotes: number = 0;
 
   // Node Detail
@@ -38,6 +43,12 @@ export class SearchPage implements OnInit {
         this.nodesService.getNodeIcon();
       });
     }
+  }
+
+  ionViewDidEnter() {
+    setTimeout(() => {
+      this.search.setFocus();
+    }, 200);
   }
 
   /* ionViewDidLeave() {

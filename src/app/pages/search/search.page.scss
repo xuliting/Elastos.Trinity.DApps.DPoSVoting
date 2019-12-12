@@ -1,7 +1,7 @@
 section {
   position: fixed;
   width: 100%;
-  height: 30%;
+  height: 33%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -141,40 +141,24 @@ section:before {
   }
 }
 
-.close-node {
-  position: relative;
-  top: 0px;
-  z-index: 2;
-  font-size: 36px;
-  color: #d3d3d4;
-
-  ion-icon:focus {
-    color: #9D64FB
-  }
-
-  ion-icon:hover {
-    color: #9D64FB
-  }
-}
-
 @media screen and (max-width: 379px){
 
-  section {
+/*   section {
     height: 33.5%;
   }
 
   .container {
     margin-top: 62%;
-  }
+  } */
 }
 
 @media screen and (min-height: 750px){
 
-  section {
+  /* section {
     height: 26%;
   }
 
   .container {
     margin-top: 55%;
-  }
+  } */
 }

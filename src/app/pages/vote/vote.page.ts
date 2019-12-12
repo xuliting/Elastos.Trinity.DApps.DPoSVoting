@@ -22,6 +22,8 @@ export class VotePage implements OnInit {
   elaAmount: number = 5000;
   castingVote: boolean = false;
 
+  selectedNodes: Node[] = [];
+
   // Node Detail
   showNode: boolean = false;
   nodeIndex: number;
@@ -43,16 +45,16 @@ export class VotePage implements OnInit {
         this.nodesLoaded = true;
         this._nodes = nodes.result;
         console.log('Nodes from Voting ->', this._nodes);
-        this.getTotalVotes();
         this.nodesService.getNodeIcon();
+        this.getTotalVotes();
         this.getStoredNodes();
       });
     }
   }
 
-  /* ionViewDidLeave() {
-    this.showNode = false;
-  } */
+  ionViewDidLeave() {
+    this.castingVote = false;
+  }
 
   ionViewWillEnter() {
     this._nodes = this.nodesService.nodes;
@@ -65,19 +67,17 @@ export class VotePage implements OnInit {
     console.log('Total Votes -> ' + this.totalVotes);
   }
 
-  // storage
+  // Storage
   getStoredNodes() {
     this.storageService.getNodes().then(data => {
-      console.dir(data);
-      if(data.length !== 0) {
-        this._nodes.map(node => {
-          data.map(key => {
-            if (key === node.Ownerpublickey) {
-              node.isChecked === true;
-            }
-          })
-        })
-      } else return
+      console.log(data);
+      this.nodesService.nodes.map(node => {
+        if (data.includes(node.Ownerpublickey)) {
+          node.isChecked === true;
+          this.selectedNodes = this.selectedNodes.concat(node);
+          console.log(this.selectedNodes);
+        }
+      })
     });
   }
 
@@ -93,13 +93,14 @@ export class VotePage implements OnInit {
     console.log(castedNodeKeys);
     appManager.sendIntent(
       'dposvotetransaction',
-      { publickeys: JSON.stringify(castedNodeKeys) },
+      { publickeys: (castedNodeKeys) },
       () => {
         console.log('Insent sent sucessfully');
         this.storageService.setNodes(castedNodeKeys);
         this.castingVote = false;
       }, (err) => {
         console.log('Intent sending failed', err);
+        this.castingVote = false;
       }
     );
   }
@@ -124,22 +125,39 @@ export class VotePage implements OnInit {
     return addedNodes;
   }
 
+
+ /*  getSelectedNodes(): number {
+    this.nodesService.nodes.map(node => {
+      if (node.isChecked === true) {
+        this.selectedNodes = this.selectedNodes.concat(node);
+      }
+    });
+    let addedNodes = this.selectedNodes.filter((a, b) => this.selectedNodes.indexOf(a) === b);
+    return addedNodes.length;
+  } */
+
   getVotePercent(votes): string {
     const votePercent: number = parseFloat(votes) / this.totalVotes * 100;
     return votePercent.toFixed(2);
   }
 
-  // Node Detail
-  _showNode(index: number, node) {
-    if (index >= 5) {
-      this.slideArray = this._nodes.slice(index - 5, index + 5);
+  // Node Detail - Short Array
+  /* _showNode(index: number, node) {
+    if (index >= 10) {
+      this.slideArray = this._nodes.slice(index - 10, index + 10);
       this.nodeIndex = this.slideArray.indexOf(node);
     }
-    if (index < 5) {
-      this.slideArray = this._nodes.slice(0, 10);
+    if (index < 10) {
+      this.slideArray = this._nodes.slice(0, 20);
       this.nodeIndex = this.slideArray.indexOf(node);
     }
     this.showNode = !this.showNode;
+  } */
+
+  // Node Detail - Long Array
+  _showNode(index) {
+    this.showNode = !this.showNode;
+    this.nodeIndex = index;
   }
 
   return() {
