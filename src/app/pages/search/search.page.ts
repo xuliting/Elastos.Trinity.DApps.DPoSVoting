@@ -16,6 +16,7 @@ export class SearchPage implements OnInit {
   @ViewChild('search', {static: false}) search: IonInput;
 
   // Initial Values
+  subscription: any;
   _nodes: Node[] = [];
   filteredNodes: Node[] = [];
   _node: string = '';
@@ -35,12 +36,13 @@ export class SearchPage implements OnInit {
     this.getTotalVotes();
     if (this._nodes.length === 0) {
       this.nodesLoaded = false;
-      this.nodesService.fetchNodes().subscribe(nodes => {
+      this.subscription = this.nodesService.fetchNodes().subscribe(nodes => {
         this.nodesLoaded = true;
         this._nodes = nodes.result;
         console.log('Nodes from Voting ->', this._nodes);
-        this.getTotalVotes();
         this.nodesService.getNodeIcon();
+        this.nodesService.getStoredNodes();
+        this.getTotalVotes();
       });
     }
   }
@@ -51,9 +53,9 @@ export class SearchPage implements OnInit {
     }, 200);
   }
 
-  /* ionViewDidLeave() {
-    this.showNode = false;
-  } */
+  ionViewWillLeave() {
+    this.subscription.unsubscribe();
+  }
 
   getTotalVotes() {
     this._nodes.map(node => {

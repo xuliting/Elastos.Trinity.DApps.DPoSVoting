@@ -11,6 +11,7 @@ declare let appManager: any;
 })
 export class StatsPage implements OnInit {
 
+  subscription: any;
   _nodes: Node[] = [];
   totalVotes: number = 0;
   votePercent: number = 0;
@@ -23,14 +24,19 @@ export class StatsPage implements OnInit {
     this.getTotalVotes();
     if (this._nodes.length === 0) {
       this.nodesLoaded = false;
-      this.nodesService.fetchNodes().subscribe(nodes => {
+      this.subscription = this.nodesService.fetchNodes().subscribe(nodes => {
         this.nodesLoaded = true;
         this._nodes = nodes.result;
         console.log('Nodes from Stats ->', this._nodes);
-        this.getTotalVotes();
         this.nodesService.getNodeIcon();
+        this.nodesService.getStoredNodes();
+        this.getTotalVotes();
       });
     }
+  }
+
+  ionViewWillLeave() {
+    this.subscription.unsubscribe();
   }
 
   getTotalVotes() {

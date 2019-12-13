@@ -17,13 +17,14 @@
         <div>
           <div>
             <ion-button [routerLink]="['/menu', 'vote']" color="success">
-              <strong *ngIf="nodesLoaded" class="elaAmount">
+             <!--  <strong *ngIf="nodesLoaded" class="elaAmount">
                 {{ elaAmount }}
                 <h5>ELA</h5>
               </strong>
               <strong *ngIf="!nodesLoaded">
                 <ion-spinner name="bubbles"></ion-spinner>
-              </strong>
+              </strong> -->
+              <strong class="vote-btn">Vote</strong>
             </ion-button>
           </div>
         </div>

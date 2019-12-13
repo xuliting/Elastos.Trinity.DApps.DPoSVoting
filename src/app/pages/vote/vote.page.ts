@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
+
 import { NodesService } from 'src/app/nodes.service';
 import { Node } from 'src/app/nodes.model';
 import { StorageService } from 'src/app/storage.service';
@@ -13,12 +15,13 @@ declare let appManager: any;
 export class VotePage implements OnInit {
 
   // Initial Values
+  subscription: any;
   _nodes: Node[] = [];
   totalVotes: number = 0;
   nodesLoaded: boolean = true;
+  skeleton: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   // Intent
-  activeVotes: number = 0;
   elaAmount: number = 5000;
   castingVote: boolean = false;
 
@@ -30,32 +33,75 @@ export class VotePage implements OnInit {
   constructor(
     private nodesService: NodesService,
     private storageService: StorageService,
+    public alertController: AlertController
   ) {
   }
 
   ngOnInit() {
+    this.nodesLoaded = true;
     this._nodes = this.nodesService.nodes;
     this.getTotalVotes();
-    this.getStoredNodes();
     if (this._nodes.length === 0) {
       this.nodesLoaded = false;
-      this.nodesService.fetchNodes().subscribe(nodes => {
-        this.nodesLoaded = true;
-        this._nodes = nodes.result;
-        console.log('Nodes from Voting ->', this._nodes);
-        this.nodesService.getNodeIcon();
-        this.getTotalVotes();
-        this.getStoredNodes();
-      });
+      this.nodesService.fetchCurrentHeight()
+        .then(() => {
+          this.subscription = this.nodesService.fetchNodes().subscribe(nodes => {
+            this.nodesLoaded = true;
+            this._nodes = nodes.result;
+            this.nodesService.getNodeIcon();
+            this.nodesService.getStoredNodes();
+            this.getTotalVotes();
+          });
+        })
+        .catch(err => console.log('Cannot retrieve data', err));
     }
   }
 
-  ionViewDidLeave() {
+  ionViewWillLeave() {
+    this.subscription.unsubscribe();
     this.castingVote = false;
   }
 
   ionViewWillEnter() {
     this._nodes = this.nodesService.nodes;
+  }
+
+  async voteSuccess() {
+    const alert = await this.alertController.create({
+      message: 'Votes sucessfully sent!',
+      buttons: [
+        {
+          text: 'Okay',
+          handler: () => {
+            this.castingVote = false;
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  async voteFailed() {
+    const alert = await this.alertController.create({
+      message: 'There was an error with sending votes..',
+      buttons: [
+        {
+          text: 'Okay',
+          handler: () => {
+            this.castingVote = false;
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  async noNodesChecked() {
+    const alert = await this.alertController.create({
+      message: 'Please select up to 36 nodes in order to vote',
+      buttons: ['Okay']
+    });
+    await alert.present();
   }
 
   getTotalVotes() {
@@ -65,40 +111,32 @@ export class VotePage implements OnInit {
     console.log('Total Votes -> ' + this.totalVotes);
   }
 
-  // Storage
-  getStoredNodes() {
-    this.storageService.getNodes().then(data => {
-      console.log(data);
-      this.nodesService.nodes.map(node => {
-        if (data.includes(node.Ownerpublickey)) {
-          node.isChecked = true;
-        }
-      })
-    });
-  }
-
   // appManager
   castVote() {
     let castedNodeKeys = [];
     this._nodes.map(node => {
-      if(node.isChecked === true) {
+      if (node.isChecked === true) {
         castedNodeKeys = castedNodeKeys.concat(node.Ownerpublickey);
-        this.castingVote = true;
       }
     });
-    console.log(castedNodeKeys);
-    appManager.sendIntent(
-      'dposvotetransaction',
-      { publickeys: (castedNodeKeys) },
-      () => {
-        console.log('Insent sent sucessfully');
-        this.storageService.setNodes(castedNodeKeys);
-        this.castingVote = false;
-      }, (err) => {
-        console.log('Intent sending failed', err);
-        this.castingVote = false;
-      }
-    );
+    if (castedNodeKeys.length > 0) {
+      console.log(castedNodeKeys);
+      this.castingVote = true;
+      appManager.sendIntent(
+        'dposvotetransaction',
+        { publickeys: (castedNodeKeys) },
+        () => {
+          console.log('Insent sent sucessfully');
+          this.storageService.setNodes(castedNodeKeys);
+          this.voteSuccess();
+        }, (err) => {
+          console.log('Intent sending failed', err);
+          this.voteFailed();
+        }
+      );
+    } else {
+      this.noNodesChecked();
+    }
   }
 
   closeApp() {
@@ -113,7 +151,7 @@ export class VotePage implements OnInit {
 
   getSelectedNodes(): number {
     let addedNodes: number = 0;
-    this.nodesService.nodes.map(node => {
+    this._nodes.map(node => {
       if (node.isChecked === true) {
         addedNodes++;
       }
@@ -137,7 +175,5 @@ export class VotePage implements OnInit {
     this.showNode = false;
   }
 }
-
-
 
 
