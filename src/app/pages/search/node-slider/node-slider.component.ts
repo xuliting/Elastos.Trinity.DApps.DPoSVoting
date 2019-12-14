@@ -11,6 +11,9 @@ export class NodeSliderComponent implements OnInit {
   @Input() _nodes: Node[] = [];
   @Input() totalVotes: number = 0;
   @Input() nodeIndex: number;
+  @Input() node: Node;
+
+  displayedArr: Node[] = [];
 
   slideOpts = {
     initialSlide: null,
@@ -23,8 +26,18 @@ export class NodeSliderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.slideOpts.initialSlide = this.nodeIndex;
-    console.log('Node Index -> ' + this.nodeIndex);
+    this.displayedArr = this._nodes.slice(0, this.nodeIndex + 2);
+    this.slideOpts.initialSlide = this.displayedArr.indexOf(this.node);
+  }
+
+  loadNext() {
+    let lastNode = this.displayedArr.slice(-1)[0];
+    let nextNodeIndex = this._nodes.indexOf(lastNode) + 1;
+    if(nextNodeIndex) {
+      this.displayedArr.push(this._nodes[nextNodeIndex]);
+    }
+    console.log('last node', lastNode);
+    console.log('next node', this._nodes[nextNodeIndex]);
   }
 
   // Modify Values

@@ -8,7 +8,7 @@ export class Node {
     public Nodepublickey: string,
     public Nickname: string,
     public Url: string,
-    public Location: number,
+    public Location: any,
     public Active: boolean,
     public Votes: string,
     public Netaddress: string,

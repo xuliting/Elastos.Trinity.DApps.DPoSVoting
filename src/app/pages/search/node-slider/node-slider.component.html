@@ -1,4 +1,4 @@
-<ion-slides [options]="slideOpts">
+<ion-slides [options]="slideOpts" (ionSlideNextEnd)="loadNext()">
   <ion-slide *ngFor="let node of _nodes">
     <ion-card text-center color="secondary">
       <ion-grid>

@@ -19,7 +19,6 @@ export class VotePage implements OnInit {
   _nodes: Node[] = [];
   totalVotes: number = 0;
   nodesLoaded: boolean = true;
-  skeleton: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   // Intent
   elaAmount: number = 5000;
@@ -108,7 +107,6 @@ export class VotePage implements OnInit {
     this._nodes.map(node => {
       this.totalVotes += parseFloat(node.Votes);
     });
-    console.log('Total Votes -> ' + this.totalVotes);
   }
 
   // appManager

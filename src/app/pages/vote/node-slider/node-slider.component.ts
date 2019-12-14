@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Node } from 'src/app/nodes.model';
+import { IonSlides } from '@ionic/angular';
 
 @Component({
   selector: 'app-node-slider',
@@ -7,6 +8,8 @@ import { Node } from 'src/app/nodes.model';
   styleUrls: ['./node-slider.component.scss'],
 })
 export class NodeSliderComponent implements OnInit {
+
+  @ViewChild('slider', {static: false}) slider: IonSlides;
 
   @Input() _nodes: Node[] = [];
   @Input() totalVotes: number = 0;
@@ -26,31 +29,19 @@ export class NodeSliderComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.nodeIndex < 10) {
-      this.displayedArr = this._nodes.slice(0, 12);
-      this.slideOpts.initialSlide = this.displayedArr.indexOf(this.node);
-    }
-    if (this.nodeIndex >= 10) {
-      this.displayedArr = this._nodes.slice(this.nodeIndex - 10, this.nodeIndex + 2);
-      this.slideOpts.initialSlide = this.displayedArr.indexOf(this.node);
-    }
-    console.log('Node' + this.nodeIndex + this.node);
+    this.displayedArr = this._nodes.slice(0, this.nodeIndex + 2);
+    this.slideOpts.initialSlide = this.displayedArr.indexOf(this.node);
   }
 
   loadNext() {
     let lastNode = this.displayedArr.slice(-1)[0];
     let nextNodeIndex = this._nodes.indexOf(lastNode) + 1;
-    this.displayedArr = this.displayedArr.concat(this._nodes[nextNodeIndex]);
+    if(nextNodeIndex) {
+      this.displayedArr.push(this._nodes[nextNodeIndex]);
+    }
     console.log('last node', lastNode);
     console.log('next node', this._nodes[nextNodeIndex]);
   }
-
-  /* loadPrev() {
-    let firstNode = this.displayedArr[0];
-    let prevNodeIndex = this._nodes.indexOf(firstNode) - 1;
-    this.displayedArr.unshift(this._nodes[prevNodeIndex]);
-    console.log('first node', firstNode);
-  } */
 
   // Modify Values
   getVotes(votes: string): string {
@@ -68,3 +59,29 @@ export class NodeSliderComponent implements OnInit {
     return ElaVotes.toLocaleString().split(/\s/).join(',');
   }
 }
+
+  /*
+  ngOnInit() {
+    if (this.nodeIndex < 10) {
+      this.displayedArr = this._nodes.slice(0, 12);
+      this.slideOpts.initialSlide = this.displayedArr.indexOf(this.node);
+    }
+    if (this.nodeIndex >= 10) {
+      this.displayedArr = this._nodes.slice(this.nodeIndex - 10, this.nodeIndex + 2);
+      this.slideOpts.initialSlide = this.displayedArr.indexOf(this.node);
+    }
+    console.log('Node' + this.nodeIndex + this.node);
+  }
+  */
+
+  /*
+  loadPrev(slider) {
+    let firstNode = this.displayedArr[0];
+    console.log(this.displayedArr[0]);
+    let prevNodeIndex = this._nodes.indexOf(firstNode) - 1;
+    this.displayedArr = [].concat(this._nodes[prevNodeIndex], ...this.displayedArr);
+    // this.displayedArr.unshift(this._nodes[prevNodeIndex]);
+    console.log(this._nodes[prevNodeIndex]);
+    console.log(this.displayedArr);
+  }
+  */

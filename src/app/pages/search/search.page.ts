@@ -24,8 +24,9 @@ export class SearchPage implements OnInit {
   nodesLoaded: boolean = true;
 
   // Node Detail
-  nodeIndex: number;
   showNode: boolean = false;
+  nodeIndex: number;
+  node: Node;
 
   constructor(
     private nodesService: NodesService,
@@ -39,7 +40,6 @@ export class SearchPage implements OnInit {
       this.subscription = this.nodesService.fetchNodes().subscribe(nodes => {
         this.nodesLoaded = true;
         this._nodes = nodes.result;
-        console.log('Nodes from Voting ->', this._nodes);
         this.nodesService.getNodeIcon();
         this.nodesService.getStoredNodes();
         this.getTotalVotes();
@@ -61,7 +61,6 @@ export class SearchPage implements OnInit {
     this._nodes.map(node => {
       this.totalVotes += parseFloat(node.Votes);
     });
-    console.log('Total Votes -> ' + this.totalVotes);
   }
 
   // Search
@@ -73,7 +72,6 @@ export class SearchPage implements OnInit {
         return node.Nickname.toLowerCase().indexOf(search.toLowerCase()) !== -1;
       }
     });
-    console.log(this.filteredNodes);
   }
 
   // appManager
@@ -93,9 +91,10 @@ export class SearchPage implements OnInit {
   }
 
   // Node Detail
-  _showNode(index) {
+  _showNode(index, node) {
     this.showNode = !this.showNode;
     this.nodeIndex = index;
+    this.node = node;
   }
 
   return() {

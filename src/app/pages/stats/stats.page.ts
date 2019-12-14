@@ -27,7 +27,6 @@ export class StatsPage implements OnInit {
       this.subscription = this.nodesService.fetchNodes().subscribe(nodes => {
         this.nodesLoaded = true;
         this._nodes = nodes.result;
-        console.log('Nodes from Stats ->', this._nodes);
         this.nodesService.getNodeIcon();
         this.nodesService.getStoredNodes();
         this.getTotalVotes();
@@ -43,7 +42,6 @@ export class StatsPage implements OnInit {
     this._nodes.map(node => {
       this.totalVotes += parseInt(node.Votes);
     });
-    console.log('Total Votes -> ' + this.totalVotes);
     this.votePercent = this.totalVotes / (16063887 * 36) * 100;
   }
 

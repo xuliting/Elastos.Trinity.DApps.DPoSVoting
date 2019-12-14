@@ -20,9 +20,9 @@
 </section>
 
 <ion-content>
-  <ion-grid class="container" no-padding>
-    <ion-list *ngIf="nodesLoaded">
 
+  <ion-grid *ngIf="nodesLoaded" class="container" no-padding>
+    <ion-list>
       <ion-item color="light" class="first">
         <ion-grid no-padding>
           <ion-row no-padding>
@@ -102,45 +102,84 @@
           </ion-row>
         </ion-grid>
       </ion-item>
-
     </ion-list>
   </ion-grid>
+
+  <ion-grid *ngIf="!nodesLoaded" class="container" no-padding>
+    <ion-list>
+      <ion-item color="light" class="first">
+        <ion-grid no-padding>
+          <ion-row no-padding>
+            <ion-col size="2" class="img-container">
+              <ion-skeleton-text animated style="width: 40%; height: 100%;"></ion-skeleton-text>
+            </ion-col>
+            <ion-col size="7">
+              <ion-label>
+                <h1><ion-skeleton-text animated style="width: 100%; height: 100%;"></ion-skeleton-text></h1>
+              </ion-label>
+            </ion-col>
+            <ion-col size="3" class="number-container">
+              <ion-skeleton-text animated style="width: 40%; height: 100%;"></ion-skeleton-text>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+
+      <ion-item color="light" class="first">
+        <ion-grid no-padding>
+          <ion-row no-padding>
+            <ion-col size="2" class="img-container">
+              <ion-skeleton-text animated style="width: 40%; height: 100%;"></ion-skeleton-text>
+            </ion-col>
+            <ion-col size="7">
+              <ion-label>
+                <h1><ion-skeleton-text animated style="width: 100%; height: 100%;"></ion-skeleton-text></h1>
+              </ion-label>
+            </ion-col>
+            <ion-col size="3" class="number-container">
+              <ion-skeleton-text animated style="width: 40%; height: 100%;"></ion-skeleton-text>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+
+      <ion-item color="light" class="first">
+        <ion-grid no-padding>
+          <ion-row no-padding>
+            <ion-col size="2" class="img-container">
+              <ion-skeleton-text animated style="width: 40%; height: 100%;"></ion-skeleton-text>
+            </ion-col>
+            <ion-col size="7">
+              <ion-label>
+                <h1><ion-skeleton-text animated style="width: 100%; height: 100%;"></ion-skeleton-text></h1>
+              </ion-label>
+            </ion-col>
+            <ion-col size="3" class="number-container">
+              <ion-skeleton-text animated style="width: 40%; height: 100%;"></ion-skeleton-text>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+
+      <ion-item color="light" class="first">
+        <ion-grid no-padding>
+          <ion-row no-padding>
+            <ion-col size="2" class="img-container">
+              <ion-skeleton-text animated style="width: 40%; height: 100%;"></ion-skeleton-text>
+            </ion-col>
+            <ion-col size="7">
+              <ion-label>
+                <h1><ion-skeleton-text animated style="width: 100%; height: 100%;"></ion-skeleton-text></h1>
+              </ion-label>
+            </ion-col>
+            <ion-col size="3" class="number-container">
+              <ion-skeleton-text animated style="width: 40%; height: 100%;"></ion-skeleton-text>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-list>
+  </ion-grid>
+
 </ion-content>
 
-<!-- <ion-content>
-  <ion-grid class="container">
-    <ion-card *ngIf="nodesLoaded" color="danger" text-center padding>
-      <br><br>
-      <ion-card-content>
-        <p>
-          Total ELA Staking: <br>
-          <strong>{{ getTotalEla() }}</strong>
-        </p>
-        <p>
-          Total Number of Votes: <br>
-          <strong>{{ fixTotalVotes() }}</strong>
-        </p>
-        <p>
-          ELA Voted vs Circulation: <br>
-          <strong>{{ votePercent.toFixed(2) }}%</strong>
-        </p>
-        <p>
-          Active vs Registered Supernodes: <br>
-          <strong>{{ getActiveNodes() }} / {{ _nodes.length }}</strong>
-        </p>
-      </ion-card-content>
-      <br><br>
-    </ion-card>
-
-    <ion-card *ngIf="!nodesLoaded" text-center padding color="danger">
-      <br><br><br><br><br>
-      <div class="spinner-container">
-        <ion-label>
-          <ion-spinner name="bubbles"></ion-spinner>
-          <h2>Loading Stats</h2>
-        </ion-label>
-      </div>
-      <br><br><br><br><br>
-    </ion-card>
-  </ion-grid>
-</ion-content> -->
