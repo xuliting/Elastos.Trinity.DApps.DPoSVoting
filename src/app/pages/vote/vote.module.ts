@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
+import { IonicImageLoader } from 'ionic-image-loader';
 
 import { VotePage } from './vote.page';
 import { NodeSliderComponent } from './node-slider/node-slider.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    IonicImageLoader,
     RouterModule.forChild(routes),
   ],
   declarations: [VotePage, NodeSliderComponent]

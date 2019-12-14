@@ -59,10 +59,10 @@
                 class="img-container"
                 (click)="_showNode(filteredNodes.indexOf(node), node)"
               >
-                <ion-avatar>
-                  <ion-img *ngIf="node.imageUrl" [src]="node.imageUrl"></ion-img>
-                  <ion-img *ngIf="!node.imageUrl" src="../assets/icon/ela-logo.jpg"></ion-img>
-                </ion-avatar>
+                <div>
+                  <img-loader *ngIf="node.imageUrl" [src]="node.imageUrl"></img-loader>
+                  <img-loader *ngIf="!node.imageUrl" src="../assets/icon/ela.png"></img-loader>
+                </div>
               </ion-col>
               <ion-col
                 size="7.5"

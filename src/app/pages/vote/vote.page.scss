@@ -143,14 +143,17 @@ section:before {
 
       .img-container {
         display: flex;
-        align-items: center;
         justify-content: center;
-        padding-right: 0;
+        align-items: center;
+
+        div {
+          width: 45px;
+          height: 45px;
+        }
 
         ion-avatar {
-          max-width: 50px;
-          max-height: 50px;
-          object-fit: contain;
+          max-width: 40px;
+          max-height: 40px;
         }
       }
 

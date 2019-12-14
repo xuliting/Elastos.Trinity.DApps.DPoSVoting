@@ -94,13 +94,12 @@ section:before {
 
       .img-container {
         display: flex;
-        align-items: center;
         justify-content: center;
-        padding-right: 0;
+        align-items: center;
 
-        ion-avatar {
-          max-width: 50px;
-          max-height: 50px;
+        div {
+          width: 45px;
+          height: 45px;
         }
       }
 
