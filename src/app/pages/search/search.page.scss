@@ -68,7 +68,7 @@ section:before {
 }
 
 .container {
-  margin-top: 60%;
+  margin-top: 54%;
   background: hsl(225, 22%, 96%);
   position: relative;
   z-index: auto;
@@ -142,23 +142,11 @@ section:before {
 }
 
 @media screen and (max-width: 379px){
-
-/*   section {
-    height: 33.5%;
-  }
-
-  .container {
-    margin-top: 62%;
-  } */
 }
 
 @media screen and (min-height: 750px){
 
-  /* section {
-    height: 26%;
-  }
-
   .container {
-    margin-top: 55%;
-  } */
+    margin-top: 62%;
+  }
 }
