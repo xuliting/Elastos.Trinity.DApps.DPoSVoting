@@ -24,9 +24,17 @@ ion-slides {
           justify-content: center;
           align-items: center;
 
-          div {
-            width: 45px;
-            height: 45px;
+          img-loader {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 100%;
+            overflow: hidden;
+
+            img {
+              width: 45px;
+              height: 45px;
+            }
           }
         }
 
@@ -121,9 +129,17 @@ ion-slides {
           justify-content: center;
           align-items: center;
 
-          ion-avatar {
-            max-width: 40px;
-            max-height: 40px;
+          img-loader {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 100%;
+            overflow: hidden;
+
+            img {
+              width: 45px;
+              height: 45px;
+            }
           }
         }
 
