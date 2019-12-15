@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 
 import { NodesService } from 'src/app/nodes.service';
 import { Node } from 'src/app/nodes.model';
@@ -32,7 +32,7 @@ export class VotePage implements OnInit {
   constructor(
     private nodesService: NodesService,
     private storageService: StorageService,
-    public alertController: AlertController
+    public toastController: ToastController
   ) {
   }
 
@@ -66,8 +66,9 @@ export class VotePage implements OnInit {
   }
 
   async voteSuccess() {
-    const alert = await this.alertController.create({
-      message: 'Votes sucessfully sent!',
+    const toast = await this.toastController.create({
+      message: 'Votes successfully sent',
+      color: "primary",
       buttons: [
         {
           text: 'Okay',
@@ -77,12 +78,13 @@ export class VotePage implements OnInit {
         }
       ]
     });
-    await alert.present();
+    toast.present();
   }
 
   async voteFailed() {
-    const alert = await this.alertController.create({
+    const toast = await this.toastController.create({
       message: 'There was an error with sending votes..',
+      color: "primary",
       buttons: [
         {
           text: 'Okay',
@@ -92,15 +94,16 @@ export class VotePage implements OnInit {
         }
       ]
     });
-    await alert.present();
+    toast.present();
   }
 
   async noNodesChecked() {
-    const alert = await this.alertController.create({
+    const toast = await this.toastController.create({
       message: 'Please select up to 36 nodes in order to vote',
-      buttons: ['Okay']
+      color: "primary",
+      duration: 2000
     });
-    await alert.present();
+    toast.present();
   }
 
   getTotalVotes() {
