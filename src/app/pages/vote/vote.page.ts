@@ -65,9 +65,10 @@ export class VotePage implements OnInit {
     this._nodes = this.nodesService.nodes;
   }
 
-  async voteSuccess() {
+  async voteSuccess(res) {
     const toast = await this.toastController.create({
-      message: 'Votes successfully sent',
+      header: 'Votes successfully sent',
+      message: res,
       color: "primary",
       buttons: [
         {
@@ -81,9 +82,10 @@ export class VotePage implements OnInit {
     toast.present();
   }
 
-  async voteFailed() {
+  async voteFailed(res) {
     const toast = await this.toastController.create({
-      message: 'There was an error with sending votes..',
+      header: 'There was an error with sending votes..',
+      message: res,
       color: "primary",
       buttons: [
         {
@@ -126,13 +128,17 @@ export class VotePage implements OnInit {
       appManager.sendIntent(
         'dposvotetransaction',
         { publickeys: (castedNodeKeys) },
-        () => {
-          console.log('Insent sent sucessfully');
+        (res) => {
+          console.log('Insent sent sucessfully', res);
           this.storageService.setNodes(castedNodeKeys);
-          this.voteSuccess();
+          if(res.result.txid === null ) {
+            this.voteFailed('txid returned null');
+          } else {
+            this.voteSuccess(res.result.txid);
+          }
         }, (err) => {
           console.log('Intent sending failed', err);
-          this.voteFailed();
+          this.voteFailed(err);
         }
       );
     } else {
