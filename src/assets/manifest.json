@@ -7,7 +7,7 @@
   "short_description": "Vote DApp",
   "description": "DPos Vote DApp",
   "start_url": "index.html",
-  "type": "file",
+  "type": "app",
   "category": "finance",
   "icons": [
     {
