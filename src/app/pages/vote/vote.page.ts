@@ -68,18 +68,14 @@ export class VotePage implements OnInit {
   async voteSuccess(res) {
     const toast = await this.toastController.create({
       header: 'Votes successfully sent',
-      message: res,
+      message: 'Txid:' + res,
       color: "primary",
-      buttons: [
-        {
-          text: 'Okay',
-          handler: () => {
-            this.castingVote = false;
-          }
-        }
-      ]
+      cssClass: 'toaster',
+      duration: 4000,
     });
-    toast.present();
+    toast.present().then(() => {
+      this.castingVote = false;
+    })
   }
 
   async voteFailed(res) {
@@ -132,7 +128,7 @@ export class VotePage implements OnInit {
           console.log('Insent sent sucessfully', res);
           this.storageService.setNodes(castedNodeKeys);
           if(res.result.txid === null ) {
-            this.voteFailed('txid returned null');
+            this.voteFailed('Txid returned null');
           } else {
             this.voteSuccess(res.result.txid);
           }
