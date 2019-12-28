@@ -27,15 +27,17 @@ ion-content {
 }
 
 :root {
+  ion-tab-button {
+    --ripple-color: var(--ion-color-tertiary);
+  }
+
   ion-tab-button.tab-selected {
     ion-icon, ion-label {
       color: var(--ion-color-tertiary) !important;
       --ion-color-base: var(--ion-color-tertiary) !important;
     }
   }
-}
 
-:root {
   ion-tab-button:hover {
     ion-icon, ion-label {
       color: var(--ion-color-tertiary) !important;

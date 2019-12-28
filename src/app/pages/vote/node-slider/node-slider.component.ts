@@ -58,6 +58,11 @@ export class NodeSliderComponent implements OnInit {
     let ElaVotes: number = Math.ceil(votes / 36);
     return ElaVotes.toLocaleString().split(/\s/).join(',');
   }
+
+  getRewards(yearlyRewards: string): string {
+    const dailyRewards: number =  parseFloat(yearlyRewards) / 365;
+    return dailyRewards.toFixed(2);
+  }
 }
 
   /*
