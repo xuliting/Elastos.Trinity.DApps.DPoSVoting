@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { StorageService } from 'src/app/storage.service';
-import { Node } from './nodes.model';
+import { StorageService } from 'src/app/services/storage.service';
+import { Node } from '../models/nodes.model';
 
 @Injectable({
   providedIn: 'root'

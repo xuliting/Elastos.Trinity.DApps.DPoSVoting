@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { Node } from 'src/app/nodes.model';
+import { Node } from 'src/app/models/nodes.model';
 import { IonSlides } from '@ionic/angular';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NodesService } from 'src/app/nodes.service';
-import { Node } from 'src/app/nodes.model';
+import { NodesService } from 'src/app/services/nodes.service';
+import { Node } from 'src/app/models/nodes.model';
 
 declare let appManager: any;
 

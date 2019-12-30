@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonInput } from '@ionic/angular';
 
-import { NodesService } from 'src/app/nodes.service';
-import { Node } from 'src/app/nodes.model';
+import { NodesService } from 'src/app/services/nodes.service';
+import { Node } from 'src/app/models/nodes.model';
 
 declare let appManager: any;
 

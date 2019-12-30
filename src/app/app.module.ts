@@ -13,7 +13,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { HttpClientModule } from '@angular/common/http';
 
 import { MyApp } from './app.component';
-import { AppRoutingModule } from './pages/app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [

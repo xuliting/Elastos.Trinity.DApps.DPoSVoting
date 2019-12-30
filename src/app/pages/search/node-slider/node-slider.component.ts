@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Node } from 'src/app/nodes.model';
+import { Node } from 'src/app/models/nodes.model';
 
 @Component({
   selector: 'app-node-slider',

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 
-import { NodesService } from 'src/app/nodes.service';
-import { Node } from 'src/app/nodes.model';
-import { StorageService } from 'src/app/storage.service';
+import { NodesService } from 'src/app/services/nodes.service';
+import { Node } from 'src/app/models/nodes.model';
+import { StorageService } from 'src/app/services/storage.service';
 
 declare let appManager: any;
 

@@ -9,6 +9,7 @@ import { IonicImageLoader } from 'ionic-image-loader';
 import { SearchPage } from './search.page';
 import { NodeSliderComponent } from './node-slider/node-slider.component';
 
+
 const routes: Routes = [
   {
     path: '',
