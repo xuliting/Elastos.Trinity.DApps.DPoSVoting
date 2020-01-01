@@ -1,10 +1,10 @@
 {
   "id": "org.elastos.trinity.dapp.dposvoting",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "version_code": 1,
   "name": "DPoS Voting",
   "short_name": "DPoS Voting",
-  "short_description": "DPos Vote DApp",
+  "short_description": "Vote for Elastos Supernodes",
   "description": "elastOS official vote app where users can take part of the Supernode Election using ELA and help power the Elastos Network",
   "start_url": "index.html",
   "type": "app",
@@ -22,9 +22,9 @@
     }
   ],
   "author": {
-    "name": "Chad Racelis",
-    "email": "chadracelis@yahoo.com",
-    "website": "https://github.com/chadracelis"
+    "name": "Elastos Foundation",
+    "email": "contact@elastos.org",
+    "website": "https://www.elastos.org"
   },
   "default_locale": "en",
   "plugins": [
