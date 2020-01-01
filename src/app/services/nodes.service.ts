@@ -322,6 +322,7 @@ export class NodesService {
         node.Location = 'Singapore'
       };
       if (node.Nickname === 'Famous Amos') {
+        node.imageUrl = 'https://i.imgur.com/cHRF2Ov.jpg';
         node.Location = 'Trinidad'
       };
       if (node.Nickname === 'eladapp.org') {

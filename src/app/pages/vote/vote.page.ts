@@ -67,6 +67,7 @@ export class VotePage implements OnInit {
 
   async voteSuccess(res) {
     const toast = await this.toastController.create({
+      mode: 'ios',
       header: 'Votes successfully sent',
       message: 'Txid:' + res,
       color: "primary",
@@ -80,6 +81,7 @@ export class VotePage implements OnInit {
 
   async voteFailed(res) {
     const toast = await this.toastController.create({
+      mode: 'ios',
       header: 'There was an error with sending votes..',
       message: res,
       color: "primary",
