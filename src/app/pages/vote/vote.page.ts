@@ -126,6 +126,7 @@ export class VotePage implements OnInit {
       appManager.sendIntent(
         'dposvotetransaction',
         { publickeys: (castedNodeKeys) },
+        {},
         (res) => {
           console.log('Insent sent sucessfully', res);
           this.storageService.setNodes(castedNodeKeys);
