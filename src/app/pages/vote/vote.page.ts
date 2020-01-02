@@ -120,9 +120,12 @@ export class VotePage implements OnInit {
         castedNodeKeys = castedNodeKeys.concat(node.Ownerpublickey);
       }
     });
+
     if (castedNodeKeys.length > 0) {
       console.log(castedNodeKeys);
+      let votesSent = false;
       this.castingVote = true;
+
       appManager.sendIntent(
         'dposvotetransaction',
         { publickeys: (castedNodeKeys) },
@@ -131,15 +134,26 @@ export class VotePage implements OnInit {
           console.log('Insent sent sucessfully', res);
           this.storageService.setNodes(castedNodeKeys);
           if(res.result.txid === null ) {
+            votesSent = true;
             this.voteFailed('Txid returned null');
           } else {
+            votesSent = true;
             this.voteSuccess(res.result.txid);
           }
         }, (err) => {
           console.log('Intent sending failed', err);
+          votesSent = true;
           this.voteFailed(err);
         }
       );
+
+      // If no response is sent from wallet, show vote transaction has failed
+      setTimeout(() => {
+        if(votesSent === false) {
+          this.voteFailed('No response from wallet');
+        }
+      }, 10000)
+
     } else {
       this.noNodesChecked();
     }
