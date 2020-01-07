@@ -21,15 +21,14 @@ export class VotePage implements OnInit {
   nodesLoaded: boolean = true;
 
   // Intent
-  elaAmount: number = 5000;
-  castingVote: boolean = false;
+  voted: boolean = false;
 
   // Node Detail
   showNode: boolean = false;
   nodeIndex: number;
   node: Node;
 
-  // Toast voteFailed
+  // Toast for voteFailed/voteSuccess
   toast: any = null;
 
   constructor(
@@ -61,7 +60,6 @@ export class VotePage implements OnInit {
 
   ionViewWillLeave() {
     this.subscription.unsubscribe();
-    this.castingVote = false;
   }
 
   getTotalVotes() {
@@ -70,7 +68,7 @@ export class VotePage implements OnInit {
     });
   }
 
-  // appManager
+  //// Vote intent ////
   castVote() {
     let castedNodeKeys = [];
     this._nodes.map(node => {
@@ -82,7 +80,6 @@ export class VotePage implements OnInit {
     if (castedNodeKeys.length > 0) {
       console.log(castedNodeKeys);
       let votesSent = false;
-      this.castingVote = true;
 
       appManager.sendIntent(
         'dposvotetransaction',
@@ -93,14 +90,15 @@ export class VotePage implements OnInit {
           this.storageService.setNodes(castedNodeKeys);
           if(res.result.txid === null ) {
             votesSent = true;
-            this.voteFailed('Txid returned null');
+            this.voteFailed('Votes were cancelled');
           } else {
             votesSent = true;
+            this.voted = true;
             this.voteSuccess(res.result.txid);
           }
         }, (err) => {
-          console.log('Intent sending failed', err);
           votesSent = true;
+          console.log('Intent sent failed', err);
           this.voteFailed(err);
         }
       );
@@ -117,58 +115,7 @@ export class VotePage implements OnInit {
     }
   }
 
-  async voteSuccess(res) {
-    this.closeToast();
-    this.toast = await this.toastController.create({
-      mode: 'ios',
-      header: 'Votes successfully sent',
-      message: 'Txid:' + res,
-      color: "primary",
-      cssClass: 'toaster',
-      duration: 4000,
-    });
-    this.toast.present().then(() => {
-      this.castingVote = false;
-    })
-  }
-
-  async voteFailed(res) {
-    this.closeToast();
-    this.toast = await this.toastController.create({
-      mode: 'ios',
-      header: 'There was an error with sending votes..',
-      message: res,
-      color: "primary",
-      buttons: [
-        {
-          text: 'Okay',
-          handler: () => {
-            this.castingVote = false;
-          }
-        }
-      ]
-    });
-    this.toast.present();
-  }
-
-  // if we get response from sendIntent, we need do close the toast showed for timeout
-  closeToast() {
-    if (this.toast) {
-      this.toast.dismiss();
-      this.toast = null;
-    }
-  }
-
-  async noNodesChecked() {
-    const toast = await this.toastController.create({
-      message: 'Please select up to 36 nodes in order to vote',
-      color: "primary",
-      duration: 2000
-    });
-    toast.present();
-  }
-
-  // Modify Values
+  //// Modify Values ////
   getVotes(votes): string {
     const fixedVotes: number = parseInt(votes);
     return fixedVotes.toLocaleString().split(/\s/).join(',');
@@ -189,7 +136,7 @@ export class VotePage implements OnInit {
     return votePercent.toFixed(2);
   }
 
-  // Node Detail
+  //// Node Detail ////
   _showNode(index, node) {
     this.showNode = !this.showNode;
     this.nodeIndex = index;
@@ -198,6 +145,64 @@ export class VotePage implements OnInit {
 
   return() {
     this.showNode = false;
+  }
+
+  //// Alerts ////
+  async voteSuccess(res) {
+    this.closeToast();
+    this.toast = await this.toastController.create({
+      mode: 'ios',
+      header: 'Votes successfully sent',
+      message: 'Txid:' + res.slice(0,30) + '...',
+      color: "primary",
+      buttons: [
+        {
+          text: 'Okay',
+          handler: () => {
+            this.toast.dismiss();
+          }
+        }
+      ],
+    });
+    this.toast.present();
+  }
+
+  async voteFailed(res) {
+    this.closeToast();
+    this.toast = await this.toastController.create({
+      mode: 'ios',
+      header: 'There was an error with sending votes...',
+      message: res,
+      color: "primary",
+      cssClass: 'toaster',
+      buttons: [
+        {
+          text: 'Okay',
+          handler: () => {
+            this.toast.dismiss();
+          }
+        }
+      ]
+    });
+    this.toast.present();
+  }
+
+  // If we get response from sendIntent, we need to close the toast showed for timeout
+  closeToast() {
+    if (this.toast) {
+      this.toast.dismiss();
+      this.toast = null;
+    }
+  }
+
+  async noNodesChecked() {
+    const toast = await this.toastController.create({
+      mode: 'ios',
+      message: 'Please select up to 36 nodes in order to vote',
+      color: "primary",
+      duration: 2000
+    });
+    toast.present();
   }
 }
 

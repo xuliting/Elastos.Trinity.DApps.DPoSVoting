@@ -20,18 +20,14 @@
         <div>
           <div>
             <ion-button (click)="castVote()" color="success">
-              <!-- <strong *ngIf="nodesLoaded && !castingVote" class="elaAmount">
-                {{ elaAmount }}
-                <h5>ELA</h5>
-              </strong> -->
-              <strong *ngIf="nodesLoaded && !castingVote" class="vote-btn">
+              <strong *ngIf="nodesLoaded && !voted" class="vote-btn">
                 Vote
+              </strong>
+              <strong *ngIf="nodesLoaded && voted" class="voted-btn">
+                Voted
               </strong>
               <strong *ngIf="!nodesLoaded">
                 <ion-spinner name="bubbles"></ion-spinner>
-              </strong>
-              <strong *ngIf="castingVote">
-                <ion-spinner name="dots"></ion-spinner>
               </strong>
             </ion-button>
           </div>
