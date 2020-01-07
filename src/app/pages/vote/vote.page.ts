@@ -29,6 +29,9 @@ export class VotePage implements OnInit {
   nodeIndex: number;
   node: Node;
 
+  // Toast voteFailed
+  toastFailed: any = null;
+
   constructor(
     private nodesService: NodesService,
     private storageService: StorageService,
@@ -66,6 +69,7 @@ export class VotePage implements OnInit {
   }
 
   async voteSuccess(res) {
+    this.closeToast();
     const toast = await this.toastController.create({
       mode: 'ios',
       header: 'Votes successfully sent',
@@ -80,7 +84,8 @@ export class VotePage implements OnInit {
   }
 
   async voteFailed(res) {
-    const toast = await this.toastController.create({
+    this.closeToast();
+    this.toastFailed = await this.toastController.create({
       mode: 'ios',
       header: 'There was an error with sending votes..',
       message: res,
@@ -94,7 +99,15 @@ export class VotePage implements OnInit {
         }
       ]
     });
-    toast.present();
+    this.toastFailed.present();
+  }
+
+  // if we get response from sendIntent, we need do close the toast showed for timeout
+  closeToast() {
+    if (this.toastFailed) {
+        this.toastFailed.dismiss();
+        this.toastFailed = null;
+    }
   }
 
   async noNodesChecked() {
