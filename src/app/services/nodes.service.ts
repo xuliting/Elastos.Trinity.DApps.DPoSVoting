@@ -34,6 +34,7 @@ export class NodesService {
     console.log('Fetching Nodes..');
     return this.http.get<any>('https://node1.elaphant.app/api/v1/dpos/rank/height/' + this.currentHeight).pipe(
       tap(response => {
+        console.log('RESPONSE', response)
         this._nodes = this._nodes.concat(response.result);
         console.log('Nodes Fetched..', this._nodes);
         return this._nodes;

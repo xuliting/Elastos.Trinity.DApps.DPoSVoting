@@ -39,15 +39,10 @@ export class StatsPage implements OnInit {
   }
 
   getTotalVotes() {
-    this._nodes.map(node => {
+    this.nodesService.nodes.map(node => {
       this.totalVotes += parseInt(node.Votes);
     });
     this.votePercent = this.totalVotes / (16063887 * 36) * 100;
-  }
-
-  // appManager
-  closeApp() {
-    appManager.close();
   }
 
   // Modify Values

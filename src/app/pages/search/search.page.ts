@@ -33,13 +33,13 @@ export class SearchPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this._nodes = this.nodesService.nodes;
+    this._nodes = this.nodesService.nodes.filter(node => node.State === 'Active');
     this.getTotalVotes();
     if (this._nodes.length === 0) {
       this.nodesLoaded = false;
       this.subscription = this.nodesService.fetchNodes().subscribe(nodes => {
         this.nodesLoaded = true;
-        this._nodes = nodes.result;
+        this._nodes = this._nodes.filter(node => node.State === 'Active');
         this.nodesService.getNodeIcon();
         this.nodesService.getStoredNodes();
         this.getTotalVotes();
@@ -58,7 +58,7 @@ export class SearchPage implements OnInit {
   }
 
   getTotalVotes() {
-    this._nodes.map(node => {
+    this.nodesService.nodes.map(node => {
       this.totalVotes += parseFloat(node.Votes);
     });
   }
@@ -72,11 +72,6 @@ export class SearchPage implements OnInit {
         return node.Nickname.toLowerCase().indexOf(search.toLowerCase()) !== -1;
       }
     });
-  }
-
-  // appManager
-  closeApp() {
-    appManager.close();
   }
 
   // Modify Values
