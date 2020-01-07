@@ -115,7 +115,7 @@ export class VotePage implements OnInit {
     }
   }
 
-  //// Modify Values ////
+  //// Define Values ////
   getVotes(votes): string {
     const fixedVotes: number = parseInt(votes);
     return fixedVotes.toLocaleString().split(/\s/).join(',');

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NodesService } from 'src/app/services/nodes.service';
 import { Node } from 'src/app/models/nodes.model';
 
-declare let appManager: any;
 
 @Component({
   selector: 'app-stats',
@@ -45,7 +44,7 @@ export class StatsPage implements OnInit {
     this.votePercent = this.totalVotes / (17132144 * 36) * 100;
   }
 
-  // Modify Values
+  //// Define Values ////
   getActiveNodes(): number {
     let activeNodes: number = 0;
     this._nodes.map(node => {

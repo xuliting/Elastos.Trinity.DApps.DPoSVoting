@@ -33,6 +33,7 @@ export class NodeSliderComponent implements OnInit {
     this.slideOpts.initialSlide = this.displayedArr.indexOf(this.node);
   }
 
+  //// Increment nodes array when sliding forward ////
   loadNext() {
     let lastNode = this.displayedArr.slice(-1)[0];
     let nextNodeIndex = this._nodes.indexOf(lastNode) + 1;
@@ -43,7 +44,7 @@ export class NodeSliderComponent implements OnInit {
     console.log('next node', this._nodes[nextNodeIndex]);
   }
 
-  // Modify Values
+  //// Define Values ////
   getVotes(votes: string): string {
     const fixedVotes = parseInt(votes);
     return fixedVotes.toLocaleString().split(/\s/).join(',');

@@ -4,7 +4,6 @@ import { IonInput } from '@ionic/angular';
 import { NodesService } from 'src/app/services/nodes.service';
 import { Node } from 'src/app/models/nodes.model';
 
-declare let appManager: any;
 
 @Component({
   selector: 'app-search',
@@ -63,7 +62,7 @@ export class SearchPage implements OnInit {
     });
   }
 
-  // Search
+  //// Search ////
   filterNodes(search): any {
     this.filteredNodes = this._nodes.filter((node) => {
       if (!search) {
@@ -74,7 +73,7 @@ export class SearchPage implements OnInit {
     });
   }
 
-  // Modify Values
+  //// Define Values ////
   getVotes(votes): string {
     const fixedVotes: number = parseInt(votes);
     return fixedVotes.toLocaleString().split(/\s/).join(',');
@@ -85,7 +84,7 @@ export class SearchPage implements OnInit {
     return votePercent.toFixed(2);
   }
 
-  // Node Detail
+  //// Node Detail ////
   _showNode(index, node) {
     this.showNode = !this.showNode;
     this.nodeIndex = index;

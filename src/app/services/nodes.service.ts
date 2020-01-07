@@ -12,13 +12,33 @@ import { Node } from '../models/nodes.model';
 export class NodesService {
 
   private _nodes: Node[] = [];
-  currentHeight: number;
-  elaNodeUrl: string = 'https://elanodes.com/wp-content/uploads/custom/images/';
+  private currentHeight: number;
+  private elaNodeUrl: string = 'https://elanodes.com/wp-content/uploads/custom/images/';
 
   constructor(
     private http: HttpClient,
     private storageService: StorageService,
   ) {}
+
+  get nodes(): Node[] {
+    return [...this._nodes.filter((a,b) => this._nodes.indexOf(a) === b)];
+  }
+
+  getNode(id: string): any {
+    return {...this._nodes.find(node => node.Producer_public_key === id)};
+  }
+
+   // Storage
+   getStoredNodes() {
+    this.storageService.getNodes().then(data => {
+      console.log(data);
+      this._nodes.map(node => {
+        if (data.includes(node.Ownerpublickey)) {
+          node.isChecked = true;
+        }
+      })
+    });
+  }
 
   fetchCurrentHeight(): Promise<any> {
     return this.http.get<any>('https://node1.elaphant.app/api/1/currHeight')
@@ -34,7 +54,7 @@ export class NodesService {
     console.log('Fetching Nodes..');
     return this.http.get<any>('https://node1.elaphant.app/api/v1/dpos/rank/height/' + this.currentHeight).pipe(
       tap(response => {
-        console.log('RESPONSE', response)
+        console.log('Response', response)
         this._nodes = this._nodes.concat(response.result);
         console.log('Nodes Fetched..', this._nodes);
         return this._nodes;
@@ -438,26 +458,6 @@ export class NodesService {
       if (node.State !== 'Active') {
         node.Location = 'Inactive';
       }
-    });
-  }
-
-  get nodes(): Node[] {
-    return [...this._nodes.filter((a,b) => this._nodes.indexOf(a) === b)];
-  }
-
-  getNode(id: string): any {
-    return {...this._nodes.find(node => node.Producer_public_key === id)};
-  }
-
-   // Storage
-   getStoredNodes() {
-    this.storageService.getNodes().then(data => {
-      console.log(data);
-      this._nodes.map(node => {
-        if (data.includes(node.Ownerpublickey)) {
-          node.isChecked = true;
-        }
-      })
     });
   }
 }
