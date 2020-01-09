@@ -14,6 +14,7 @@ export class StatsPage implements OnInit {
   _nodes: Node[] = [];
   totalVotes: number = 0;
   votePercent: number = 0;
+  inflationPercent: number = 0;
   nodesLoaded: boolean = true;
 
   constructor(private nodesService: NodesService) { }
@@ -29,6 +30,7 @@ export class StatsPage implements OnInit {
         this.nodesService.getNodeIcon();
         this.nodesService.getStoredNodes();
         this.getTotalVotes();
+        // this.getInflation();
       });
     }
   }
@@ -59,8 +61,17 @@ export class StatsPage implements OnInit {
     return this.totalVotes.toLocaleString().split(/\s/).join(',');
   }
 
-  getTotalEla(): string {
+ /*  getInflation() {
+    let totalRewards = 0;
+    this._nodes.map(node => {
+      totalRewards += parseInt(node.EstRewardPerYear);
+    });
+    console.log('Total rewards ' + totalRewards);
+    this.inflationPercent = totalRewards / 17132144;
+  } */
+
+   /* getTotalEla(): string {
     let ElaVotes: number = Math.ceil(this.totalVotes / 36);
     return ElaVotes.toLocaleString().split(/\s/).join(',');
-  }
+  } */
 }
