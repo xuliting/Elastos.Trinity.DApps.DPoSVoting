@@ -14,6 +14,10 @@ export class MenuPage implements OnInit {
   ngOnInit() {
   }
 
+  minimizeApp() {
+    appManager.launcher();
+  }
+
   closeApp() {
     appManager.close();
   }

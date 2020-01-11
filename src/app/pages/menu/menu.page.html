@@ -1,7 +1,7 @@
 <ion-app>
 
   <ion-menu side="end" menuId='m1'>
-    <ion-header color=primary>
+    <ion-header color=primary no-border>
       <ion-toolbar>
         <ion-title>
           elastOS Vote DApp
@@ -13,14 +13,22 @@
       <ion-list>
         <ion-menu-toggle>
           <ion-item routerLink="/menu/vote">
-            <ion-icon mode="ios" name="paper"></ion-icon>
+            <ion-icon mode="ios" name="archive"></ion-icon>
             <ion-label padding>Supernode Voting</ion-label>
           </ion-item>
         </ion-menu-toggle>
+
+        <ion-menu-toggle>
+          <ion-item (click)="minimizeApp()">
+            <ion-icon mode="ios" name="remove-circle"></ion-icon>
+            <ion-label padding>Minimize App</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
         <ion-menu-toggle>
           <ion-item (click)="closeApp()">
-            <ion-icon name="exit"></ion-icon>
-            <ion-label padding>Exit</ion-label>
+            <ion-icon mode="ios" name="exit"></ion-icon>
+            <ion-label padding>Close App</ion-label>
           </ion-item>
         </ion-menu-toggle>
       </ion-list>
