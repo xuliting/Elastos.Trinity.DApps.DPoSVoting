@@ -373,6 +373,7 @@ export class NodesService {
       };
       if (node.Nickname === 'Orchard - Elastos Business Development') {
         node.Location = 'Netherlands'
+        node.imageUrl = 'https://elanodes.com/wp-content/uploads/custom/images/Orchard.png';
       };
       if (node.Nickname === 'KANG') {
         node.Location = 'China'
@@ -454,6 +455,10 @@ export class NodesService {
       };
       if (node.Nickname === 'Blockchain007') {
         node.Location = 'China'
+      }
+      if (node.Nickname === 'Dragonela') {
+        node.imageUrl = 'https://elanodes.com/wp-content/uploads/custom/images/dragonela.png';
+        node.Location = 'United States'
       }
       if (node.State !== 'Active') {
         node.Location = 'Inactive';
