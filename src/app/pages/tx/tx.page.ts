@@ -45,11 +45,9 @@ export class TxPage implements OnInit {
 
   getNodes() {
     this.nodesService._nodes.map(node => {
-      this.vote.keys.map(key => {
-        if(node.Ownerpublickey === key) {
-          this._nodes = this._nodes.concat(node);
-        }
-      });
+      if (this.vote.keys.includes(node.Ownerpublickey)) {
+        this._nodes = this._nodes.concat(node)
+      }
     });
   }
 

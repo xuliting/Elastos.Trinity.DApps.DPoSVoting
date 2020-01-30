@@ -35,16 +35,14 @@ export class SearchPage implements OnInit {
 
   ngOnInit() {
     this._nodes = this.nodesService.nodes.filter(node => node.State === 'Active');
-    this.getTotalVotes();
+    this.totalVotes = this.nodesService.totalVotes;
     if (this._nodes.length === 0) {
       this.nodesLoaded = false;
-      this.subscription = this.nodesService.fetchNodes().subscribe(nodes => {
-        this.nodesLoaded = true;
-        this._nodes = this._nodes.filter(node => node.State === 'Active');
-        this.nodesService.getNodeIcon();
-        this.nodesService.getStoredNodes();
-        this.getTotalVotes();
+      this.subscription = this.nodesService.fetchNodes().subscribe(() => {
         this.subscription = null;
+        this.nodesLoaded = true;
+        this._nodes = this.nodesService.nodes.filter(node => node.State === 'Active');
+        this.totalVotes = this.nodesService.totalVotes;
       });
     }
   }
@@ -59,12 +57,6 @@ export class SearchPage implements OnInit {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
-  }
-
-  getTotalVotes() {
-    this.nodesService.nodes.map(node => {
-      this.totalVotes += parseFloat(node.Votes);
-    });
   }
 
   //// Search ////

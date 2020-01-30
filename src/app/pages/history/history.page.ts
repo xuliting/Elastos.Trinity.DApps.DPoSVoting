@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
+
 import { NodesService } from 'src/app/services/nodes.service';
 import { Node } from 'src/app/models/nodes.model';
-import * as moment from 'moment';
 import { Vote } from 'src/app/models/history.model';
 
 @Component({
@@ -12,7 +13,6 @@ import { Vote } from 'src/app/models/history.model';
 export class HistoryPage implements OnInit {
 
   // Initial values
-  public _nodes: Node[] = [];
   public _votes: Vote[] = [];
   public nodesLoaded: boolean = true;
 
@@ -22,15 +22,11 @@ export class HistoryPage implements OnInit {
   constructor(public nodesService: NodesService) { }
 
   ngOnInit() {
-    this._nodes = this.nodesService.nodes;
-    if (this._nodes.length === 0) {
+    if(this.nodesService.nodes.length === 0) {
       this.nodesLoaded = false;
-      this.subscription = this.nodesService.fetchNodes().subscribe(nodes => {
-        this.nodesLoaded = true;
-        this._nodes = nodes.result;
-        this.nodesService.getNodeIcon();
-        this.nodesService.getStoredNodes();
+      this.subscription = this.nodesService.fetchNodes().subscribe(() => {
         this.subscription = null;
+        this.nodesLoaded = true;
       });
     }
     console.log('Votes History', this.nodesService._votes);
@@ -40,10 +36,6 @@ export class HistoryPage implements OnInit {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
-  }
-
-  ionViewWillEnter() {
-    this._nodes = this.nodesService.nodes;
   }
 
   modDate(date) {

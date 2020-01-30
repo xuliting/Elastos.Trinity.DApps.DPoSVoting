@@ -13,8 +13,9 @@ import { Vote } from '../models/history.model';
 export class NodesService {
 
   public _nodes: Node[] = [];
+  public totalVotes: number = 0;
   public _votes: Vote[] = [
-   /*  {
+  /*  {
       date: new Date(),
       tx: 'a2677487ba6c406f70b22c6902b3b2ffe582f99b58848bbfba9127c5fa47c712',
       keys: [
@@ -89,11 +90,12 @@ export class NodesService {
   }
 
   fetchCurrentHeight(): Promise<any> {
+    console.log('Fetching height');
     return this.http.get<any>('https://node1.elaphant.app/api/1/currHeight')
       .toPromise()
       .then(responce => {
         this.currentHeight = responce.result;
-        console.log('Current height -> ' + this.currentHeight);
+        console.log('Current height fetched' + this.currentHeight);
       })
       .catch(err => console.log(err));
   }
@@ -104,10 +106,19 @@ export class NodesService {
       tap(response => {
         console.log('Response', response)
         this._nodes = this._nodes.concat(response.result);
-        console.log('Nodes Fetched..', this._nodes);
+        console.log('Nodes Fetched', this._nodes);
+        this.getNodeIcon();
+        this.getStoredNodes();
+        this.getTotalVotes();
         return this._nodes;
       })
     );
+  }
+
+  getTotalVotes() {
+    this._nodes.map(node => {
+      this.totalVotes += parseFloat(node.Votes);
+    });
   }
 
   /* getNodeIcon() {

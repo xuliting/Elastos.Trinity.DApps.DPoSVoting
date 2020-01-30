@@ -30,7 +30,7 @@
       [_nodes]="_nodes"
       [node]="node"
     ></app-node-slider>
-    <ion-list lines="none" [class.blur]="showNode">
+    <ion-list lines="none" [class.blur]="showNode" class="node-list">
       <ion-virtual-scroll [items]="_nodes"  approxItemHeight="240px">
         <ion-item color="secondary"  *virtualItem="let node">
           <ion-grid no-padding>
@@ -59,9 +59,9 @@
                   <h4>{{ node.Nickname }}</h4>
                   <p>
                     <span [class.inactive]="node.State !== 'Active'">
-                      <ion-icon name="pin"></ion-icon>{{ node.Location }}
+                      <ion-icon name="pin"></ion-icon>
                     </span>
-                    &nbsp; {{ getVotePercent(node.Votes) }}% of Votes
+                    {{ node.Location }} &nbsp; {{ getVotePercent(node.Votes) }}% of Votes
                   </p>
                 </ion-label>
               </ion-col>

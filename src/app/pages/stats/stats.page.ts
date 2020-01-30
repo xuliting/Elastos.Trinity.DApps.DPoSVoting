@@ -24,15 +24,15 @@ export class StatsPage implements OnInit {
 
   ngOnInit() {
     this._nodes = this.nodesService.nodes;
-    this.getTotalVotes();
+    this.totalVotes = this.nodesService.totalVotes;;
+    this.getVotePercent();
     if (this._nodes.length === 0) {
       this.nodesLoaded = false;
-      this.subscription = this.nodesService.fetchNodes().subscribe(nodes => {
+      this.subscription = this.nodesService.fetchNodes().subscribe(() => {
         this.nodesLoaded = true;
-        this._nodes = nodes.result;
-        this.nodesService.getNodeIcon();
-        this.nodesService.getStoredNodes();
-        this.getTotalVotes();
+        this._nodes = this.nodesService.nodes;
+        this.totalVotes = this.nodesService.totalVotes;
+        this.getVotePercent();
         // this.getInflation();
         this.subscription = null;
       });
@@ -45,14 +45,15 @@ export class StatsPage implements OnInit {
     }
   }
 
-  getTotalVotes() {
-    this._nodes.map(node => {
-      this.totalVotes += parseInt(node.Votes);
-    });
-    this.votePercent = this.totalVotes / (17132144 * 36) * 100;
+  //// Define Values ////
+  getVotePercent() {
+    this.votePercent = this.totalVotes / (17851129 * 36) * 100;
   }
 
-  //// Define Values ////
+  fixTotalVotes(): string {
+    return this.totalVotes.toLocaleString().split(/\s/).join(',');
+  }
+
   getActiveNodes(): number {
     let activeNodes: number = 0;
     this._nodes.map(node => {
@@ -61,10 +62,6 @@ export class StatsPage implements OnInit {
       }
     });
     return activeNodes;
-  }
-
-  fixTotalVotes(): string {
-    return this.totalVotes.toLocaleString().split(/\s/).join(',');
   }
 
  /*  getInflation() {

@@ -32,6 +32,10 @@
 
 <ion-content>
 
+  <ion-grid class="container" *ngIf="nodesLoaded && filteredNodes.length === 0" padding text-center>
+    <ion-label padding>No Results Found..</ion-label>
+  </ion-grid>
+
   <ion-grid class="container" *ngIf="nodesLoaded" no-padding>
     <app-node-slider
       *ngIf="showNode"
@@ -41,7 +45,7 @@
       [node]="node"
     >
     </app-node-slider>
-    <ion-list lines="none" [class.blur]="showNode">
+    <ion-list lines="none" [class.blur]="showNode" class="node-list">
       <ion-virtual-scroll [items]="filteredNodes"  approxItemHeight="240px">
         <ion-item color="secondary"  *virtualItem="let node">
           <ion-grid no-padding>
