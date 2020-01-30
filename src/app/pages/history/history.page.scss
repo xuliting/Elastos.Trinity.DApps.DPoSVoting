@@ -76,91 +76,55 @@ section:before {
     ion-item {
       --inner-padding-end: 0px;
       --padding-start: 0px;
-      margin: 0;
-      padding: 0;
 
-      .img-container {
-        padding-right: 1px;
+      .date, .keys {
         display: flex;
         align-items: center;
-        justify-content: center;
-
-        ion-thumbnail {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-
-          ion-img {
-            max-width: 45px;
-            max-height: 45px;
-          }
-        }
+        font-size: 14px;
+        font-weight: 600;
+        overflow: hidden;
       }
 
-      .number-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        h4 {
-          font-size: 14px;
-          font-weight: 600;
-          color: #989aa2;
-          overflow: hidden;
-          margin: 0;
-        }
-      }
-
-      .stat-container {
-        display: flex;
+      .date {
         justify-content: flex-start;
-        align-items: center;
+        color: #666666 !important;
+      }
 
-        ion-label {
-          h4 {
-            font-size: 14px;
-            font-weight: 600;
-            overflow: hidden;
-            color: #666666 !important;
-          }
-        }
+      .keys {
+        justify-content: flex-end;
+        color: #989aa2;
+        margin: 0;
+      }
+
+      ion-label {
+        font-weight: 600;
+        font-size: 12px;
       }
     }
   }
 }
 
-@media screen and (max-width: 379px){
-  .container {
-    ion-list {
-      ion-item {
+/** no history **/
+.noHistory {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-        .img-container {
-          ion-thumbnail {
-            ion-img {
-              max-width: 40px;
-              max-height: 40px;
-            }
-          }
-        }
-
-        .number-container {
-          h4 {
-            font-size: 12px;
-          }
-        }
-
-        .stat-container {
-          ion-label {
-            h4 {
-              font-size: 12px;
-            }
-          }
-        }
-      }
-    }
+  ion-label {
+    font-size: 18px !important;
+    font-weight: 400 !important;
   }
 }
 
-@media screen and (min-height: 750px){
+/** skeleton **/
+._date {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
 
+._keys {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }

@@ -1,0 +1,52 @@
+import { Component, OnInit } from '@angular/core';
+import { NodesService } from 'src/app/services/nodes.service';
+import { Node } from 'src/app/models/nodes.model';
+import * as moment from 'moment';
+import { Vote } from 'src/app/models/history.model';
+
+@Component({
+  selector: 'app-history',
+  templateUrl: './history.page.html',
+  styleUrls: ['./history.page.scss'],
+})
+export class HistoryPage implements OnInit {
+
+  // Initial values
+  public _nodes: Node[] = [];
+  public _votes: Vote[] = [];
+  public nodesLoaded: boolean = true;
+
+  // Fetch api state
+  private subscription: any = null;
+
+  constructor(public nodesService: NodesService) { }
+
+  ngOnInit() {
+    this._nodes = this.nodesService.nodes;
+    if (this._nodes.length === 0) {
+      this.nodesLoaded = false;
+      this.subscription = this.nodesService.fetchNodes().subscribe(nodes => {
+        this.nodesLoaded = true;
+        this._nodes = nodes.result;
+        this.nodesService.getNodeIcon();
+        this.nodesService.getStoredNodes();
+        this.subscription = null;
+      });
+    }
+    console.log('Votes History', this.nodesService._votes);
+  }
+
+  ionViewWillLeave() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
+  ionViewWillEnter() {
+    this._nodes = this.nodesService.nodes;
+  }
+
+  modDate(date) {
+    return moment(date).format("MMM Do YY, h:mm:ss a");
+  }
+}

@@ -10,12 +10,15 @@ import { Node } from 'src/app/models/nodes.model';
 })
 export class StatsPage implements OnInit {
 
-  subscription: any;
-  _nodes: Node[] = [];
-  totalVotes: number = 0;
-  votePercent: number = 0;
-  inflationPercent: number = 0;
-  nodesLoaded: boolean = true;
+  // Initial Values
+  public _nodes: Node[] = [];
+  public totalVotes: number = 0;
+  public votePercent: number = 0;
+  public inflationPercent: number = 0;
+  public nodesLoaded: boolean = true;
+
+  // Fetch api state
+  private subscription: any = null;
 
   constructor(private nodesService: NodesService) { }
 
@@ -31,12 +34,15 @@ export class StatsPage implements OnInit {
         this.nodesService.getStoredNodes();
         this.getTotalVotes();
         // this.getInflation();
+        this.subscription = null;
       });
     }
   }
 
   ionViewWillLeave() {
-    this.subscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   getTotalVotes() {

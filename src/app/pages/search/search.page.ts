@@ -15,17 +15,19 @@ export class SearchPage implements OnInit {
   @ViewChild('search', {static: false}) search: IonInput;
 
   // Initial Values
-  subscription: any;
-  _nodes: Node[] = [];
-  filteredNodes: Node[] = [];
-  _node: string = '';
-  totalVotes: number = 0;
-  nodesLoaded: boolean = true;
+  public _nodes: Node[] = [];
+  public filteredNodes: Node[] = [];
+  public _node: string = '';
+  public totalVotes: number = 0;
+  public nodesLoaded: boolean = true;
 
   // Node Detail
-  showNode: boolean = false;
-  nodeIndex: number;
-  node: Node;
+  public showNode: boolean = false;
+  public nodeIndex: number;
+  public node: Node;
+
+  // Fetch api state
+  private subscription: any = null;
 
   constructor(
     private nodesService: NodesService,
@@ -42,6 +44,7 @@ export class SearchPage implements OnInit {
         this.nodesService.getNodeIcon();
         this.nodesService.getStoredNodes();
         this.getTotalVotes();
+        this.subscription = null;
       });
     }
   }
@@ -53,7 +56,9 @@ export class SearchPage implements OnInit {
   }
 
   ionViewWillLeave() {
-    this.subscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   getTotalVotes() {
@@ -63,7 +68,7 @@ export class SearchPage implements OnInit {
   }
 
   //// Search ////
-  filterNodes(search): any {
+  filterNodes(search: string): any {
     this.filteredNodes = this._nodes.filter((node) => {
       if (!search) {
         return;
@@ -85,7 +90,7 @@ export class SearchPage implements OnInit {
   }
 
   //// Node Detail ////
-  _showNode(index, node) {
+  _showNode(index: number, node: Node) {
     this.showNode = !this.showNode;
     this.nodeIndex = index;
     this.node = node;

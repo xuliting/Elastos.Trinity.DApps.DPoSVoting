@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { NodesService } from 'src/app/services/nodes.service';
 
 declare let appManager: any;
@@ -28,9 +27,7 @@ export class HomePage implements OnInit {
   constructor(private nodesService: NodesService) {
   }
 
-  ngOnInit() {
-    this.nodesService.fetchCurrentHeight();
-  }
+  ngOnInit() {}
 
   // appManager
   closeApp() {

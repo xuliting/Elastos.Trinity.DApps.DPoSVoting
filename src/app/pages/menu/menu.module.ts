@@ -27,7 +27,15 @@ const routes: Routes = [
       {
         path: 'vote',
         loadChildren: '../vote/vote.module#VotePageModule'
-      }
+      },
+      {
+        path: 'history',
+        loadChildren: '../history/history.module#HistoryPageModule'
+      },
+      {
+        path: 'history/:txId',
+        loadChildren: '../tx/tx.module#TxPageModule'
+      },
     ]
   },
   {

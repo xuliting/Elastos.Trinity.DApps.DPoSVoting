@@ -5,13 +5,44 @@ import { tap } from 'rxjs/operators';
 
 import { StorageService } from 'src/app/services/storage.service';
 import { Node } from '../models/nodes.model';
+import { Vote } from '../models/history.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NodesService {
 
-  private _nodes: Node[] = [];
+  public _nodes: Node[] = [];
+  public _votes: Vote[] = [
+   /*  {
+      date: new Date(),
+      tx: 'a2677487ba6c406f70b22c6902b3b2ffe582f99b58848bbfba9127c5fa47c712',
+      keys: [
+        '0368044f3b3582000597d40c9293ea894237a88b2cd55f79a18193399937d22664',
+        '03d55285f06683c9e5c6b5892a688affd046940c7161571611ea3a98330f72459f',
+        '024b527700491895b79fc5bfde8a60395307c5416a075503e6ac7d1df61c971c78'
+      ]
+    },
+    {
+      date: new Date(),
+      tx: 'd42da61ad9d12e0adf167d9451506cc119ad6384cae6d57158e643192720cf10',
+      keys: [
+        '03674a7867f2d4a557764d1f61138b9f98542c9a77e8773953432ac3e48ae60226',
+        '02d6f8ff72eaa9aada515d6b316cff2cbc55be09ddab17981d74a585ae20617a72',
+        '02a85be1f6244b40b8778b626bde33e1d666b3b5863f195487e72dc0e2a6af33a1'
+      ]
+    },
+    {
+      date: new Date(),
+      tx: '241315309c645e52fabafe9e8963037829f025526b9b616972b8b7a0965e6ac4',
+      keys: [
+        '026c8ce246d2587df8a669eee82be4f365ab6cf4fc45e3e539cf0ab91fbab3a809',
+        '0315067144eaad471ed0c355e6f9822c51b93308e0cd9febf0792304c605973916',
+        '030cda9b67897652dbf9f85cb0aba39a09203004f59366517a5461b1e48d9faa64'
+      ]
+    } */
+  ];
+
   private currentHeight: number;
   private elaNodeUrl: string = 'https://elanodes.com/wp-content/uploads/custom/images/';
 
@@ -24,19 +55,36 @@ export class NodesService {
     return [...this._nodes.filter((a,b) => this._nodes.indexOf(a) === b)];
   }
 
-  getNode(id: string): any {
+  getNode(id: string): Node {
     return {...this._nodes.find(node => node.Producer_public_key === id)};
   }
 
+  getVote(id: string): Vote {
+    return {...this._votes.find(vote => vote.tx === id)};
+  }
+
+  init() {
+    this.getStoredVotes();
+  }
+
    // Storage
-   getStoredNodes() {
+  getStoredNodes() {
     this.storageService.getNodes().then(data => {
       console.log(data);
       this._nodes.map(node => {
-        if (data.includes(node.Ownerpublickey)) {
+        if (data && data.includes(node.Ownerpublickey)) {
           node.isChecked = true;
         }
-      })
+      });
+    });
+  }
+
+  getStoredVotes() {
+    this.storageService.getVotes().then(data => {
+      console.log('Vote history', data);
+      if(data) {
+        this._votes = data;
+      }
     });
   }
 
@@ -279,7 +327,7 @@ export class NodesService {
         node.Location = 'China'
       };
       if (node.Nickname === 'BitWork (CR Region HK)') {
-        node.imageUrl = 'https://elanodes.com/wp-content/uploads/custom/images/BitWork.png';
+        node.imageUrl = 'https://elanodes.com/wp-content/uploads/custom/images/BitWork_1.png';
         node.Location = 'Hong Kong'
       };
       if (node.Nickname === 'YDiot(云端物联）') {
@@ -459,6 +507,10 @@ export class NodesService {
       if (node.Nickname === 'Dragonela') {
         node.imageUrl = 'https://elanodes.com/wp-content/uploads/custom/images/dragonela.png';
         node.Location = 'United States'
+      }
+      if (node.Nickname === 'Daily Rewards') {
+        node.imageUrl = 'https://elanodes.com/wp-content/uploads/custom/images/Daily_Rewards.png';
+        node.Location = 'Japan'
       }
       if (node.State !== 'Active') {
         node.Location = 'Inactive';

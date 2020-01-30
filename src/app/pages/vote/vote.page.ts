@@ -15,40 +15,45 @@ declare let appManager: any;
 export class VotePage implements OnInit {
 
   // Initial Values
-  subscription: any;
-  _nodes: Node[] = [];
-  totalVotes: number = 0;
-  nodesLoaded: boolean = true;
+  public _nodes: Node[] = [];
+  public totalVotes: number = 0;
+  public nodesLoaded: boolean = true;
 
   // Intent
-  voted: boolean = false;
+  public voted: boolean = false;
 
   // Node Detail
-  showNode: boolean = false;
-  nodeIndex: number;
-  node: Node;
+  public showNode: boolean = false;
+  public nodeIndex: number;
+  public node: Node;
 
   // Toast for voteFailed/voteSuccess
-  toast: any = null;
+  private toast: any = null;
+
+  // Fetch api state
+  private subscription: any = null;
 
   constructor(
     private nodesService: NodesService,
     private storageService: StorageService,
-    public toastController: ToastController
+    private toastController: ToastController
   ) {
   }
 
   ngOnInit() {
     this._nodes = this.nodesService.nodes.filter(node => node.State === 'Active');
     this.getTotalVotes();
+
     if (this._nodes.length === 0) {
       this.nodesLoaded = false;
       this.nodesService.fetchCurrentHeight()
         .then(() => {
           this.subscription = this.nodesService.fetchNodes().subscribe(nodes => {
+            this.subscription = null;
             this.nodesLoaded = true;
             this._nodes = nodes.result;
             this._nodes = this._nodes.filter(node => node.State === 'Active');
+
             this.nodesService.getNodeIcon();
             this.nodesService.getStoredNodes();
             this.getTotalVotes();
@@ -59,7 +64,9 @@ export class VotePage implements OnInit {
   }
 
   ionViewWillLeave() {
-    this.subscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   getTotalVotes() {
@@ -79,7 +86,7 @@ export class VotePage implements OnInit {
 
     if (castedNodeKeys.length > 0) {
       console.log(castedNodeKeys);
-      let votesSent = false;
+      let votesSent: boolean = false;
 
       appManager.sendIntent(
         'dposvotetransaction',
@@ -88,12 +95,19 @@ export class VotePage implements OnInit {
         (res) => {
           console.log('Insent sent sucessfully', res);
           this.storageService.setNodes(castedNodeKeys);
+
           if(res.result.txid === null ) {
             votesSent = true;
             this.voteFailed('Votes were cancelled');
           } else {
             votesSent = true;
             this.voted = true;
+            let date = new Date;
+            let txid: string = res.result.txid;
+
+            this.nodesService._votes = this.nodesService._votes.concat({ date: date, tx: txid, keys: castedNodeKeys });
+            console.log('Vote history updated', this.nodesService._votes);
+            this.storageService.setVotes(this.nodesService._votes);
             this.voteSuccess(res.result.txid);
           }
         }, (err) => {
@@ -116,7 +130,7 @@ export class VotePage implements OnInit {
   }
 
   //// Define Values ////
-  getVotes(votes): string {
+  getVotes(votes: string): string {
     const fixedVotes: number = parseInt(votes);
     return fixedVotes.toLocaleString().split(/\s/).join(',');
   }
@@ -131,13 +145,13 @@ export class VotePage implements OnInit {
     return addedNodes;
   }
 
-  getVotePercent(votes): string {
+  getVotePercent(votes: string): string {
     const votePercent: number = parseFloat(votes) / this.totalVotes * 100;
     return votePercent.toFixed(2);
   }
 
   //// Node Detail ////
-  _showNode(index, node) {
+  _showNode(index: number, node: Node) {
     this.showNode = !this.showNode;
     this.nodeIndex = index;
     this.node = node;
@@ -148,7 +162,7 @@ export class VotePage implements OnInit {
   }
 
   //// Alerts ////
-  async voteSuccess(res) {
+  async voteSuccess(res: string) {
     this.closeToast();
     this.toast = await this.toastController.create({
       mode: 'ios',
@@ -167,7 +181,7 @@ export class VotePage implements OnInit {
     this.toast.present();
   }
 
-  async voteFailed(res) {
+  async voteFailed(res: string) {
     this.closeToast();
     this.toast = await this.toastController.create({
       mode: 'ios',

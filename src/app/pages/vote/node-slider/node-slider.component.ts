@@ -16,7 +16,7 @@ export class NodeSliderComponent implements OnInit {
   @Input() nodeIndex: number;
   @Input() node: Node;
 
-  displayedArr: Node[] = [];
+  public displayedArr: Node[] = [];
 
   slideOpts = {
     initialSlide: 1,
@@ -29,14 +29,14 @@ export class NodeSliderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.displayedArr = this._nodes.slice(0, this.nodeIndex + 2);
+    this.displayedArr = this._nodes.slice(0, this.nodeIndex + 1);
     this.slideOpts.initialSlide = this.displayedArr.indexOf(this.node);
   }
 
   //// Increment nodes array when sliding forward ////
   loadNext() {
-    let lastNode = this.displayedArr.slice(-1)[0];
-    let nextNodeIndex = this._nodes.indexOf(lastNode) + 1;
+    let lastNode: Node = this.displayedArr.slice(-1)[0];
+    let nextNodeIndex: number = this._nodes.indexOf(lastNode) + 1;
     if(nextNodeIndex) {
       this.displayedArr.push(this._nodes[nextNodeIndex]);
     }
@@ -59,35 +59,5 @@ export class NodeSliderComponent implements OnInit {
     const dailyRewards: number =  parseFloat(yearlyRewards) / 365;
     return dailyRewards.toFixed(2);
   }
-
-  /* getEla(votes: number): string {
-    let ElaVotes: number = Math.ceil(votes / 36);
-    return ElaVotes.toLocaleString().split(/\s/).join(',');
-  } */
 }
 
-  /*
-  ngOnInit() {
-    if (this.nodeIndex < 10) {
-      this.displayedArr = this._nodes.slice(0, 12);
-      this.slideOpts.initialSlide = this.displayedArr.indexOf(this.node);
-    }
-    if (this.nodeIndex >= 10) {
-      this.displayedArr = this._nodes.slice(this.nodeIndex - 10, this.nodeIndex + 2);
-      this.slideOpts.initialSlide = this.displayedArr.indexOf(this.node);
-    }
-    console.log('Node' + this.nodeIndex + this.node);
-  }
-  */
-
-  /*
-  loadPrev(slider) {
-    let firstNode = this.displayedArr[0];
-    console.log(this.displayedArr[0]);
-    let prevNodeIndex = this._nodes.indexOf(firstNode) - 1;
-    this.displayedArr = [].concat(this._nodes[prevNodeIndex], ...this.displayedArr);
-    // this.displayedArr.unshift(this._nodes[prevNodeIndex]);
-    console.log(this._nodes[prevNodeIndex]);
-    console.log(this.displayedArr);
-  }
-  */
