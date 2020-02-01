@@ -16,7 +16,7 @@ export class NodesService {
   public _nodes: Node[] = [];
   public totalVotes: number = 0;
   public _votes: Vote[] = [
-   /* {
+  /*  {
       date: new Date(),
       tx: 'a2677487ba6c406f70b22c6902b3b2ffe582f99b58848bbfba9127c5fa47c712',
       keys: [
@@ -79,7 +79,7 @@ export class NodesService {
         this.firstVisit = false;
         console.log('First visit?', this.firstVisit);
       } else {
-        this.router.navigate(['menu/home']);
+        this.router.navigate(['home']);
       }
     });
    }
@@ -169,7 +169,7 @@ export class NodesService {
         node.Location = 'Hong Kong'
       };
       if (node.Nickname === 'Wild Strawberries Atlas') {
-        node.imageUrl = 'https://elanodes.com/wp-content/uploads/custom/images/WIld%20Strawberries%20-%20Atlas.png';
+        node.imageUrl = 'https://i.ibb.co/qDdmLQJ/EPpf-VIMW4-AIx-J30.jpg';
         node.Location = 'United States'
       };
       if (node.Nickname === 'Enter Elastos - Ganymede') {
@@ -177,7 +177,7 @@ export class NodesService {
         node.Location = 'Australia'
       };
       if (node.Nickname === 'Wild Strawberries Apollo') {
-        node.imageUrl = 'https://elanodes.com/wp-content/uploads/custom/images/WIld%20Strawberries%20-%20Apollo.png';
+        node.imageUrl = 'https://i.ibb.co/F7L83NH/EPpf-VIa-Wk-AAUM3d.jpg';
         node.Location = 'Ireland'
       };
       if (node.Nickname === 'Enter Elastos -Callisto') {
@@ -201,7 +201,7 @@ export class NodesService {
         node.Location = 'Hong Kong'
       };
       if (node.Nickname === 'Wild Strawberries Calypso') {
-        node.imageUrl = 'https://elanodes.com/wp-content/uploads/custom/images/WIld%20Strawberries%20-%20Calypso.png';
+        node.imageUrl = 'https://i.ibb.co/ZfCj6Yj/EPpf-VJGXs-AEq0-X1.jpg';
         node.Location = 'Brazil'
       };
       if (node.Nickname === 'Enter Elastos - Titan ') {

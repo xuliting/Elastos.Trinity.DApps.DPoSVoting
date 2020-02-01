@@ -26,7 +26,7 @@ export class NodeSliderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.displayedArr = this._nodes.slice(0, this.nodeIndex + 1);
+    this.displayedArr = this._nodes.slice(0, this.nodeIndex + 2);
     this.slideOpts.initialSlide = this.displayedArr.indexOf(this.node);
   }
 
