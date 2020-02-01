@@ -79,7 +79,7 @@ export class NodesService {
         this.firstVisit = false;
         console.log('First visit?', this.firstVisit);
       } else {
-        this.router.navigate(['home']);
+        this.router.navigate(['menu/home']);
       }
     });
    }
