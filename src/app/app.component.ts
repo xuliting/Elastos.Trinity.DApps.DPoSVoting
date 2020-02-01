@@ -24,7 +24,6 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.nodesService.init();
-      this.nodesService.fetchCurrentHeight();
     });
   }
 }

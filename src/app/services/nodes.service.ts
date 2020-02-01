@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { ModalController } from '@ionic/angular';
 
 import { StorageService } from 'src/app/services/storage.service';
 import { Node } from '../models/nodes.model';
@@ -52,7 +51,6 @@ export class NodesService {
 
   constructor(
     private http: HttpClient,
-    private modalController: ModalController,
     private router: Router,
     private storageService: StorageService,
   ) {}

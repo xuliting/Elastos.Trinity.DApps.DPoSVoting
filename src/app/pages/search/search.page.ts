@@ -38,12 +38,16 @@ export class SearchPage implements OnInit {
     this.totalVotes = this.nodesService.totalVotes;
     if (this._nodes.length === 0) {
       this.nodesLoaded = false;
-      this.subscription = this.nodesService.fetchNodes().subscribe(() => {
-        this.subscription = null;
-        this.nodesLoaded = true;
-        this._nodes = this.nodesService.nodes.filter(node => node.State === 'Active');
-        this.totalVotes = this.nodesService.totalVotes;
-      });
+      this.subscription = this.nodesService.fetchCurrentHeight()
+        .then(() => {
+            this.subscription = this.nodesService.fetchNodes().subscribe(() => {
+              this.subscription = null;
+              this.nodesLoaded = true;
+              this._nodes = this.nodesService.nodes.filter(node => node.State === 'Active');
+              this.totalVotes = this.nodesService.totalVotes;
+            });
+          })
+        .catch(err => console.log('Cannot retrieve data', err));
     }
   }
 

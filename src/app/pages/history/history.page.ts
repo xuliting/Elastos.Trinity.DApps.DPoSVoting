@@ -24,10 +24,14 @@ export class HistoryPage implements OnInit {
   ngOnInit() {
     if(this.nodesService.nodes.length === 0) {
       this.nodesLoaded = false;
-      this.subscription = this.nodesService.fetchNodes().subscribe(() => {
-        this.subscription = null;
-        this.nodesLoaded = true;
-      });
+      this.subscription = this.nodesService.fetchCurrentHeight()
+        .then(() => {
+            this.subscription = this.nodesService.fetchNodes().subscribe(() => {
+              this.subscription = null;
+              this.nodesLoaded = true;
+            });
+          })
+        .catch(err => console.log('Cannot retrieve data', err));
     }
     console.log('Votes History', this.nodesService._votes);
   }

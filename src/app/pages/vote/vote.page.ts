@@ -46,7 +46,7 @@ export class VotePage implements OnInit {
 
     if (this._nodes.length === 0) {
       this.nodesLoaded = false;
-      this.nodesService.fetchCurrentHeight()
+      this.subscription = this.nodesService.fetchCurrentHeight()
         .then(() => {
           this.subscription = this.nodesService.fetchNodes().subscribe(() => {
             this.subscription = null;

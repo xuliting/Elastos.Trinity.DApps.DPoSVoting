@@ -28,14 +28,18 @@ export class StatsPage implements OnInit {
     this.getVotePercent();
     if (this._nodes.length === 0) {
       this.nodesLoaded = false;
-      this.subscription = this.nodesService.fetchNodes().subscribe(() => {
-        this.nodesLoaded = true;
-        this._nodes = this.nodesService.nodes;
-        this.totalVotes = this.nodesService.totalVotes;
-        this.getVotePercent();
-        // this.getInflation();
-        this.subscription = null;
-      });
+      this.subscription = this.nodesService.fetchCurrentHeight()
+        .then(() => {
+          this.subscription = this.nodesService.fetchNodes().subscribe(() => {
+            this.subscription = null;
+            this.nodesLoaded = true;
+            this._nodes = this.nodesService.nodes;
+            this.totalVotes = this.nodesService.totalVotes;
+            this.getVotePercent();
+            // this.getInflation();
+          });
+        })
+        .catch(err => console.log('Cannot retrieve data', err));
     }
   }
 
