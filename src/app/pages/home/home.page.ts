@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NodesService } from 'src/app/services/nodes.service';
+import { StorageService } from 'src/app/services/storage.service';
+import { Router } from '@angular/router';
 
 declare let appManager: any;
 
@@ -24,10 +25,18 @@ export class HomePage implements OnInit {
     slide.slidePrev();
   }
 
-  constructor(private nodesService: NodesService) {
+  constructor(
+    private router: Router,
+    private storageService: StorageService
+  ) {
   }
 
   ngOnInit() {}
+
+  goToVote() {
+    this.storageService.setVisit(true);
+    this.router.navigate(['menu/vote']);
+  }
 
   // appManager
   closeApp() {

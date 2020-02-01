@@ -1,4 +1,364 @@
-section {
+//** new design **//
+/* #header {
+  position: absolute;
+  z-index: 1;
+  padding: 0;
+  margin: 0;
+  top: -50px;
+  width: 100%;
+  height: 3.5%;
+  background-image: url("../../../assets/images/header2.svg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  transform: scale(22);
+}
+
+.content {
+  position: fixed;
+  top: 5px;
+  width: 100%;
+  z-index: 11;
+  margin: 0 auto;
+  text-align: center;
+  background: transparent !important;
+
+  h4 {
+    color: white;
+    font-weight: normal;
+    font-size: 16px;
+    margin: 12px;
+
+     span {
+       font-size: 12px;
+     }
+  }
+
+  .closeBtn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 24px;
+    color: #fff;
+
+    div {
+      margin: 12px;
+    }
+  }
+
+  .btn-row {
+    display: flex;
+    justify-content: center;
+
+    .btn-container {
+      width: 140px;
+      height: 140px;
+      background: transparent !important;
+      border-radius: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      top: 0;
+      z-index: 3;
+
+      div {
+        width: 110px;
+        height: 110px;
+        background: #9D64FB;
+        border-radius: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        div {
+          width: 100px;
+          height: 100px;
+          background: hsl(225, 22%, 96%);
+          border-radius: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          ion-button {
+            --border-radius: 100%;
+            width: 90px;
+            height: 90px;
+
+            .vote-btn {
+              margin: 0;
+              font-size: 24px;
+              font-weight: 900;
+            }
+
+            .voted-btn {
+              margin: 0;
+              font-size: 22px;
+              font-weight: 900;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.container {
+  margin-top: 59%;
+  background: hsl(225, 22%, 96%);
+  position: relative;
+  z-index: auto;
+}
+
+/////////////////////////////////// galaxy s5 ///////////////////////////////////
+@media screen and (min-width: 330px) and (min-height: 610px) and (max-width: 380px) and (max-height: 660px) {
+
+  .content {
+    top: 5px;
+
+    h4 {
+      font-size: 16px;
+
+       span {
+         font-size: 12px;
+       }
+    }
+
+    .btn-row {
+      .btn-container {
+        width: 140px;
+        height: 140px;
+
+        div {
+          width: 110px;
+          height: 110px;
+
+          div {
+            width: 100px;
+            height: 100px;
+
+            ion-button {
+              width: 90px;
+              height: 90px;
+
+              .vote-btn {
+                font-size: 24px;
+              }
+
+              .voted-btn {
+                font-size: 22px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+/////////////////////////////////// pixel 2 ///////////////////////////////////
+@media screen and (min-width: 380px) and (min-height: 700px) and (max-width: 430px) and (max-height: 750px) {
+
+  .content {
+    top: 20px;
+
+    h4 {
+      font-size: 18px;
+
+       span {
+         font-size: 14px;
+       }
+    }
+
+
+    .btn-row {
+      .btn-container {
+        width: 160px;
+        height: 160px;
+
+        div {
+          width: 130px;
+          height: 130px;
+
+          div {
+            width: 120px;
+            height: 120px;
+
+            ion-button {
+              width: 110px;
+              height: 110px;
+
+              .vote-btn {
+                font-size: 28px;
+              }
+
+              .voted-btn {
+                font-size: 24px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .container {
+    margin-top: 60%;
+  }
+}
+
+/////////////////////////////////// pixel 2xl ///////////////////////////////////
+@media screen and (min-width: 380px) and (min-height: 800px) and (max-width: 430px) and (max-height: 850px) {
+
+  .content {
+    top: 45px;
+
+    h4 {
+      font-size: 18px;
+
+       span {
+         font-size: 14px;
+       }
+    }
+
+    .btn-row {
+      .btn-container {
+        width: 170px;
+        height: 170px;
+
+        div {
+          width: 140px;
+          height: 140px;
+
+          div {
+            width: 130px;
+            height: 130px;
+
+            ion-button {
+              width: 120px;
+              height: 120px;
+
+              .vote-btn {
+                font-size: 28px;
+              }
+
+              .voted-btn {
+                font-size: 24px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .container {
+    margin-top: 70%;
+  }
+}
+
+/////////////////////////////////// iphone 5/se ///////////////////////////////////
+@media screen and (min-width: 300px) and (min-height: 540px) and (max-width: 350px) and (max-height: 590px) {
+
+  .content {
+    top: -5px;
+
+    h4 {
+      font-size: 14px;
+
+       span {
+         font-size: 10px;
+       }
+    }
+
+    .btn-row {
+      .btn-container {
+        width: 130px;
+        height: 130px;
+
+        div {
+          width: 100px;
+          height: 100px;
+
+          div {
+            width: 90px;
+            height: 90px;
+
+            ion-button {
+              width: 80px;
+              height: 80px;
+
+              .vote-btn {
+                font-size: 22px;
+              }
+
+              .voted-btn {
+                font-size: 18px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .container {
+    margin-top: 60%;
+  }
+}
+
+/////////////////////////////////// iphone 6,7,8 ///////////////////////////////////
+@media screen and (min-width: 350px) and (min-height: 650px) and (max-width: 400px) and (max-height: 700px) {
+
+  .content {
+    top: 15px;
+
+    h4 {
+      font-size: 16px;
+
+       span {
+         font-size: 12px;
+       }
+    }
+
+    .btn-row {
+      .btn-container {
+        width: 140px;
+        height: 140px;
+
+        div {
+          width: 110px;
+          height: 110px;
+
+          div {
+            width: 100px;
+            height: 100px;
+
+            ion-button {
+              width: 90px;
+              height: 90px;
+
+              .vote-btn {
+                font-size: 24px;
+              }
+
+              .voted-btn {
+                font-size: 20px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .container {
+    margin-top: 60%;
+  }
+} */
+
+
+ /** old design **/
+ section {
   position: fixed;
   width: 100%;
   height: 30%;
@@ -57,7 +417,7 @@ section {
         div {
           width: 120px;
           height: 120px;
-          background: linear-gradient(360deg, #B069DD 0%, #9D64FB 100%);
+          background: #9D64FB;
           border-radius: 100%;
           display: flex;
           align-items: center;
@@ -116,7 +476,7 @@ section:before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(360deg, #C6A3FE 0%, #9D64FB 100%);
+  background: linear-gradient(160deg, #8FDFFF 0%, #A25BFE 70%);
   border-radius: 0 0 50% 50%/ 0 0 100% 100%;
   transform: scaleX(1.4);
   box-shadow: 0px 0px 2px 1px rgb(199, 199, 199);
@@ -150,3 +510,4 @@ section:before {
     margin-top: 56%;
   }
 }
+

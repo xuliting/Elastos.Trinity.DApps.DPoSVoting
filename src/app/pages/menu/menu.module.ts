@@ -40,7 +40,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/menu/home'
+    redirectTo: '/menu/vote'
   }
 ];
 

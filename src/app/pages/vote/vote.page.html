@@ -1,4 +1,4 @@
-<section (click)="return()">
+<section id="header" (click)="return()">
   <div class="content">
     <ion-row>
       <ion-col offset="2" size="8">
@@ -19,7 +19,7 @@
       <div class="btn-container">
         <div>
           <div>
-            <ion-button (click)="castVote()" color="success">
+            <ion-button (click)="castVote()" color="tertiary">
               <strong *ngIf="nodesLoaded && !voted" class="vote-btn">
                 Vote
               </strong>

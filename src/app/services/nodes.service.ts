@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { ModalController } from '@ionic/angular';
 
 import { StorageService } from 'src/app/services/storage.service';
 import { Node } from '../models/nodes.model';
 import { Vote } from '../models/history.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,7 @@ export class NodesService {
   public _nodes: Node[] = [];
   public totalVotes: number = 0;
   public _votes: Vote[] = [
-  /*  {
+   /* {
       date: new Date(),
       tx: 'a2677487ba6c406f70b22c6902b3b2ffe582f99b58848bbfba9127c5fa47c712',
       keys: [
@@ -44,11 +46,14 @@ export class NodesService {
     } */
   ];
 
+  private firstVisit: boolean = false;
   private currentHeight: number;
   private elaNodeUrl: string = 'https://elanodes.com/wp-content/uploads/custom/images/';
 
   constructor(
     private http: HttpClient,
+    private modalController: ModalController,
+    private router: Router,
     private storageService: StorageService,
   ) {}
 
@@ -65,10 +70,31 @@ export class NodesService {
   }
 
   init() {
+    this.getVisit();
     this.getStoredVotes();
   }
 
    // Storage
+   getVisit() {
+    this.storageService.getVisit().then(data => {
+      if(data || data === true) {
+        this.firstVisit = false;
+        console.log('First visit?', this.firstVisit);
+      } else {
+        this.router.navigate(['menu/home']);
+      }
+    });
+   }
+
+   getStoredVotes() {
+    this.storageService.getVotes().then(data => {
+      console.log('Vote history', data);
+      if(data) {
+        this._votes = data;
+      }
+    });
+  }
+
   getStoredNodes() {
     this.storageService.getNodes().then(data => {
       console.log(data);
@@ -77,15 +103,6 @@ export class NodesService {
           node.isChecked = true;
         }
       });
-    });
-  }
-
-  getStoredVotes() {
-    this.storageService.getVotes().then(data => {
-      console.log('Vote history', data);
-      if(data) {
-        this._votes = data;
-      }
     });
   }
 
