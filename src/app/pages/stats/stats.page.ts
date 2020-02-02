@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NodesService } from 'src/app/services/nodes.service';
-import { Node } from 'src/app/models/nodes.model';
 
 
 @Component({
@@ -10,75 +9,63 @@ import { Node } from 'src/app/models/nodes.model';
 })
 export class StatsPage implements OnInit {
 
-  // Initial Values
-  public _nodes: Node[] = [];
-  public totalVotes: number = 0;
-  public votePercent: number = 0;
-  public inflationPercent: number = 0;
-  public nodesLoaded: boolean = true;
-
-  // Fetch api state
-  private subscription: any = null;
-
-  constructor(private nodesService: NodesService) { }
+  constructor(public nodesService: NodesService) { }
 
   ngOnInit() {
-    this._nodes = this.nodesService.nodes;
-    this.totalVotes = this.nodesService.totalVotes;;
-    this.getVotePercent();
-    if (this._nodes.length === 0) {
-      this.nodesLoaded = false;
-      this.subscription = this.nodesService.fetchCurrentHeight()
-        .then(() => {
-          this.subscription = this.nodesService.fetchNodes().subscribe(() => {
-            this.subscription = null;
-            this.nodesLoaded = true;
-            this._nodes = this.nodesService.nodes;
-            this.totalVotes = this.nodesService.totalVotes;
-            this.getVotePercent();
-            // this.getInflation();
-          });
-        })
-        .catch(err => console.log('Cannot retrieve data', err));
-    }
   }
 
-  ionViewWillLeave() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
+  updateStats(event) {
+    setTimeout(() => {
+      this.nodesService.fetchStats().then(() => {
+        event.target.complete();
+      });
+    }, 2000);
   }
 
   //// Define Values ////
-  getVotePercent() {
-    this.votePercent = this.totalVotes / (17851129 * 36) * 100;
+  getVotePercent(): string {
+    let votePercent: number = this.nodesService.totalVotes / (parseFloat(this.nodesService.price.circ_supply) * 36) * 100;
+    return votePercent.toFixed(2);
+  }
+
+  fixHeight(): string {
+    return this.nodesService.currentHeight.toLocaleString().split(/\s/).join(',');
   }
 
   fixTotalVotes(): string {
-    return this.totalVotes.toLocaleString().split(/\s/).join(',');
+    return this.nodesService.totalVotes.toLocaleString().split(/\s/).join(',');
   }
 
-  getActiveNodes(): number {
-    let activeNodes: number = 0;
-    this._nodes.map(node => {
-      if (node.State === 'Active') {
-        activeNodes++;
-      }
-    });
-    return activeNodes;
+  fixTotalEla(): string {
+    let ela: number = parseFloat(this.nodesService.voters.ELA);
+    return ela.toLocaleString().split(/\s/).join(',');
   }
 
- /*  getInflation() {
+  fixTotalVoters(): string {
+    return this.nodesService.voters.total.toLocaleString().split(/\s/).join(',');
+  }
+
+  fixActiveAddresses(): string {
+    return this.nodesService.mainchain.activeaddresses.toLocaleString().split(/\s/).join(',');
+  }
+
+  fixSupply(): string {
+    let supply: number = parseFloat(this.nodesService.price.circ_supply);
+    return supply.toLocaleString().split(/\s/).join(',');
+  }
+
+  fixVolume(): string {
+    let volume: number = parseFloat(this.nodesService.price.volume);
+    return volume.toLocaleString().split(/\s/).join(',');
+  }
+
+  /* getTotalRewards(): string {
     let totalRewards = 0;
-    this._nodes.map(node => {
+    this.nodesService._nodes.map(node => {
       totalRewards += parseInt(node.EstRewardPerYear);
     });
-    console.log('Total rewards ' + totalRewards);
-    this.inflationPercent = totalRewards / 17132144;
+    totalRewards = totalRewards / 365
+    return totalRewards.toLocaleString().split(/\s/).join(',');
   } */
 
-   /* getTotalEla(): string {
-    let ElaVotes: number = Math.ceil(this.totalVotes / 36);
-    return ElaVotes.toLocaleString().split(/\s/).join(',');
-  } */
 }

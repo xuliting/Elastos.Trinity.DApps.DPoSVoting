@@ -1,13 +1,14 @@
 section {
-  position: relative;
+  position: fixed;
   width: 100%;
   height: 25%;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 
   .content {
-    position: fixed;
+    position: relative;
     width: 100%;
     z-index: 1;
     margin: 0 auto;
@@ -63,8 +64,10 @@ section:before {
 }
 
 .container {
-  margin-top: 6%;
+  margin-top: 45%;
   background: hsl(225, 22%, 96%);
+  position: relative;
+  z-index: auto;
 
   ion-list {
     padding: 0;
@@ -127,4 +130,10 @@ section:before {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+}
+
+@media screen and (min-height: 750px){
+  .container {
+    margin-top: 50%;
+  }
 }

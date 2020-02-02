@@ -20,13 +20,13 @@
         <div>
           <div>
             <ion-button (click)="castVote()" color="tertiary">
-              <strong *ngIf="nodesLoaded && !voted" class="vote-btn">
+              <strong *ngIf="nodesService._nodes.length > 0 && !voted" class="vote-btn">
                 Vote
               </strong>
-              <strong *ngIf="nodesLoaded && voted" class="voted-btn">
+              <strong *ngIf="nodesService._nodes.length > 0  && voted" class="voted-btn">
                 Voted
               </strong>
-              <strong *ngIf="!nodesLoaded">
+              <strong *ngIf="nodesService._nodes.length === 0 ">
                 <ion-spinner name="bubbles"></ion-spinner>
               </strong>
             </ion-button>
@@ -39,18 +39,18 @@
 
 <ion-content>
 
-  <ion-grid class="container" *ngIf="nodesLoaded" no-padding>
+  <ion-grid class="container" *ngIf="nodesService._nodes.length > 0 " no-padding>
 
     <app-node-slider
       *ngIf="showNode"
       [nodeIndex]="nodeIndex"
       [node]="node"
-      [totalVotes]="totalVotes"
-      [_nodes]="_nodes">
+      [totalVotes]="nodesService.totalVotes"
+      [_nodes]="nodesService.activeNodes">
     </app-node-slider>
 
     <ion-list lines="none" [class.blur]="showNode" class="node-list">
-      <ion-virtual-scroll [items]="_nodes"  approxItemHeight="240px">
+      <ion-virtual-scroll [items]="nodesService.activeNodes"  approxItemHeight="240px">
         <ion-item color="secondary"  *virtualItem="let node">
           <ion-grid no-padding>
             <ion-row no-padding>
@@ -58,21 +58,21 @@
                 size="1"
                 class="rank-container"
                 no-padding
-                (click)="_showNode(_nodes.indexOf(node), node)"
+                (click)="_showNode(nodesService.activeNodes.indexOf(node), node)"
               >
                 {{ node.Rank }}
               </ion-col>
               <ion-col
                 size="2"
                 class="img-container"
-                (click)="_showNode(_nodes.indexOf(node), node)"
+                (click)="_showNode(nodesService.activeNodes.indexOf(node), node)"
               >
                 <img-loader *ngIf="node.imageUrl" useImg><img [src]="node.imageUrl"></img-loader>
                 <img-loader *ngIf="!node.imageUrl" useImg><img src="../assets/icon/ela-logo.jpg"></img-loader>
               </ion-col>
               <ion-col
                 size="7.5"
-                (click)="_showNode(_nodes.indexOf(node), node)"
+                (click)="_showNode(nodesService.activeNodes.indexOf(node), node)"
               >
                 <ion-label>
                   <h4>{{ node.Nickname }}</h4>
@@ -94,7 +94,7 @@
     </ion-list>
   </ion-grid>
 
-  <ion-grid class="container" *ngIf="!nodesLoaded" no-padding>
+  <ion-grid class="container" *ngIf="nodesService._nodes.length === 0 " no-padding>
     <ion-list class="node-list">
       <ion-item lines="none">
         <ion-grid no-padding>

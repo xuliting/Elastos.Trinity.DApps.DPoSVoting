@@ -1,22 +1,35 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 import { StorageService } from 'src/app/services/storage.service';
 import { Node } from '../models/nodes.model';
 import { Vote } from '../models/history.model';
-import { Router } from '@angular/router';
+import { Mainchain, Voters, Price, Block } from '../models/stats.model';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class NodesService {
 
+  // Nodes
   public _nodes: Node[] = [];
+  public activeNodes: Node[] = [];
   public totalVotes: number = 0;
+
+  // Stats
+  public statsFetched: boolean = false;
+  public currentHeight: number = 0;
+  public mainchain: Mainchain;
+  public voters: Voters;
+  public price: Price;
+  public block: Block;
+
+  // Storage
+  private firstVisit: boolean = false;
   public _votes: Vote[] = [
-  /*  {
+   /* {
       date: new Date(),
       tx: 'a2677487ba6c406f70b22c6902b3b2ffe582f99b58848bbfba9127c5fa47c712',
       keys: [
@@ -40,14 +53,16 @@ export class NodesService {
       keys: [
         '026c8ce246d2587df8a669eee82be4f365ab6cf4fc45e3e539cf0ab91fbab3a809',
         '0315067144eaad471ed0c355e6f9822c51b93308e0cd9febf0792304c605973916',
-        '030cda9b67897652dbf9f85cb0aba39a09203004f59366517a5461b1e48d9faa64'
+        '030cda9b67897652dbf9f85cb0aba39a09203004f59366517a5461b1e48d9faa64',
+        '02b6052f5f65089be3b94efb91c98a5f94c0bf7fbefdbd85c1d547aa7b3d547710'
       ]
     } */
   ];
 
-  private firstVisit: boolean = false;
-  private currentHeight: number;
+  // Fetch
+  private nodeApi: string = 'https://node1.elaphant.app/api/';
   private elaNodeUrl: string = 'https://elanodes.com/wp-content/uploads/custom/images/';
+  private proxyurl = "https://cors-anywhere.herokuapp.com/";
 
   constructor(
     private http: HttpClient,
@@ -67,9 +82,17 @@ export class NodesService {
     return {...this._votes.find(vote => vote.tx === id)};
   }
 
-  init() {
+  async init() {
     this.getVisit();
     this.getStoredVotes();
+    this.fetchStats();
+
+  /*   setInterval(() => {
+      this.fetchStats();
+    }, 5000); */
+
+    const height: number = await this.fetchCurrentHeight();
+    this.fetchNodes(height);
   }
 
    // Storage
@@ -104,36 +127,52 @@ export class NodesService {
     });
   }
 
-  fetchCurrentHeight(): Promise<any> {
+  fetchStats() {
+    return new Promise((resolve, reject) => {
+      this.http.get<any>(this.proxyurl + 'https://elanodes.com/api/widgets').subscribe((res) => {
+        console.log(res);
+        this.statsFetched = true;
+        this.mainchain = res.mainchain;
+        this.voters = res.voters;
+        this.price = res.price;
+        this.block = res.block;
+        resolve();
+      });
+    });
+  }
+
+  fetchCurrentHeight(): Promise<number> {
     console.log('Fetching height');
-    return this.http.get<any>('https://node1.elaphant.app/api/1/currHeight')
-      .toPromise()
-      .then(responce => {
-        this.currentHeight = responce.result;
-        console.log('Current height fetched' + this.currentHeight);
-      })
-      .catch(err => console.log(err));
+    return new Promise((resolve, reject) => {
+      this.http.get<any>(this.nodeApi + '1/currHeight').subscribe((res) => {
+        console.log('Current height fetched' + res.result);
+        this.currentHeight = res.result;
+        resolve(res.result);
+      }, (err) => {
+        console.log(err);
+        reject(err);
+      });
+    });
   }
 
-  fetchNodes(): Observable<any> {
+  fetchNodes(height: number) {
     console.log('Fetching Nodes..');
-    return this.http.get<any>('https://node1.elaphant.app/api/v1/dpos/rank/height/' + this.currentHeight).pipe(
-      tap(response => {
-        console.log('Response', response)
-        this._nodes = this._nodes.concat(response.result);
-        console.log('Nodes Fetched', this._nodes);
-        this.getNodeIcon();
-        this.getStoredNodes();
-        this.getTotalVotes();
-        return this._nodes;
-      })
-    );
+    this.http.get<any>(this.nodeApi + 'v1/dpos/rank/height/' + height).subscribe((res) => {
+      console.log('Nodes Fetch Response', res)
+      this._nodes = this._nodes.concat(res.result);
+      this.activeNodes = this._nodes.filter(node => node.State === 'Active');
+      this.getNodeIcon();
+      this.getStoredNodes();
+      this.getTotalVotes(res.result);
+      console.log('Nodes Added..', this._nodes);
+    });
   }
 
-  getTotalVotes() {
-    this._nodes.map(node => {
+  getTotalVotes(nodes: Node[]) {
+    nodes.map(node => {
       this.totalVotes += parseFloat(node.Votes);
     });
+    console.log('Total votes counted', this.totalVotes);
   }
 
   /* getNodeIcon() {

@@ -17,15 +17,14 @@ export class TxPage implements OnInit {
   // Initial values
   public vote: Vote;
   public _nodes: Node[] = [];
-  public totalVotes: number = 0;
 
-   // Node Detail
-   public showNode: boolean = false;
-   public nodeIndex: number;
-   public node: Node;
+  // Node Detail
+  public showNode: boolean = false;
+  public nodeIndex: number;
+  public node: Node;
 
   constructor(
-    private nodesService: NodesService,
+    public nodesService: NodesService,
     private route: ActivatedRoute,
     private navCtrl: NavController,
   ) { }
@@ -38,7 +37,6 @@ export class TxPage implements OnInit {
       }
       this.vote = this.nodesService.getVote(paramMap.get('txId'));
       this.getNodes();
-      this.getTotalVotes();
       console.log(this.vote);
     });
   }
@@ -48,12 +46,6 @@ export class TxPage implements OnInit {
       if (this.vote.keys.includes(node.Ownerpublickey)) {
         this._nodes = this._nodes.concat(node)
       }
-    });
-  }
-
-  getTotalVotes() {
-    this.nodesService.nodes.map(node => {
-      this.totalVotes += parseFloat(node.Votes);
     });
   }
 
@@ -68,7 +60,7 @@ export class TxPage implements OnInit {
   }
 
   getVotePercent(votes: string): string {
-    const votePercent: number = parseFloat(votes) / this.totalVotes * 100;
+    const votePercent: number = parseFloat(votes) / this.nodesService.totalVotes * 100;
     return votePercent.toFixed(2);
   }
 

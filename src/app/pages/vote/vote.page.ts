@@ -14,11 +14,6 @@ declare let appManager: any;
 })
 export class VotePage implements OnInit {
 
-  // Initial Values
-  public _nodes: Node[] = [];
-  public totalVotes: number = 0;
-  public nodesLoaded: boolean = true;
-
   // Intent
   public voted: boolean = false;
 
@@ -30,45 +25,20 @@ export class VotePage implements OnInit {
   // Toast for voteFailed/voteSuccess
   private toast: any = null;
 
-  // Fetch api state
-  private subscription: any = null;
-
   constructor(
-    private nodesService: NodesService,
+    public nodesService: NodesService,
     private storageService: StorageService,
     private toastController: ToastController
   ) {
   }
 
   ngOnInit() {
-    this._nodes = this.nodesService.nodes.filter(node => node.State === 'Active');
-    this.totalVotes = this.nodesService.totalVotes;
-
-    if (this._nodes.length === 0) {
-      this.nodesLoaded = false;
-      this.subscription = this.nodesService.fetchCurrentHeight()
-        .then(() => {
-          this.subscription = this.nodesService.fetchNodes().subscribe(() => {
-            this.subscription = null;
-            this.nodesLoaded = true;
-            this._nodes = this.nodesService.nodes.filter(node => node.State === 'Active');
-            this.totalVotes = this.nodesService.totalVotes;
-          });
-        })
-        .catch(err => console.log('Cannot retrieve data', err));
-    }
-  }
-
-  ionViewWillLeave() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
   }
 
   //// Vote intent ////
   castVote() {
     let castedNodeKeys: string[] = [];
-    this._nodes.map(node => {
+    this.nodesService._nodes.map(node => {
       if (node.isChecked === true) {
         castedNodeKeys = castedNodeKeys.concat(node.Ownerpublickey);
       }
@@ -127,7 +97,7 @@ export class VotePage implements OnInit {
 
   getSelectedNodes(): number {
     let addedNodes: number = 0;
-    this._nodes.map(node => {
+    this.nodesService._nodes.map(node => {
       if (node.isChecked === true) {
         addedNodes++;
       }
@@ -136,7 +106,7 @@ export class VotePage implements OnInit {
   }
 
   getVotePercent(votes: string): string {
-    const votePercent: number = parseFloat(votes) / this.totalVotes * 100;
+    const votePercent: number = parseFloat(votes) / this.nodesService.totalVotes * 100;
     return votePercent.toFixed(2);
   }
 

@@ -218,77 +218,91 @@ ion-searchbar{
 
 /** global node-list **/
 .node-list {
-    padding: 0;
-    background: hsl(225, 22%, 96%);
+  padding: 0;
+  background: hsl(225, 22%, 96%);
 
-    ion-item {
-      --inner-padding-end: 0px;
-      --padding-start: 0px;
-      margin: 8px 0;
-      padding: 0px;
+  ion-item {
+    --inner-padding-end: 0px;
+    --padding-start: 0px;
+    margin: 8px 0;
+    padding: 0px;
 
-      .rank-container {
-        font-size: 12px !important;
-        font-weight: 600;
-        padding-right: 1px;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-      }
+    .rank-container {
+      font-size: 12px !important;
+      font-weight: 600;
+      padding-right: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
 
-      .img-container {
+    .img-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img-loader {
         display: flex;
         justify-content: center;
         align-items: center;
+        border-radius: 100%;
+        overflow: hidden;
 
-        img-loader {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          border-radius: 100%;
-          overflow: hidden;
-
-          img {
-            width: 45px;
-            height: 45px;
-          }
-        }
-
-        ion-avatar {
-          max-width: 45px;
-          max-height: 45px;
+        img {
+          width: 45px;
+          height: 45px;
         }
       }
 
-      .checkbox-container {
-        display: flex;
-        align-items: center;
+      ion-avatar {
+        max-width: 45px;
+        max-height: 45px;
+      }
+    }
 
-        ion-checkbox {
-          --border-color: #9D64FB !important;
-          --border-color-checked: #9D64FB !important;
-        }
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+
+      ion-checkbox {
+        --border-color: #9D64FB !important;
+        --border-color-checked: #9D64FB !important;
+      }
+    }
+
+    ion-label {
+      margin-top: 6px;
+
+      h4, p {
+        font-weight: 600;
       }
 
-      ion-label {
-        margin-top: 6px;
+      h4 {
+        font-size: 14px;
+      }
 
-        h4, p {
-          font-weight: 600;
-        }
+      p {
+        font-size: 10px !important;
+        color: #989aa2 !important;
 
-        h4 {
-          font-size: 14px;
-        }
-
-        p {
-          font-size: 10px !important;
-          color: #989aa2 !important;
-
-          ion-icon {
-            color: #9D64FB;
-          }
+        ion-icon {
+          color: #9D64FB;
         }
       }
     }
   }
+}
+
+.refreshStats {
+  margin-top: 45%;
+  .refresher-pulling-text, .refresher-refreshing-text, .refresher-refreshing-icon, .refresher-pulling-icon {
+    font-weight: 500;
+    color: #666666;
+  }
+}
+
+@media screen and (min-height: 750px){
+  .refreshStats {
+    margin-top: 50%;
+  }
+}

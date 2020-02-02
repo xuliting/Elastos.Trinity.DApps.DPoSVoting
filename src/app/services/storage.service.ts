@@ -43,7 +43,7 @@ export class StorageService {
 
   public getVisit(): Promise<boolean> {
     return this.storage.get("visited").then((data) => {
-      console.log(data)
+      console.log('Already visited', data)
       return JSON.parse(data);
     });
   }

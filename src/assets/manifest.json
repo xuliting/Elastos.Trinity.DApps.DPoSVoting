@@ -38,7 +38,8 @@
     "http://www.baidu.com/*",
     "https://www.google.com",
     "http://192.168.31.103:21636/*",
-    "https://node1.elaphant.app/*"
+    "https://node1.elaphant.app/*",
+    "https://elanodes.com/api/*"
   ],
   "background_color": "#4e8ef7",
   "theme_display": "show",
