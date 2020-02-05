@@ -23,11 +23,6 @@ export class StatsPage implements OnInit {
   }
 
   //// Define Values ////
-  getVotePercent(): string {
-    let votePercent: number = this.nodesService.totalVotes / (parseFloat(this.nodesService.price.circ_supply) * 36) * 100;
-    return votePercent.toFixed(2);
-  }
-
   fixHeight(): string {
     return this.nodesService.currentHeight.toLocaleString().split(/\s/).join(',');
   }
@@ -58,6 +53,11 @@ export class StatsPage implements OnInit {
     let volume: number = parseFloat(this.nodesService.price.volume);
     return volume.toLocaleString().split(/\s/).join(',');
   }
+
+  /*   getVotePercent(): string {
+    let votePercent: number = this.nodesService.totalVotes / (parseFloat(this.nodesService.price.circ_supply) * 36) * 100;
+    return votePercent.toFixed(2);
+  } */
 
   /* getTotalRewards(): string {
     let totalRewards = 0;
