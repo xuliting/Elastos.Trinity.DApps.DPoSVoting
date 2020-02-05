@@ -35,6 +35,10 @@ export class VotePage implements OnInit {
   ngOnInit() {
   }
 
+  ionViewDidEnter() {
+    appManager.setVisible("show", ()=>{}, (err)=>{});
+  }
+
   //// Vote intent ////
   castVote() {
     let castedNodeKeys: string[] = [];

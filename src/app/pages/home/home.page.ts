@@ -33,6 +33,10 @@ export class HomePage implements OnInit {
 
   ngOnInit() {}
 
+  ionViewDidEnter() {
+    appManager.setVisible("show", ()=>{}, (err)=>{});
+  }
+
   goToVote() {
     this.storageService.setVisit(true);
     this.router.navigate(['menu/vote']);
