@@ -372,7 +372,7 @@ export class NodesService {
         node.Location = 'Brazil'
       };
       if (node.Nickname === 'Black Swan') {
-        node.imageUrl = 'https://i.ibb.co/X5LwRv3/Black-Swan-logo-transparent.png';
+        node.imageUrl = 'https://i.ibb.co/yq6z86Y/thumbnail.png';
         node.Location = 'Czech Republic'
       };
       if (node.Nickname === 'DHG(大黄哥)') {
