@@ -1,47 +1,47 @@
 {
-  "id": "org.elastos.trinity.dapp.dposvoting",
-  "version": "1.0.4",
-  "version_code": 5,
-  "name": "DPoS Voting",
-  "short_name": "DPoS Voting",
-  "short_description": "Vote for Elastos Supernodes",
-  "description": "elastOS official vote app where users can take part of the Supernode Election using ELA and help power the Elastos Network",
-  "start_url": "index.html",
-  "type": "app",
-  "start_visible": "hide",
-  "category": "finance",
-  "icons": [
-    {
-      "src": "assets/images/logo.png",
-      "sizes": "512x512",
-      "type": "image/png"
+    "id": "org.elastos.trinity.dapp.dposvoting",
+    "version": "1.0.5",
+    "version_code": 6,
+    "name": "DPoS Voting",
+    "short_name": "DPoS Voting",
+    "short_description": "Vote for Elastos Supernodes",
+    "description": "elastOS official vote app where users can take part of the Supernode Election using ELA and help power the Elastos Network",
+    "start_url": "index.html",
+    "type": "app",
+    "start_visible": "hide",
+    "category": "finance",
+    "icons": [
+        {
+            "src": "assets/images/logo.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/images/logo.png",
+            "sizes": "128x128",
+            "type": "image/png"
+        }
+    ],
+    "author": {
+        "name": "Elastos Foundation",
+        "email": "contact@elastos.org",
+        "website": "https://www.elastos.org"
     },
-    {
-      "src": "assets/images/logo.png",
-      "sizes": "128x128",
-      "type": "image/png"
-    }
-  ],
-  "author": {
-    "name": "Elastos Foundation",
-    "email": "contact@elastos.org",
-    "website": "https://www.elastos.org"
-  },
-  "default_locale": "en",
-  "plugins": [
-    "Device",
-    "NetworkStatus"
-  ],
-  "urls": [
-    "http://*",
-    "https://*",
-    "http://www.baidu.com/*",
-    "https://www.google.com",
-    "http://192.168.31.103:21636/*",
-    "https://node1.elaphant.app/*",
-    "https://elanodes.com/api/*"
-  ],
-  "background_color": "#4e8ef7",
-  "theme_display": "show",
-  "theme_color": "#4e8ef7"
+    "default_locale": "en",
+    "plugins": [
+        "Device",
+        "NetworkStatus"
+    ],
+    "urls": [
+        "http://*",
+        "https://*",
+        "http://www.baidu.com/*",
+        "https://www.google.com",
+        "http://192.168.31.103:21636/*",
+        "https://node1.elaphant.app/*",
+        "https://elanodes.com/api/*"
+    ],
+    "background_color": "#4e8ef7",
+    "theme_display": "show",
+    "theme_color": "#4e8ef7"
 }
