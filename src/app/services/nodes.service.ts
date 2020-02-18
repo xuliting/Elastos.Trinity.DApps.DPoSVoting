@@ -120,7 +120,7 @@ export class NodesService {
     this.storageService.getNodes().then(data => {
       console.log(data);
       this._nodes.map(node => {
-        if (data && data.includes(node.Ownerpublickey)) {
+        if (data && data.includes(node.Ownerpublickey) && node.State === 'Active') {
           node.isChecked = true;
         }
       });

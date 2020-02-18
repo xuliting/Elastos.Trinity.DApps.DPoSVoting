@@ -14,6 +14,9 @@ declare let appManager: any;
 })
 export class VotePage implements OnInit {
 
+  // Values
+  public selectedNodes: number = 0;
+
   // Intent
   public voted: boolean = false;
 
@@ -50,6 +53,7 @@ export class VotePage implements OnInit {
 
     if (castedNodeKeys.length > 0) {
       console.log(castedNodeKeys);
+      this.storageService.setNodes(castedNodeKeys);
       let votesSent: boolean = false;
 
       appManager.sendIntent(
@@ -58,7 +62,6 @@ export class VotePage implements OnInit {
         {},
         (res) => {
           console.log('Insent sent sucessfully', res);
-          this.storageService.setNodes(castedNodeKeys);
 
           if(res.result.txid === null ) {
             votesSent = true;
@@ -100,13 +103,13 @@ export class VotePage implements OnInit {
   }
 
   getSelectedNodes(): number {
-    let addedNodes: number = 0;
+    this.selectedNodes = 0;
     this.nodesService._nodes.map(node => {
       if (node.isChecked === true) {
-        addedNodes++;
+        this.selectedNodes++;
       }
     });
-    return addedNodes;
+    return this.selectedNodes;
   }
 
   getVotePercent(votes: string): string {
