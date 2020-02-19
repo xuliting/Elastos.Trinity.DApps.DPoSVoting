@@ -165,6 +165,7 @@ export class NodesService {
       this.getStoredNodes();
       this.getTotalVotes(res.result);
       console.log('Nodes Added..', this._nodes);
+      console.log('Active Nodes..', this.activeNodes);
     });
   }
 
@@ -576,6 +577,13 @@ export class NodesService {
       if (node.Nickname === 'Daily Rewards') {
         node.imageUrl = 'https://elanodes.com/wp-content/uploads/custom/images/Daily_Rewards.png';
         node.Location = 'Japan'
+      }
+      if (node.Nickname === 'United Kingdom') {
+        node.imageUrl = 'https://cdn.pixabay.com/photo/2015/11/06/13/29/union-jack-1027898_1280.jpg';
+        node.Location = 'United Kingdom'
+      }
+      if (node.Nickname === 'ELA2020') {
+        node.Location = 'China'
       }
       if (node.State !== 'Active') {
         node.Location = 'Inactive';

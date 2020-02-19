@@ -60,7 +60,7 @@
                 no-padding
                 (click)="_showNode(nodesService.activeNodes.indexOf(node), node)"
               >
-                {{ node.Rank }}
+                {{ nodesService.activeNodes.indexOf(node) + 1 }}
               </ion-col>
               <ion-col
                 size="2"
