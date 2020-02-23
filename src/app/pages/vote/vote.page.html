@@ -39,7 +39,7 @@
 
 <ion-content>
 
-  <ion-grid class="container" *ngIf="nodesService._nodes.length > 0 " no-padding>
+  <ion-grid class="container ion-no-padding" *ngIf="nodesService._nodes.length > 0 ">
 
     <app-node-slider
       *ngIf="showNode"
@@ -52,12 +52,11 @@
     <ion-list lines="none" [class.blur]="showNode" class="node-list">
       <ion-virtual-scroll [items]="nodesService.activeNodes"  approxItemHeight="240px">
         <ion-item color="secondary"  *virtualItem="let node">
-          <ion-grid no-padding>
-            <ion-row no-padding>
+          <ion-grid class="ion-no-padding">
+            <ion-row class="ion-no-padding">
               <ion-col
                 size="1"
-                class="rank-container"
-                no-padding
+                class="rank-container ion-no-padding"
                 (click)="_showNode(nodesService.activeNodes.indexOf(node), node)"
               >
                 {{ nodesService.activeNodes.indexOf(node) + 1 }}
@@ -94,15 +93,14 @@
     </ion-list>
   </ion-grid>
 
-  <ion-grid class="container" *ngIf="nodesService._nodes.length === 0 " no-padding>
+  <ion-grid class="container ion-no-padding" *ngIf="nodesService._nodes.length === 0 ">
     <ion-list class="node-list">
       <ion-item lines="none">
-        <ion-grid no-padding>
-          <ion-row no-padding>
+        <ion-grid class="ion-no-padding">
+          <ion-row class="ion-no-padding">
             <ion-col
               size="1"
-              class="rank-container"
-              no-padding
+              class="rank-container ion-no-padding"
             >
               <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
             </ion-col>
@@ -125,12 +123,11 @@
       </ion-item>
 
       <ion-item lines="none">
-        <ion-grid no-padding>
-          <ion-row no-padding>
+        <ion-grid class="ion-no-padding">
+          <ion-row class="ion-no-padding">
             <ion-col
               size="1"
-              class="rank-container"
-              no-padding
+              class="rank-container ion-no-padding"
             >
               <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
             </ion-col>
@@ -153,12 +150,11 @@
       </ion-item>
 
       <ion-item lines="none">
-        <ion-grid no-padding>
-          <ion-row no-padding>
+        <ion-grid class="ion-no-padding">
+          <ion-row class="ion-no-padding">
             <ion-col
               size="1"
-              class="rank-container"
-              no-padding
+              class="rank-container ion-no-padding"
             >
               <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
             </ion-col>
@@ -181,12 +177,11 @@
       </ion-item>
 
       <ion-item lines="none">
-        <ion-grid no-padding>
-          <ion-row no-padding>
+        <ion-grid class="ion-no-padding">
+          <ion-row class="ion-no-padding">
             <ion-col
               size="1"
-              class="rank-container"
-              no-padding
+              class="rank-container ion-no-padding"
             >
               <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
             </ion-col>
@@ -209,12 +204,11 @@
       </ion-item>
 
       <ion-item lines="none">
-        <ion-grid no-padding>
-          <ion-row no-padding>
+        <ion-grid class="ion-no-padding">
+          <ion-row class="ion-no-padding">
             <ion-col
               size="1"
-              class="rank-container"
-              no-padding
+              class="rank-container ion-no-padding"
             >
               <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
             </ion-col>
@@ -237,12 +231,11 @@
       </ion-item>
 
       <ion-item lines="none">
-        <ion-grid no-padding>
-          <ion-row no-padding>
+        <ion-grid class="ion-no-padding">
+          <ion-row class="ion-no-padding">
             <ion-col
               size="1"
-              class="rank-container"
-              no-padding
+              class="rank-container ion-no-padding"
             >
               <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
             </ion-col>
@@ -265,12 +258,11 @@
       </ion-item>
 
       <ion-item lines="none">
-        <ion-grid no-padding>
-          <ion-row no-padding>
+        <ion-grid class="ion-no-padding">
+          <ion-row class="ion-no-padding">
             <ion-col
               size="1"
-              class="rank-container"
-              no-padding
+              class="rank-container ion-no-padding"
             >
               <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
             </ion-col>

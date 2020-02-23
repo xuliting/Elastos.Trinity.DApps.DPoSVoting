@@ -40,7 +40,7 @@
     </ion-row>
   </ion-grid> -->
 
-  <ion-grid class="container" *ngIf="nodesService._nodes.length > 0" no-padding>
+  <ion-grid class="container ion-no-padding" *ngIf="nodesService._nodes.length > 0">
     <app-node-slider
       *ngIf="showNode"
       [nodeIndex]="nodeIndex"
@@ -52,12 +52,11 @@
     <ion-list lines="none" [class.blur]="showNode" class="node-list">
       <ion-virtual-scroll [items]="filteredNodes"  approxItemHeight="240px">
         <ion-item color="secondary"  *virtualItem="let node">
-          <ion-grid no-padding>
-            <ion-row no-padding>
+          <ion-grid class="ion-no-padding">
+            <ion-row class="ion-no-padding">
               <ion-col
                 size="1"
-                class="rank-container"
-                no-padding
+                class="rank-container ion-no-padding"
                 (click)="_showNode(filteredNodes.indexOf(node), node)"
               >
                 {{ node.Rank }}

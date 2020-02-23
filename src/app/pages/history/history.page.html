@@ -24,7 +24,7 @@
   <ion-grid *ngIf="nodesService._nodes.length > 0 && nodesService._votes.length > 0" class="container">
     <ion-list>
       <ion-item *ngFor="let vote of nodesService._votes" [routerLink]="['/', 'menu', 'history', vote.tx]" color="light" detail>
-        <ion-grid padding-horizontal>
+        <ion-grid class="ion-padding-horizontal">
           <ion-row>
             <ion-col size="7" class="date">
               <ion-label>
@@ -47,7 +47,7 @@
       <ion-grid>
         <ion-row>
           <ion-col size="12" class="noHistory">
-            <ion-label text-center>
+            <ion-label class="ion-text-center">
               No records yet..
             </ion-label>
           </ion-col>
@@ -56,10 +56,10 @@
     </ion-item>
   </ion-grid>
 
-  <ion-grid *ngIf="nodesService._nodes.length === 0" class="container" no-padding>
+  <ion-grid *ngIf="nodesService._nodes.length === 0" class="container ion-no-padding">
     <ion-list>
       <ion-item color="light">
-        <ion-grid padding-horizontal>
+        <ion-grid class="ion-padding-horizontal">
           <ion-row>
             <ion-col size="7" class="_date">
               <ion-skeleton-text animated style="width: 100%; height: 100%;"></ion-skeleton-text>
@@ -76,7 +76,7 @@
         </ion-grid>
       </ion-item>
       <ion-item color="light">
-        <ion-grid padding-horizontal>
+        <ion-grid class="ion-padding-horizontal">
           <ion-row>
             <ion-col size="7" class="_date">
               <ion-skeleton-text animated style="width: 100%; height: 100%;"></ion-skeleton-text>
@@ -93,7 +93,7 @@
         </ion-grid>
       </ion-item>
       <ion-item color="light">
-        <ion-grid padding-horizontal>
+        <ion-grid class="ion-padding-horizontal">
           <ion-row>
             <ion-col size="7" class="_date">
               <ion-skeleton-text animated style="width: 100%; height: 100%;"></ion-skeleton-text>
@@ -110,7 +110,7 @@
         </ion-grid>
       </ion-item>
       <ion-item color="light">
-        <ion-grid padding-horizontal>
+        <ion-grid class="ion-padding-horizontal">
           <ion-row>
             <ion-col size="7" class="_date">
               <ion-skeleton-text animated style="width: 100%; height: 100%;"></ion-skeleton-text>
@@ -127,7 +127,7 @@
         </ion-grid>
       </ion-item>
       <ion-item color="light">
-        <ion-grid padding-horizontal>
+        <ion-grid class="ion-padding-horizontal">
           <ion-row>
             <ion-col size="7" class="_date">
               <ion-skeleton-text animated style="width: 100%; height: 100%;"></ion-skeleton-text>
@@ -144,7 +144,7 @@
         </ion-grid>
       </ion-item>
       <ion-item color="light">
-        <ion-grid padding-horizontal>
+        <ion-grid class="ion-padding-horizontal">
           <ion-row>
             <ion-col size="7" class="_date">
               <ion-skeleton-text animated style="width: 100%; height: 100%;"></ion-skeleton-text>
@@ -161,7 +161,7 @@
         </ion-grid>
       </ion-item>
       <ion-item color="light">
-        <ion-grid padding-horizontal>
+        <ion-grid class="ion-padding-horizontal">
           <ion-row>
             <ion-col size="7" class="_date">
               <ion-skeleton-text animated style="width: 100%; height: 100%;"></ion-skeleton-text>
@@ -178,7 +178,7 @@
         </ion-grid>
       </ion-item>
       <ion-item color="light">
-        <ion-grid padding-horizontal>
+        <ion-grid class="ion-padding-horizontal">
           <ion-row>
             <ion-col size="7" class="_date">
               <ion-skeleton-text animated style="width: 100%; height: 100%;"></ion-skeleton-text>
@@ -195,7 +195,7 @@
         </ion-grid>
       </ion-item>
       <ion-item color="light">
-        <ion-grid padding-horizontal>
+        <ion-grid class="ion-padding-horizontal">
           <ion-row>
             <ion-col size="7" class="_date">
               <ion-skeleton-text animated style="width: 100%; height: 100%;"></ion-skeleton-text>
@@ -212,7 +212,7 @@
         </ion-grid>
       </ion-item>
       <ion-item color="light">
-        <ion-grid padding-horizontal>
+        <ion-grid class="ion-padding-horizontal">
           <ion-row>
             <ion-col size="7" class="_date">
               <ion-skeleton-text animated style="width: 100%; height: 100%;"></ion-skeleton-text>
