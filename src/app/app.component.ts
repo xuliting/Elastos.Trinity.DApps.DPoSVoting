@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform } from '@ionic/angular';
+import { Platform, NavController } from '@ionic/angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { NodesService } from './services/nodes.service';
@@ -14,7 +14,8 @@ export class MyApp {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private nodesService: NodesService
+    private nodesService: NodesService,
+    private navController: NavController
   ) {
     this.initializeApp();
   }
@@ -24,6 +25,8 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.nodesService.init();
+
+      this.navController.navigateRoot("menu/vote");
     });
   }
 }

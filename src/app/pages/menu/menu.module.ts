@@ -37,10 +37,6 @@ const routes: Routes = [
         loadChildren: '../tx/tx.module#TxPageModule'
       },
     ]
-  },
-  {
-    path: '',
-    redirectTo: '/menu/vote'
   }
 ];
 

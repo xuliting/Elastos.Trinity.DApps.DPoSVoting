@@ -5,7 +5,8 @@ import { NodesService } from 'src/app/services/nodes.service';
 import { Node } from 'src/app/models/nodes.model';
 import { StorageService } from 'src/app/services/storage.service';
 
-declare let appManager: any;
+declare let appManager: AppManagerPlugin.AppManager;
+declare let titleBarManager: TitleBarPlugin.TitleBarManager;
 
 @Component({
   selector: 'app-vote',
@@ -39,8 +40,9 @@ export class VotePage implements OnInit {
   }
 
   ionViewDidEnter() {
-    appManager.setVisible("show", ()=>{}, (err)=>{});
-  }
+    appManager.setVisible("show");
+    titleBarManager.setBackgroundColor("#9D64FB");
+  } 
 
   //// Vote intent ////
   castVote() {
