@@ -5,6 +5,14 @@
   padding-bottom: 20px;
   z-index: 0;
 
+  .ion-slide {
+    width: 100% !important;
+  }
+
+  .swipper-wrapper {
+    width: min-content !important; // Fix for iOS wrong width sometimes.
+  }
+
   ion-card-title {
     .img-container {
       display: flex;
