@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NodesService } from 'src/app/services/nodes.service';
 
-declare let appManager: any;
 
 @Component({
   selector: 'app-stats',
@@ -13,6 +12,9 @@ export class StatsPage implements OnInit {
   constructor(public nodesService: NodesService) { }
 
   ngOnInit() {
+  }
+
+  ionViewDidEnter() {
   }
 
   updateStats(event) {

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { StorageService } from 'src/app/services/storage.service';
 import { Router } from '@angular/router';
 
-declare let appManager: any;
+declare let appManager: AppManagerPlugin.AppManager;
+declare let titleBarManager: TitleBarPlugin.TitleBarManager;
 
 @Component({
   selector: 'app-home',
@@ -34,7 +35,9 @@ export class HomePage implements OnInit {
   ngOnInit() {}
 
   ionViewDidEnter() {
-    appManager.setVisible("show", ()=>{}, (err)=>{});
+    appManager.setVisible("show");
+    titleBarManager.setBackgroundColor("#8FDFFF");
+    titleBarManager.setTitle('DPoS Voting');
   }
 
   goToVote() {

@@ -42,7 +42,8 @@ export class VotePage implements OnInit {
   ionViewDidEnter() {
     appManager.setVisible("show");
     titleBarManager.setBackgroundColor("#9D64FB");
-  } 
+    titleBarManager.setTitle('DPoS Voting');
+  }
 
   //// Vote intent ////
   castVote() {

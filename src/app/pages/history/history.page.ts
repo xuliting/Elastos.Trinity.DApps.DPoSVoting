@@ -5,6 +5,7 @@ import { NodesService } from 'src/app/services/nodes.service';
 import { Node } from 'src/app/models/nodes.model';
 import { Vote } from 'src/app/models/history.model';
 
+
 @Component({
   selector: 'app-history',
   templateUrl: './history.page.html',

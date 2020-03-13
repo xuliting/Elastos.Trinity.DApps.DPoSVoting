@@ -29,7 +29,7 @@ export class NodesService {
   // Storage
   private firstVisit: boolean = false;
   public _votes: Vote[] = [
-   /* {
+ /*   {
       date: new Date(),
       tx: 'a2677487ba6c406f70b22c6902b3b2ffe582f99b58848bbfba9127c5fa47c712',
       keys: [
