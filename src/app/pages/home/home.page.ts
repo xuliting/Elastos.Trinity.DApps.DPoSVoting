@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { StorageService } from 'src/app/services/storage.service';
 import { Router } from '@angular/router';
+import { IonSlides, Platform } from '@ionic/angular';
 
 declare let appManager: AppManagerPlugin.AppManager;
 declare let titleBarManager: TitleBarPlugin.TitleBarManager;
@@ -12,10 +13,15 @@ declare let titleBarManager: TitleBarPlugin.TitleBarManager;
 })
 export class HomePage implements OnInit {
 
+  @ViewChild(IonSlides, {static:false}) private slide: IonSlides;
+
+  hidden = true;
+
   // slider
   slideOpts = {
     initialSlide: 0,
-    speed: 400
+    speed: 400,
+    init:false
   };
 
   next(slide) {
@@ -28,16 +34,38 @@ export class HomePage implements OnInit {
 
   constructor(
     private router: Router,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private platform: Platform
   ) {
   }
 
   ngOnInit() {}
 
-  ionViewDidEnter() {
+  ionViewWillEnter() {
     appManager.setVisible("show");
     titleBarManager.setBackgroundColor("#8FDFFF");
     titleBarManager.setTitle('DPoS Voting');
+  }
+
+  ionViewDidEnter() {
+    // Dirty hack because on iOS we are currently unable to understand why the
+    // ion-slides width is sometimes wrong when an app starts. Waiting a few
+    // seconds (DOM fully rendered once...?) seems to solve this problem.
+    if (this.platform.platforms().indexOf('ios') >= 0) {
+        setTimeout(()=>{
+          this.showSlider();
+        }, 3000)
+      }
+      else {
+        this.showSlider();
+      }
+  }
+
+  showSlider() {
+    this.hidden = false
+    this.slide.getSwiper().then((swiper)=>{
+      swiper.init();
+    })
   }
 
   goToVote() {

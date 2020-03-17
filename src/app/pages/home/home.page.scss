@@ -1,3 +1,7 @@
+.hidden {
+  display:none
+}
+
 .container {
   min-height: 100%;
   background: linear-gradient(to bottom, #8FDFFF 0%, #A25BFE 100%);
@@ -5,13 +9,13 @@
   padding-bottom: 20px;
   z-index: 0;
 
-  .ion-slide {
-    width: 100% !important;
-  }
+//   .ion-slide {
+//     width: 100% !important;
+//   }
 
-  .swipper-wrapper {
-    width: min-content !important; // Fix for iOS wrong width sometimes.
-  }
+//   .swipper-wrapper {
+//     width: min-content !important; // Fix for iOS wrong width sometimes.
+//   }
 
   ion-card-title {
     .img-container {
