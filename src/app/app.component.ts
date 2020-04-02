@@ -11,7 +11,7 @@ import { NodesService } from './services/nodes.service';
 })
 export class MyApp {
   @ViewChild(IonRouterOutlet, {static: true}) routerOutlet: IonRouterOutlet;
-  
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -30,7 +30,7 @@ export class MyApp {
 
       this.setupBackKeyNavigation();
 
-      this.navController.navigateRoot("menu/vote");
+      this.navController.navigateRoot("menu/home");
     });
   }
 

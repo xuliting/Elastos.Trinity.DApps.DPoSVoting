@@ -43,7 +43,7 @@ export class HomePage implements OnInit {
 
   ionViewWillEnter() {
     appManager.setVisible("show");
-    titleBarManager.setBackgroundColor("#8FDFFF");
+    titleBarManager.setBackgroundColor("#9D64FB");
     titleBarManager.setTitle('DPoS Voting');
   }
 
