@@ -4,4 +4,4 @@ DPoS Vote DApp is a voting application which allows users to take part in poweri
 
 # How it works
 
-In order for a user to vote for the Supernodes listed in the DPoS Vote DApp, they will need to aquire ELA. The Elastos DPoS system allows a user to vote for up to 32 Supernodes despite their balance. However, the more ELA one owns, the more rewards they will receive
+In order for a user to vote for the Supernodes listed in the DPoS Vote DApp, they will need to aquire ELA. The Elastos DPoS system allows a user to vote for up to 36 Supernodes despite their balance. However, the more ELA one owns, the more rewards they will receive

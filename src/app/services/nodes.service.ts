@@ -110,7 +110,7 @@ export class NodesService {
    getStoredVotes() {
     this.storageService.getVotes().then(data => {
       console.log('Vote history', data);
-      if(data) {
+      if(data && data.length > 0) {
         this._votes = data;
       }
     });

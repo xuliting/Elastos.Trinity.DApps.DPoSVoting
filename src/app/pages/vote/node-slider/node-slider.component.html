@@ -1,5 +1,5 @@
 <ion-slides #slider [options]="slideOpts" (ionSlideNextEnd)="loadNext()" class="node-slides">
-  <ion-slide *ngFor="let node of displayedArr">
+  <ion-slide *ngFor="let node of displayedNodes">
     <ion-card class="ion-text-center" color="secondary">
       <ion-grid>
         <ion-row class="header-container">
@@ -22,10 +22,6 @@
             <p>Current Votes</p>
             <h3>{{ getVotes(node.Votes) }}</h3>
           </ion-row>
-        <!--   <ion-row class="detail-container">
-            <p>ELA Delegated</p>
-            <h3>{{ getEla(node.Votes) }}</h3>
-          </ion-row> -->
           <ion-row class="detail-container">
             <p>Daily Rewards</p>
             <h3>{{ getRewards(node.EstRewardPerYear) }}</h3>
@@ -36,7 +32,6 @@
           </ion-row>
           <ion-row class="website">
             <p>Website</p>
-            <!-- <h3><a href="{{ node.Url }}">{{ node.Url }}</a></h3> -->
             <h3>{{ node.Url }}</h3>
           </ion-row>
         </ion-card-content>
