@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 
 import { NodesService } from 'src/app/services/nodes.service';
-import { Node } from 'src/app/models/nodes.model';
 import { Vote } from 'src/app/models/history.model';
 
 

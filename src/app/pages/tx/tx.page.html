@@ -1,13 +1,8 @@
-<section (click)="return()">
-  <div class="content">
-    <ion-row>
-      <ion-col offset="2" size="8">
-        <ion-title>Voted Nodes</ion-title>
-      </ion-col>
-    </ion-row>
-    <h4>{{ modDate(vote.date) }}</h4>
+<ion-header>
+  <div class="ion-text-center default-header">
+    <ion-label>{{ modDate(vote.date) }}</ion-label>
   </div>
-</section>
+</ion-header>
 
 <ion-content>
   <ion-grid class="container ion-no-padding">

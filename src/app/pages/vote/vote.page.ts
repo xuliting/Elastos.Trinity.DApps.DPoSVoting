@@ -135,6 +135,7 @@ export class VotePage implements OnInit {
   async voteSuccess(res: string) {
     this.closeToast();
     this.toast = await this.toastController.create({
+      position: 'middle',
       mode: 'ios',
       header: 'Votes successfully sent',
       message: 'Txid:' + res.slice(0,30) + '...',
@@ -154,6 +155,7 @@ export class VotePage implements OnInit {
   async voteFailed(res: string) {
     this.closeToast();
     this.toast = await this.toastController.create({
+      position: 'middle',
       mode: 'ios',
       header: 'There was an error with sending votes...',
       message: res,
@@ -181,6 +183,7 @@ export class VotePage implements OnInit {
 
   async noNodesChecked() {
     const toast = await this.toastController.create({
+      position: 'middle',
       mode: 'ios',
       message: 'Please select up to 36 nodes in order to vote',
       color: "primary",

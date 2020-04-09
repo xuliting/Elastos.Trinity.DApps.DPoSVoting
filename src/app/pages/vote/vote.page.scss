@@ -1,140 +1,77 @@
-section {
+.header {
   position: fixed;
-  width: 100%;
-  height: 36%;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  z-index: 2;
-
-  .content {
-    position: relative;
-    top: 0px;
-    width: 100%;
-    z-index: 1;
-    margin: 0 auto;
-    text-align: center;
-
-    h4 {
-      color: white;
-      font-weight: normal;
-      font-size: 18px;
-      margin: 12px;
-
-       span {
-         font-size: 14px;
-       }
-    }
-
-    .btn-row {
-      display: flex;
-      justify-content: center;
-
-      .btn-container {
-        width: 150px;
-        height: 150px;
-        background: hsl(225, 22%, 96%);
-        border-radius: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        top: 0;
-        z-index: 3;
-
-        div {
-          width: 120px;
-          height: 120px;
-          background: #9D64FB;
-          border-radius: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-
-          div {
-            width: 110px;
-            height: 110px;
-            background: hsl(225, 22%, 96%);
-            border-radius: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            ion-button {
-              --border-radius: 100%;
-              width: 100px;
-              height: 100px;
-
-              .elaAmount {
-                font-size: 34px;
-                font-weight: 700;
-                padding: 2px;
-
-                h5 {
-                  font-size: 18px;
-                  font-weight: 700;
-                  margin: 0 0 0 20px;
-                }
-              }
-
-              .vote-btn {
-                margin: 0;
-                font-size: 28px;
-                font-weight: 900;
-              }
-
-              .voted-btn {
-                margin: 0;
-                font-size: 24px;
-                font-weight: 900;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-section:before {
-  content: '';
-  position: absolute;
-  z-index: 1;
   top: 0;
   left: 0;
+  z-index: 2;
   width: 100%;
-  height: 80%;
-  background: linear-gradient(to right, #8FDFFF 0%, #A25BFE 70%);
-  border-radius: 0 0 50% 50%/ 0 0 100% 100%;
-  transform: scaleX(1.4);
-  box-shadow: 0px 0px 2px 2px rgb(199, 199, 199);
+  height: 8%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #A25BFE;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  animation: showHeader;
+  animation-duration: 1000ms;
+  animation-fill-mode: forwards;
+
+  @keyframes showHeader {
+    0% { top: -100px }
+    100% { top: 0px }
+  }
+
+  ion-label {
+    font-weight: 500;
+    font-size: 16px;
+    color: #ffffff;
+
+    span {
+      font-weight: 700;
+      font-size: 24px;
+    }
+  }
 }
+
 
 .container {
-  margin-top: 59%;
   background: hsl(225, 22%, 96%);
-  position: relative;
-  z-index: auto;
+  min-height: 100%;
+  padding-top: 13%;
+  padding-bottom: 13%;
+
+  .vote-btn {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 8%;
+    background: #A25BFE;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: reveal;
+    animation-duration: 1000ms;
+    animation-fill-mode: forwards;
+
+    @keyframes reveal {
+      0% { bottom: -100px }
+      100% { bottom: 0px }
+    }
+
+    h1 {
+      margin: 25px;
+      color: white;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 5px;
+    }
+  }
+
+  .ripple {
+    overflow: hidden;
+  }
 }
 
-@media screen and (max-width: 379px){
-
-  section {
-    height: 38%;
-  }
-
-  .container {
-    margin-top: 60%;
-  }
-}
-
-@media screen and (min-height: 750px){
-
-  section {
-    height: 32%;
-  }
-
-  .container {
-    margin-top: 62%;
-  }
-}

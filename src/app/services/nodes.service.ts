@@ -29,7 +29,7 @@ export class NodesService {
   // Storage
   private firstVisit: boolean = false;
   public _votes: Vote[] = [
- /*   {
+   {
       date: new Date(),
       tx: 'a2677487ba6c406f70b22c6902b3b2ffe582f99b58848bbfba9127c5fa47c712',
       keys: [
@@ -56,7 +56,7 @@ export class NodesService {
         '030cda9b67897652dbf9f85cb0aba39a09203004f59366517a5461b1e48d9faa64',
         '02b6052f5f65089be3b94efb91c98a5f94c0bf7fbefdbd85c1d547aa7b3d547710'
       ]
-    } */
+    }
   ];
 
   // Fetch

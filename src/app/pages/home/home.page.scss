@@ -4,7 +4,7 @@
 
 .container {
   min-height: 100%;
-  background: linear-gradient(to bottom, #8FDFFF 0%, #A25BFE 100%);
+  background: #A25BFE;
   margin: 0;
   padding-bottom: 20px;
   z-index: 0;
@@ -24,8 +24,8 @@
       padding: 0;
 
       img {
-        width: 350px;
-        height: 350px;
+        width: 300px;
+        height: 300px;
       }
     }
 

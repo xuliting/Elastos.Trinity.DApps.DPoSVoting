@@ -30,7 +30,7 @@ export class MyApp {
 
       this.setupBackKeyNavigation();
 
-      this.navController.navigateRoot("menu/home");
+      this.navController.navigateRoot("menu/vote");
     });
   }
 
