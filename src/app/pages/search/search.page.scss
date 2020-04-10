@@ -21,6 +21,7 @@
   animation: reveal;
   animation-duration: 1000ms;
   animation-fill-mode: forwards;
+  box-shadow: 0px 0px 1px 1px rgb(199, 199, 199);
 
   @keyframes reveal {
     0% { bottom: -100px }

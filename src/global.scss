@@ -127,7 +127,7 @@ ion-searchbar {
 }
 
 /** Default Header **/
-.default-header {
+.header {
   position: fixed;
   top: 0;
   left: 0;
@@ -143,6 +143,7 @@ ion-searchbar {
   animation: showHeader;
   animation-duration: 1000ms;
   animation-fill-mode: forwards;
+  box-shadow: 0px 0px 1px 1px rgb(199, 199, 199);
 
   @keyframes showHeader {
     0% { top: -100px }
