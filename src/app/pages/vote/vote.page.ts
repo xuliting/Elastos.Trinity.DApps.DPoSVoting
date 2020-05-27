@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastController } from '@ionic/angular';
+import { ToastController, Platform } from '@ionic/angular';
 
 import { NodesService } from 'src/app/services/nodes.service';
 import { Node } from 'src/app/models/nodes.model';
@@ -29,7 +29,10 @@ export class VotePage implements OnInit {
   // Toast for voteFailed/voteSuccess
   private toast: any = null;
 
+  public isAndroid = false;
+
   constructor(
+    private platform: Platform,
     public nodesService: NodesService,
     private storageService: StorageService,
     private toastController: ToastController
@@ -37,6 +40,9 @@ export class VotePage implements OnInit {
   }
 
   ngOnInit() {
+    if (this.platform.platforms().indexOf('android') === 0) {
+      this.isAndroid = true;
+    }
   }
 
   ionViewDidEnter() {

@@ -29,6 +29,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    h1 {
+      margin: 25px;
+      color: white;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 5px;
+    }
+  }
+
+  .animate-btn {
     animation: reveal;
     animation-duration: 1000ms;
     animation-fill-mode: forwards;
@@ -37,14 +48,6 @@
     @keyframes reveal {
       0% { bottom: -100px }
       100% { bottom: 0px }
-    }
-
-    h1 {
-      margin: 25px;
-      color: white;
-      font-size: 18px;
-      font-weight: 600;
-      letter-spacing: 5px;
     }
   }
 

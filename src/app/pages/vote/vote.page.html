@@ -59,7 +59,7 @@
       </ion-virtual-scroll>
     </ion-list>
 
-    <div class="vote-btn ion-activatable ripple" (click)="castVote()">
+    <div class="vote-btn ion-activatable ripple" [class.animate-btn]="isAndroid" (click)="castVote()">
       <h1 *ngIf="!voted">CAST VOTE</h1>
       <h1 *ngIf="voted">VOTES CASTED</h1>
       <ion-ripple-effect></ion-ripple-effect>
